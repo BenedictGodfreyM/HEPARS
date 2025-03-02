@@ -40,6 +40,6 @@ class Institution extends Model
 
     public function programs(): HasMany
     {
-        return $this->hasMany(Program::class)->chaperone();
+        return $this->hasMany(Program::class);
     }
 }
