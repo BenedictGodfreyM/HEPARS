@@ -30,6 +30,20 @@ class ProgramRepository
     }
 
     /**
+     * Retrieve all programs offered by a certain institution
+     * 
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function institutionPrograms($institution_id, $search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
+    {
+        return Program::where('institution_id', '=', $institution_id)
+                        ->orWhere('name', 'like', '%' . $search . '%')
+                        ->orWhere('duration', 'like', '%' . $search . '%')
+                        ->orderBy($sortField, $sortDirection)
+                        ->paginate($perPage);
+    }
+
+    /**
      * Retrieve a program by its ID from the database
      * 
      * @param string $id Program ID
