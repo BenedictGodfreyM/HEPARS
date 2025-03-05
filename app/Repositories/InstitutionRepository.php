@@ -21,9 +21,16 @@ class InstitutionRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allInstitutions()
+    public function allInstitutions($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
-        return Institution::latest()->paginate(10);
+        return Institution::where('name', 'like', '%' . $search . '%')
+                            ->orWhere('acronym', 'like', '%' . $search . '%')
+                            ->orWhere('type', 'like', '%' . $search . '%')
+                            ->orWhere('ownership', 'like', '%' . $search . '%')
+                            ->orWhere('code', 'like', '%' . $search . '%')
+                            ->orWhere('location', 'like', '%' . $search . '%')
+                            ->orderBy($sortField, $sortDirection)
+                            ->paginate($perPage);
     }
 
     /**

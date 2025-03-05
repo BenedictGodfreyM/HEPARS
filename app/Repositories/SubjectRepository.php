@@ -21,9 +21,12 @@ class SubjectRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allSubjects()
+    public function allSubjects($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
-        return Subject::latest()->paginate(10);
+        return Subject::where('name', 'like', '%' . $search . '%')
+                        ->orWhere('code', 'like', '%' . $search . '%')
+                        ->orderBy($sortField, $sortDirection)
+                        ->paginate($perPage);
     }
 
     /**

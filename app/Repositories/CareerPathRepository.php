@@ -21,9 +21,11 @@ class CareerPathRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allCareerPaths()
+    public function allCareerPaths($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
-        return CareerPath::latest()->paginate(10);
+        return CareerPath::where('name', 'like', '%' . $search . '%')
+                            ->orderBy($sortField, $sortDirection)
+                            ->paginate($perPage);
     }
 
     /**

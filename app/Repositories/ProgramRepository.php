@@ -21,9 +21,12 @@ class ProgramRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allPrograms()
+    public function allPrograms($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
-        return Program::latest()->paginate(10);
+        return Program::where('name', 'like', '%' . $search . '%')
+                        ->orWhere('duration', 'like', '%' . $search . '%')
+                        ->orderBy($sortField, $sortDirection)
+                        ->paginate($perPage);
     }
 
     /**

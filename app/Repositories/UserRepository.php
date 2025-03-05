@@ -23,9 +23,13 @@ class UserRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allUsers()
+    public function allUsers($search, $sortField = "firstname", $sortDirection = "desc", $perPage = 10)
     {
-        return User::latest()->paginate(10);
+        return User::where('firstname', 'like', '%' . $search . '%')
+                    ->orWhere('surname', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orderBy($sortField, $sortDirection)
+                    ->paginate($perPage);
     }
 
     /**
