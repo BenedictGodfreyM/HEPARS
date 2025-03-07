@@ -30,6 +30,16 @@ class SubjectRepository
     }
 
     /**
+     * Retrieve all subjects from the database (Without Pagination)
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function allSubjectsWithoutPagination()
+    {
+        return Subject::query()->orderBy('name','asc')->get();
+    }
+
+    /**
      * Save details of a subject to the database
      * 
      * @param array $data Details of a particular subject
