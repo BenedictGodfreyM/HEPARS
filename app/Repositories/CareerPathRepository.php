@@ -29,6 +29,16 @@ class CareerPathRepository
     }
 
     /**
+     * Retrieve all career paths from the database
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function allCareerPathsWithoutPagination()
+    {
+        return CareerPath::query()->orderBy('name','asc')->get();
+    }
+
+    /**
      * Save details of a career path to the database
      * 
      * @param array $data Details of a particular career path
