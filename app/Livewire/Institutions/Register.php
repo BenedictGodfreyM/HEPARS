@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Livewire\Institutions;
+
+use App\Enums\InstitutionOwnership;
+use App\Enums\InstitutionType;
+use App\Repositories\InstitutionRepository;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Livewire\Component;
+
+class Register extends Component
+{
+    public $name = "";
+    public $acronym = "";
+    public $type = "";
+    public $ownership = "";
+    public $code = "";
+    public $location = "";
+
+    public function rules()
+    {
+        return [
+            'name' => ['required', 'string'],
+            'acronym' => ['required', 'max:10'],
+            'type' => ['required', Rule::in([InstitutionType::UNIVERSITY,InstitutionType::UNIVERSITY_CAMPUS_COLLEGE,InstitutionType::UNIVERSITY_COLLEGE,InstitutionType::NON_UNIVERSITY])],
+            'ownership' => ['required', Rule::in([InstitutionOwnership::PRIVATE_INSTITUTION,InstitutionOwnership::PUBLIC_INSTITUTION])],
+            'code' => ['required', 'max:5'],
+            'location' => ['required', 'string'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Please insert the name of the institution.',
+            'name.string' => 'The name of the institution should be in alphanumeric characters.',
+            'acronym.required' => 'Please insert the acronym of the institution.',
+            'acronym.string' => 'The acronym of the institution should be in alphanumeric characters.',
+            'type.required' => 'Please choose the type of the institution.',
+            'ownership.required' => 'Please choose the form of ownership of the institution.',
+            'code.required' => "Please insert the TCU's code of the institution.",
+            'code.max' => "The institution's code should be 5 characters long.",
+            'location.required' => 'Please insert the geographical location of the institution.',
+            'location.string' => 'The geographical location of the institution should be in alphanumeric characters.',
+        ];
+    }
+ 
+    public function registerInstitution()
+    {
+        $this->validate(); 
+        try{
+            DB::beginTransaction();
+            $institutionRepo = new InstitutionRepository();
+            $institutionRepo->storeInstitution([
+                'name' => $this->name,
+                'acronym' => $this->acronym,
+                'type' => $this->type,
+                'ownership' => $this->ownership,
+                'code' => $this->code,
+                'location' => $this->location,
+            ]);
+            DB::commit();
+            $this->reset();
+            session()->flash('success','Institution is successfully registered.');
+        }catch(Exception $e){
+            DB::rollBack();
+            session()->flash('error',$e->getMessage());
+        }      
+    }
+
+    public function render()
+    {
+        return view('livewire.institutions.register');
+    }
+}
