@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Program;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProgramRepository
 {
@@ -37,8 +38,10 @@ class ProgramRepository
     public function institutionPrograms($institution_id, $search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
         return Program::where('institution_id', '=', $institution_id)
-                        ->orWhere('name', 'like', '%' . $search . '%')
-                        ->orWhere('duration', 'like', '%' . $search . '%')
+                        ->where(function(Builder $query) use($search){
+                            $query->where('name', 'like', '%' . $search . '%')
+                                    ->orWhere('duration', 'like', '%' . $search . '%');
+                        })
                         ->orderBy($sortField, $sortDirection)
                         ->paginate($perPage);
     }
