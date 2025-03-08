@@ -118,6 +118,19 @@ class ProgramRepository
     }
 
     /**
+     * Remove all Entry Requirements from a particular program
+     * 
+     * @param string $program_id
+     * 
+     * @return void
+     */
+    public function removeEntryRequirements(string $program_id)
+    {
+        $program = Program::findOrFail($program_id);
+        $program->subjects()->detach();
+    }
+
+    /**
      * Link a particular program to a specific Career Path
      * 
      * @param string $program_id
