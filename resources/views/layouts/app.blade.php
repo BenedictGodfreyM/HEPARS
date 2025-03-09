@@ -26,22 +26,8 @@
 
         <!-- Sidebar -->
         @yield('page_side_navigation')
-        <!-- /.sidebar -->
 
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">@yield('page_title')</h1>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <section class="content">
-                <div class="container-fluid">@yield('page_content')</div>
-            </section>
-        </div>
+        @yield('page_content_wrapper')
 
         <!-- REQUIRED SCRIPTS -->
         <!-- jQuery -->
