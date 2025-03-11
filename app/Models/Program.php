@@ -41,7 +41,7 @@ class Program extends Model
         return $this->belongsToMany(CareerPath::class, 'career_path_programs');
     }
 
-    public function institutions(): BelongsTo
+    public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class);
     }
