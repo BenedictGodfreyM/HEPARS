@@ -48,6 +48,6 @@ class Program extends Model
 
     public function subjects(): BelongsToMany
     {
-        return $this->belongsToMany(Subject::class, 'entry_requirements')->using(EntryRequirement::class)->withPivot('min_grade');
+        return $this->belongsToMany(Subject::class, 'entry_requirements')->using(EntryRequirement::class)->withPivot('min_grade','requirement_type');
     }
 }
