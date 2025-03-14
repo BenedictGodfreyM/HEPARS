@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Programs;
 
+use App\Enums\RequirementType;
 use App\Repositories\CareerPathRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\SubjectRepository;
@@ -40,6 +41,7 @@ class Edit extends Component
         foreach($programDetails->subjects as $index => $subject){
             $this->addSubjectToSelection($subject->id);
             $this->updateSelectedSubject($index, $subject->pivot->min_grade);
+            $this->markSelectedSubjectAsCompulsoryOrNot($index, $subject->pivot->requirement_type);
         }
         foreach($programDetails->career_paths as $index => $career){
             array_push($this->selectedCareerPaths, $career->id);
@@ -85,7 +87,7 @@ class Edit extends Component
     public function addSubjectToSelection($subjectID)
     {
         $subject = call_user_func_array('array_merge', array_filter($this->availableSubjects->toArray(), function($subject) use ($subjectID) { return $subject['id'] === $subjectID; }));
-        $selectionToAdd = ['subject' => $subject, 'grade' => ''];
+        $selectionToAdd = ['subject' => $subject, 'grade' => '', 'requirement_type' => RequirementType::OPTIONAL->value];
         if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
             $this->selectedSubjects[] = $selectionToAdd;
         }
@@ -102,6 +104,13 @@ class Edit extends Component
     {
         if (isset($this->selectedSubjects[$index])) {
             $this->selectedSubjects[$index]['grade'] = $selectedGrade;
+        }
+    }
+
+    public function markSelectedSubjectAsCompulsoryOrNot($index, $requirement_type)
+    {
+        if (isset($this->selectedSubjects[$index])) {
+            $this->selectedSubjects[$index]['requirement_type'] = $requirement_type;
         }
     }
 
@@ -122,7 +131,7 @@ class Edit extends Component
 
                 $programRepo->removeEntryRequirements($this->program_id);
                 foreach ($this->selectedSubjects as $selectedSubject) {
-                    $programRepo->addEntryRequirement($this->program_id, $selectedSubject['subject']['id'], $selectedSubject['grade']);
+                    $programRepo->addEntryRequirement($this->program_id, $selectedSubject['subject']['id'], $selectedSubject['grade'], $selectedSubject['requirement_type']);
                 }
                 DB::commit();
                 session()->flash('success','Program is successfully updated.');

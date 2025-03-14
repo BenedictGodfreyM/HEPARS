@@ -66,20 +66,46 @@
                         @if(count($selectedSubjects) > 0)
                         @foreach($selectedSubjects as $index => $subjectData)
                         <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">{{ $subjectData['subject']['name'] }}:</span>
+                            <div class="row border rounded mx-1 py-2">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ $subjectData['subject']['name'] }}:</span>
+                                        </div>
+                                        <select class="form-control" wire:change="updateSelectedSubject({{ $index }}, $event.target.value)" required>
+                                            <option value="" selected>--Select Grade--</option>
+                                            @foreach($availableGrades as $grade)
+                                                <option value="{{ $grade }}">{{ $grade }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button type="button" wire:click="removeSubjectFromSelection({{ $index }})" class="btn btn-danger">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <select class="form-control" wire:change="updateSelectedSubject({{ $index }}, $event.target.value)" required>
-                                    <option value="" selected>--Select Grade--</option>
-                                    @foreach($availableGrades as $grade)
-                                        <option value="{{ $grade }}">{{ $grade }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <button type="button" wire:click="removeSubjectFromSelection({{ $index }})" class="btn btn-danger">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </button>
+                                <div class="col-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" type="radio" id="customRadio-1-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.requirement_type" value="compulsory">
+                                                <label for="customRadio-1-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Compulsory</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" type="radio" id="customRadio-2-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.requirement_type" value="necessary">
+                                                <label for="customRadio-2-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Necessary</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" type="radio" id="customRadio-3-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.requirement_type" value="optional">
+                                                <label for="customRadio-3-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Optional</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

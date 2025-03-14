@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Programs;
 
+use App\Enums\RequirementType;
 use App\Repositories\CareerPathRepository;
 use App\Repositories\InstitutionRepository;
 use App\Repositories\ProgramRepository;
@@ -72,7 +73,7 @@ class Register extends Component
     public function addSubjectToSelection($subjectID)
     {
         $subject = call_user_func_array('array_merge', array_filter($this->availableSubjects->toArray(), function($subject) use ($subjectID) { return $subject['id'] === $subjectID; }));
-        $selectionToAdd = ['subject' => $subject, 'grade' => ''];
+        $selectionToAdd = ['subject' => $subject, 'grade' => '', 'requirement_type' => RequirementType::OPTIONAL->value];
         if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
             $this->selectedSubjects[] = $selectionToAdd;
         }
@@ -91,6 +92,13 @@ class Register extends Component
             $this->selectedSubjects[$index]['grade'] = $selectedGrade;
         }
     }
+
+    public function markSelectedSubjectAsCompulsoryOrNot($index, $requirement_type)
+    {
+        if (isset($this->selectedSubjects[$index])) {
+            $this->selectedSubjects[$index]['requirement_type'] = $requirement_type;
+        }
+    }
  
     public function registerProgram()
     {
@@ -107,7 +115,7 @@ class Register extends Component
             $programRepo->linkToCareerPaths($newProgram->id, $this->selectedCareerPaths);
 
             foreach ($this->selectedSubjects as $selectedSubject) {
-                $programRepo->addEntryRequirement($newProgram->id, $selectedSubject['subject']['id'], $selectedSubject['grade']);
+                $programRepo->addEntryRequirement($newProgram->id, $selectedSubject['subject']['id'], $selectedSubject['grade'], $selectedSubject['requirement_type']);
             }
 
             DB::commit();
