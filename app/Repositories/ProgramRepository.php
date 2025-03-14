@@ -94,20 +94,21 @@ class ProgramRepository
      * @param string $program_id
      * @param string $subject_id
      * @param string $min_grade
+     * @param string $requirement_type (Either compulsory, necessary or optional)
      * 
      * @return void
      */
-    public function addEntryRequirement($program_id, $subject_id, $min_grade)
+    public function addEntryRequirement($program_id, $subject_id, $min_grade, $requirement_type)
     {
         $program = Program::findOrFail($program_id);
-        $program->subjects()->attach($subject_id, ['min_grade' => $min_grade]);
+        $program->subjects()->attach($subject_id, ['min_grade' => $min_grade, 'requirement_type' => $requirement_type]);
     }
 
     /**
      * Synchronize a particular program to multiple entry requirements
      * 
      * @param string $program_id
-     * @param array $entry_requirements An array of $subject_id => ['min_grade' => $min_grade] mapping
+     * @param array $entry_requirements An array of $subject_id => ['min_grade' => $min_grade, 'requirement_type' => $requirement_type] mapping
      * 
      * @return void
      */
