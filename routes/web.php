@@ -66,4 +66,6 @@ Route::prefix('auth')->group(function () {
 
 });
 
+Route::get('/admission_portals', [App\Http\Controllers\Frontend\HomeController::class, 'admission_portals'])->name('admission_portals');
+
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
