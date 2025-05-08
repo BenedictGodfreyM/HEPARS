@@ -10,4 +10,9 @@ class HomeController extends Controller
     {
         return view('frontend.home');
     }
+
+    public function admission_portals()
+    {
+        return view('frontend.admission_portals');
+    }
 }
