@@ -6,7 +6,7 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Subject extends Model
+class Combination extends Model
 {
     use Uuids;
     
@@ -31,16 +31,10 @@ class Subject extends Model
      */
     protected $fillable = [
         'name',
-        'code',
     ];
 
-    public function programs(): BelongsToMany
+    public function subjects(): BelongsToMany
     {
-        return $this->belongsToMany(Program::class, 'entry_requirements')->using(EntryRequirement::class);
-    }
-
-    public function combinations(): BelongsToMany
-    {
-        return $this->belongsToMany(Combination::class, 'combination_subjects');
+        return $this->belongsToMany(Subject::class, 'combination_subjects');
     }
 }
