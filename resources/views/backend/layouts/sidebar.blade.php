@@ -34,6 +34,12 @@
                         <p>High School Subjects</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('combinations') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Combinations</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.Sidebar-menu -->

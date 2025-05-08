@@ -18,6 +18,20 @@ Route::prefix('auth')->group(function () {
 
     });
 
+    Route::prefix('combinations')->group(function () {
+
+        Route::prefix('{combination_id}')->group(function () {
+
+            Route::get('/edit', [App\Http\Controllers\Backend\CombinationController::class, 'edit'])->name('combinations.edit');
+
+        });
+
+        Route::get('/register', [App\Http\Controllers\Backend\CombinationController::class, 'register'])->name('combinations.register');
+        
+        Route::get('/', [App\Http\Controllers\Backend\CombinationController::class, 'index'])->name('combinations');
+
+    });
+
     Route::prefix('institutions')->group(function () {
 
         Route::prefix('{institution_id}')->group(function () {
