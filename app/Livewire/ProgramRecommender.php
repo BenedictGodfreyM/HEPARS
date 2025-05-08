@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Repositories\CareerPathRepository;
+use App\Repositories\CombinationRepository;
 use App\Repositories\SubjectRepository;
 use App\Services\RecommendationService;
 use Exception;
@@ -10,7 +11,7 @@ use Livewire\Component;
 
 class ProgramRecommender extends Component
 {
-    public $availableSubjects;
+    public $availableCombinations;
     public $availableGrades = ['A','B','C','D','E','F'];
 
     public $selectedSubjects = [];
@@ -22,8 +23,8 @@ class ProgramRecommender extends Component
 
     public function mount()
     {
-        $subjectRepo = new SubjectRepository();
-        $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
+        $combinationRepo = new CombinationRepository();
+        $this->availableCombinations = $combinationRepo->allCombinationsWithoutPagination();
     }
 
     public function rules()
@@ -56,14 +57,19 @@ class ProgramRecommender extends Component
         return false;
     }
 
-    public function addSubjectToSelection($subjectID)
+    public function addCombinationSubjectsToSelection($combinationID)
     {
-        $subject = call_user_func_array('array_merge', array_filter($this->availableSubjects->toArray(), function($subject) use ($subjectID) { return $subject['id'] === $subjectID; }));
-        $selectionToAdd = ['subject' => $subject, 'grade' => ''];
-        if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
-            $this->selectedSubjects[] = $selectionToAdd;
+        // $combination = call_user_func_array('array_merge', array_filter($this->availableCombinations->toArray(), function($combination) use ($combinationID) { return $combination['id'] === $combinationID; }));
+        $combinationRepo = new CombinationRepository();
+        $combination = $combinationRepo->findCombination($combinationID);
+        $this->selectedSubjects = [];
+        foreach($combination->subjects as $key => $subject){
+            $selectionToAdd = ['subject' => $subject, 'grade' => ''];
+            if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
+                $this->selectedSubjects[] = $selectionToAdd;
+            }
         }
-        $this->selectedOption = '';
+        // $this->selectedOption = '';
     }
 
     public function removeSubjectFromSelection($index)
@@ -107,8 +113,8 @@ class ProgramRecommender extends Component
 
     public function render()
     {
-        $subjectRepo = new SubjectRepository();
-        $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
+        $combinationRepo = new CombinationRepository();
+        $this->availableCombinations = $combinationRepo->allCombinationsWithoutPagination();
         $careerPathsRepo = new CareerPathRepository();
         return view('livewire.program-recommender', [
             'career_paths' => $careerPathsRepo->allCareerPathsWithoutPagination()

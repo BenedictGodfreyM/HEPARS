@@ -17,10 +17,10 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>High School Results</label>
-                            <select class="form-control @error('selectedSubjects') is-invalid @enderror" wire:change="addSubjectToSelection($event.target.value)" wire:model="selectedOption">
-                                <option selected value="">Select a Subject</option>
-                                @forelse ($availableSubjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                            <select class="form-control @error('selectedSubjects') is-invalid @enderror" wire:change="addCombinationSubjectsToSelection($event.target.value)" wire:model="selectedOption">
+                                <option selected disabled value="">Select a Combination</option>
+                                @forelse ($availableCombinations as $combination)
+                                <option value="{{ $combination->id }}">{{ $combination->name }}</option>
                                 @empty
                                 <option value="">No Data Available</option>
                                 @endforelse
@@ -29,24 +29,27 @@
                             <span id="inputSelectedSubjects-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="form-group" wire:loading wire:target="addCombinationSubjectsToSelection">
+                            <label class="pl-4 text-md">Loading subjects...</label>
+                        </div>
                         @if(count($selectedSubjects) > 0)
                         @foreach($selectedSubjects as $index => $subjectData)
-                        <div class="form-group">
+                        <div class="form-group" wire:loading.remove wire:target="addCombinationSubjectsToSelection">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">{{ $subjectData['subject']['name'] }}:</span>
                                 </div>
                                 <select class="form-control" wire:change="updateSelectedSubject({{ $index }}, $event.target.value)" required>
-                                    <option value="" selected>--Select Grade--</option>
+                                    <option value="" disabled selected>--Select Grade--</option>
                                     @foreach($availableGrades as $grade)
                                         <option value="{{ $grade }}">{{ $grade }}</option>
                                     @endforeach
                                 </select>
-                                <div class="input-group-append">
+                                {{-- <div class="input-group-append">
                                     <button type="button" wire:click="removeSubjectFromSelection({{ $index }})" class="btn btn-danger">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         @endforeach
@@ -56,7 +59,7 @@
                         <div class="form-group">
                             <label>Career Choice</label>
                             <select class="form-control @error('selectedCareerPath') is-invalid @enderror" wire:model="selectedCareerPath" required>
-                                <option selected value="">Select any Option</option>
+                                <option selected disabled value="">Select any Option</option>
                                 @foreach ($career_paths as $career_path)
                                 <option value="{{ $career_path->id }}">{{ $career_path->name }}</option>
                                 @endforeach
@@ -102,12 +105,12 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="modal-footer justify-content-between">
+                {{-- <div class="modal-footer justify-content-between">
                     <button type="button" wire:click="clearRecommendations" class="btn btn-default" data-dismiss="modal">
                         <span wire:loading wire:target="clearRecommendations"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Exiting...</span>
                         <span wire:loading.remove wire:target="clearRecommendations">Close</span>
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
