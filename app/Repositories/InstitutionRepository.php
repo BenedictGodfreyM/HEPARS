@@ -49,6 +49,7 @@ class InstitutionRepository
             'ownership' => $data['ownership'],
             'code' => $data['code'],
             'location' => $data['location'],
+            'admission_portal_link' => $data['admission_portal_link'],
         ]);
     }
 
@@ -81,6 +82,7 @@ class InstitutionRepository
         $institution->ownership = $data['ownership'];
         $institution->code = $data['code'];
         $institution->location = $data['location'];
+        $institution->admission_portal_link = $data['admission_portal_link'];
         return $institution->save();
     }
 

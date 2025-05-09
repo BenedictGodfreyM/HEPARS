@@ -36,6 +36,7 @@ class Institution extends Model
         'ownership',
         'code',
         'location',
+        'admission_portal_link',
     ];
 
     public function programs(): HasMany
