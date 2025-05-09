@@ -1,6 +1,15 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #007bff;
+        border-color: #006fe6;
+        color: #fff;
+        padding: 0 10px;
+        margin-top: .31rem;
+    }
+</style>
 @endpush
 
 @push('scripts')
