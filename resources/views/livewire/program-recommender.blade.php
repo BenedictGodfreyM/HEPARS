@@ -29,8 +29,10 @@
                             <span id="inputSelectedSubjects-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group" wire:loading wire:target="addCombinationSubjectsToSelection">
-                            <label class="pl-4 text-md">Loading subjects...</label>
+                        <div class="form-group">
+                            <label class="pl-4" style="width: 100%;text-align: center;" wire:loading wire:target="addCombinationSubjectsToSelection">
+                                <i class="fas fa-2x fa-spinner fa-spin-pulse"></i>
+                            </label>
                         </div>
                         @if(count($selectedSubjects) > 0)
                         @foreach($selectedSubjects as $index => $subjectData)
