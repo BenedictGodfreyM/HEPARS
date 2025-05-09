@@ -63,6 +63,13 @@
                             <span id="inputInstitutionLocation-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="inputInstitutionAdmissionPortalLink">Admission Portal Link</label>
+                            <input type="text" class="form-control @error('admission_portal_link') is-invalid @enderror" id="inputInstitutionAdmissionPortalLink" placeholder="Enter institution's admission portal link (Eg. https://www.domain.ac.tz)" wire:model="admission_portal_link">
+                            @error('admission_portal_link')
+                            <span id="inputInstitutionAdmissionPortalLink-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>  
                     <div class="card-footer">
                         <a href="{{ route('institutions') }}" class="btn btn-danger float-left">Back</a>

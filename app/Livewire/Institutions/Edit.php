@@ -18,6 +18,7 @@ class Edit extends Component
     public $ownership = "";
     public $code = "";
     public $location = "";
+    public $admission_portal_link = "";
     public $institutionId = "";
 
     public function mount($institution_id)
@@ -31,6 +32,7 @@ class Edit extends Component
         $this->ownership = $institutionDetails->ownership;
         $this->code = $institutionDetails->code;
         $this->location = $institutionDetails->location;
+        $this->admission_portal_link = $institutionDetails->admission_portal_link;
     }
 
     public function rules()
@@ -42,6 +44,7 @@ class Edit extends Component
             'ownership' => ['required', Rule::in([InstitutionOwnership::PRIVATE_INSTITUTION,InstitutionOwnership::PUBLIC_INSTITUTION])],
             'code' => ['required', 'max:5'],
             'location' => ['required', 'string'],
+            'admission_portal_link' => ['required', 'string'],
         ];
     }
 
@@ -58,6 +61,8 @@ class Edit extends Component
             'code.max' => "The institution's code should be 5 characters long.",
             'location.required' => 'Please insert the geographical location of the institution.',
             'location.string' => 'The geographical location of the institution should be in alphanumeric characters.',
+            'admission_portal_link.required' => 'Please insert a link to the admission portal of the institution.',
+            'admission_portal_link.string' => 'The link to the admission portal of the institution is invalid.',
         ];
     }
  
@@ -74,6 +79,7 @@ class Edit extends Component
                 'ownership' => $this->ownership,
                 'code' => $this->code,
                 'location' => $this->location,
+                'admission_portal_link' => $this->admission_portal_link,
             ], $this->institutionId);
             DB::commit();
             session()->flash('success','Institution is successfully updated.');
