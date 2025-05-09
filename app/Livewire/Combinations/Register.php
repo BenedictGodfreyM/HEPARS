@@ -37,28 +37,23 @@ class Register extends Component
 
     public function registerCombination()
     {
-        // dd($this->selectedSubjects);
-        $this->reset();
-                $this->selectedSubjects = [];
+        $this->validate(); 
+        try{
+            DB::beginTransaction();
+            $combinationRepo = new CombinationRepository();
+            $newCombination = $combinationRepo->storeCombination([
+                'name' => strtoupper($this->name),
+            ]);
+            $combinationRepo->linkToSubjects($newCombination->id, $this->selectedSubjects);
+            DB::commit();
+            $this->reset();
+            $this->selectedSubjects = [];
+            session()->flash('success','Combination is successfully registered.');
+        }catch(Exception $e){
+            DB::rollBack();
+            session()->flash('error',$e->getMessage());
+        }      
     }
-    // {
-    //     $this->validate(); 
-    //     try{
-    //         DB::beginTransaction();
-    //         $combinationRepo = new CombinationRepository();
-    //         $newCombination = $combinationRepo->storeCombination([
-    //             'name' => strtoupper($this->name),
-    //         ]);
-    //         $combinationRepo->linkToSubjects($newCombination->id, $this->selectedSubjects);
-    //         DB::commit();
-    //         $this->reset();
-    //         $this->selectedSubjects = [];
-    //         session()->flash('success','Combination is successfully registered.');
-    //     }catch(Exception $e){
-    //         DB::rollBack();
-    //         session()->flash('error',$e->getMessage());
-    //     }      
-    // }
 
     public function render()
     {

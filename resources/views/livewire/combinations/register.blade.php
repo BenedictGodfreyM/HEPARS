@@ -28,7 +28,7 @@
         <div class="col-md-6 mx-auto">
             <div class="card card-primary">
                 <!-- form start -->
-                <form wire:submit="registerCombination" action="">
+                <form wire:submit="registerCombination" action="" autocomplete="off">
                     <div class="card-body">
                         @if(session()->has('success'))
                         <livewire:shared.alert title="Success!" message="{{ session()->get('success') }}" css_class="alert-success" icon="fa-check" />
