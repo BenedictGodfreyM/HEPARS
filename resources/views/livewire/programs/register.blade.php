@@ -61,8 +61,23 @@
                             <span id="inputProgramCareerPath-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
+                        <h5 class="mt-2">Entry Requirements</h5>
                         <div class="form-group">
-                            <label>Entry Requirements</label>
+                            <label for="inputMinTotalPoints">Minimum Total Points</label>
+                            <input type="number" class="form-control @error('min_total_points') is-invalid @enderror" id="inputMinTotalPoints" placeholder="Enter minimum total points required for the program (Eg. 4)" wire:model="min_total_points">
+                            @error('min_total_points')
+                            <span id="inputMinTotalPoints-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputRequiredSubjectCount">Required Subject Count</label>
+                            <input type="number" class="form-control @error('required_subjects_count') is-invalid @enderror" id="inputRequiredSubjectCount" placeholder="Enter the number of required subjects (Eg. 2)" wire:model="required_subjects_count">
+                            @error('required_subjects_count')
+                            <span id="inputRequiredSubjectCount-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Minimum Subject Score</label>
                             <select class="form-control" wire:change="addSubjectToSelection($event.target.value)" wire:model="selectedOption">
                                 <option selected value="">Select a Subject</option>
                                 @forelse ($availableSubjects as $subject)
@@ -98,20 +113,20 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input" type="radio" id="customRadio-1-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.requirement_type" value="compulsory">
-                                                <label for="customRadio-1-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Compulsory</label>
+                                                <input class="custom-control-input" type="radio" id="customRadio-1-{{ $index }}-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.type" value="required">
+                                                <label for="customRadio-1-{{ $index }}-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Required</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input" type="radio" id="customRadio-2-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.requirement_type" value="necessary">
-                                                <label for="customRadio-2-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Necessary</label>
+                                                <input class="custom-control-input" type="radio" id="customRadio-2-{{ $index }}-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.type" value="necessary">
+                                                <label for="customRadio-2-{{ $index }}-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Necessary</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input" type="radio" id="customRadio-3-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.requirement_type" value="optional">
-                                                <label for="customRadio-3-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Optional</label>
+                                                <input class="custom-control-input" type="radio" id="customRadio-3-{{ $index }}-{{ $subjectData['subject']['id'] }}" wire:model="selectedSubjects.{{ $index }}.type" value="optional">
+                                                <label for="customRadio-3-{{ $index }}-{{ $subjectData['subject']['id'] }}" class="custom-control-label">Optional</label>
                                             </div>
                                         </div>
                                     </div>

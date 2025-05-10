@@ -4,6 +4,7 @@ namespace App\Livewire\Programs;
 
 use App\Enums\RequirementType;
 use App\Repositories\CareerPathRepository;
+use App\Repositories\EntryRequirementRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\SubjectRepository;
 use Exception;
@@ -14,9 +15,11 @@ class Edit extends Component
 {
     public $name = "";
     public $duration = "";
+    public $min_total_points = "";
+    public $required_subjects_count = "";
 
     public $availableSubjects;
-    public $availableGrades = ['A','B','C','D','E','F'];
+    public $availableGrades = ['A','B','C','D','E','S','F'];
 
     public $selectedCareerPaths = [];
     public $selectedSubjects = [];
@@ -38,10 +41,14 @@ class Edit extends Component
         $this->duration = $programDetails->duration;
         $subjectRepo = new SubjectRepository();
         $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
-        foreach($programDetails->subjects as $index => $subject){
-            $this->addSubjectToSelection($subject->id);
-            $this->updateSelectedSubject($index, $subject->pivot->min_grade);
-            $this->markSelectedSubjectAsCompulsoryOrNot($index, $subject->pivot->requirement_type);
+        foreach($programDetails->entryRequirements as $entryRequirement){
+            $this->min_total_points = $entryRequirement->min_total_points;
+            $this->required_subjects_count = $entryRequirement->required_subjects_count;
+            foreach($entryRequirement->subjects as $index => $subject){
+                $this->addSubjectToSelection($subject->id);
+                $this->updateSelectedSubject($index, $subject->pivot->min_grade);
+                $this->markSelectedSubjectRequirementType($index, $subject->pivot->type);
+            }
         }
         foreach($programDetails->career_paths as $index => $career){
             array_push($this->selectedCareerPaths, $career->id);
@@ -53,6 +60,8 @@ class Edit extends Component
         return [
             'name' => ['required', 'string'],
             'duration' => ['required', 'integer', 'min:1', 'max:10'],
+            'min_total_points' => ['required', 'integer', 'min:1', 'max:20'],
+            'required_subjects_count' => ['required', 'integer', 'min:1', 'max:10'],
             'selectedCareerPaths' => 'required|array|min:1',
             'selectedCareerPaths.*' => 'exists:career_paths,id',
         ];
@@ -67,6 +76,14 @@ class Edit extends Component
             'duration.integer' => 'The duration of the program should be in number of years. (Eg. 3)',
             'duration.min' => 'The duration of the program should atleast be 1 year.',
             'duration.max' => 'The duration of the program should be atmost 10 years.',
+            'min_total_points.required' => 'Please insert the minimum total points required for the program.',
+            'min_total_points.integer' => 'The minimum total points required for the program should be in digits. (Eg. 4)',
+            'min_total_points.min' => 'The minimum total points required for the program should be atleast 1 point.',
+            'min_total_points.max' => 'The minimum total points required for the program should be atmost 20 points.',
+            'required_subjects_count.required' => 'Please insert the number of required subjects.',
+            'required_subjects_count.integer' => 'The number of required subjects should be in digits. (Eg. 2)',
+            'required_subjects_count.min' => 'The number of required subjects should atleast be 1.',
+            'required_subjects_count.max' => 'The number of required subjects should atmost be 10.',
             'selectedCareerPaths.required' => 'Please select career paths associated with the program.',
             'selectedCareerPaths.array' => 'Invalid format of the selected career paths.',
             'selectedCareerPaths.min' => 'Please select atleast one career paths associated with the program.',
@@ -87,10 +104,10 @@ class Edit extends Component
     public function addSubjectToSelection($subjectID)
     {
         $subject = call_user_func_array('array_merge', array_filter($this->availableSubjects->toArray(), function($subject) use ($subjectID) { return $subject['id'] === $subjectID; }));
-        $selectionToAdd = ['subject' => $subject, 'grade' => '', 'requirement_type' => RequirementType::OPTIONAL->value];
-        if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
+        $selectionToAdd = ['subject' => $subject, 'grade' => '', 'type' => RequirementType::OPTIONAL->value];
+        // if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
             $this->selectedSubjects[] = $selectionToAdd;
-        }
+        // }
         $this->selectedOption = '';
     }
 
@@ -107,16 +124,32 @@ class Edit extends Component
         }
     }
 
-    public function markSelectedSubjectAsCompulsoryOrNot($index, $requirement_type)
+    public function markSelectedSubjectRequirementType($index, $requirement_type)
     {
         if (isset($this->selectedSubjects[$index])) {
-            $this->selectedSubjects[$index]['requirement_type'] = $requirement_type;
+            $this->selectedSubjects[$index]['type'] = $requirement_type;
         }
+    }
+
+    public function duplicateSubjectRequirementsFound($selectedSubjects)
+    {
+        foreach ($selectedSubjects as &$arr) {
+            ksort($arr); // Sort keys
+        }
+        unset($arr);
+        
+        $serialized = array_map('serialize', $selectedSubjects);
+        $unique = array_unique($serialized);
+        
+        if (count($selectedSubjects) !== count($unique)) return true;
+
+        return false;
     }
 
     public function updateProgramDetails()
     {
         $this->validate(); 
+        if($this->duplicateSubjectRequirementsFound($this->selectedSubjects)) return session()->flash('error','Duplicate subject requirements.');
         try{
             DB::beginTransaction();
             $programRepo = new ProgramRepository();
@@ -129,10 +162,22 @@ class Edit extends Component
             if($isUpdated){
                 $programRepo->linkToCareerPaths($this->program_id, $this->selectedCareerPaths);
 
-                $programRepo->removeEntryRequirements($this->program_id);
-                foreach ($this->selectedSubjects as $selectedSubject) {
-                    $programRepo->addEntryRequirement($this->program_id, $selectedSubject['subject']['id'], $selectedSubject['grade'], $selectedSubject['requirement_type']);
+                $program = $programRepo->findProgram($this->program_id);
+                foreach($program->entryRequirements as $entryRequirement){
+                    (new EntryRequirementRepository())->detachEntryRequirementSubjects($entryRequirement->id);
                 }
+                $programRepo->removeEntryRequirements($this->program_id);
+
+                $newEntryRequirement = $programRepo->addEntryRequirement($this->program_id, [
+                    'min_total_points' => $this->min_total_points,
+                    'required_subjects_count' => $this->required_subjects_count,
+                ]);
+
+                $entryRequirementRepo = new EntryRequirementRepository();
+                foreach ($this->selectedSubjects as $selectedSubject) {
+                    $entryRequirementRepo->addEntryRequirementSubject($newEntryRequirement->id, $selectedSubject['subject']['id'], $selectedSubject['grade'], $selectedSubject['type']);
+                }
+                
                 DB::commit();
                 session()->flash('success','Program is successfully updated.');
             }else{

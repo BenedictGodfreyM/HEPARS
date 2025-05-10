@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum RequirementType: string
 {
-    case COMPULSORY = 'compulsory';
-    case NECESSARY = 'necessary';
+    case REQUIRED = 'required';
     case OPTIONAL = 'optional';
+    case NECESSARY = 'necessary';
 }
