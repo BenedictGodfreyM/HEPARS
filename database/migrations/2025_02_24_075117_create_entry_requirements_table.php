@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('entry_requirements', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigIncrements('id');
+            $table->string('id')->primary();
             $table->string('program_id')->index();
             $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
-            $table->string('subject_id')->index();
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
-            $table->char('min_grade', 1);
+            $table->integer('min_total_points', false, true);
+            $table->integer('required_subjects_count', false, true);
             $table->timestamps();
         });
     }

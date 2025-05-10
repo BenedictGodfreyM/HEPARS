@@ -34,9 +34,9 @@ class Subject extends Model
         'code',
     ];
 
-    public function programs(): BelongsToMany
+    public function entryRequirements(): BelongsToMany
     {
-        return $this->belongsToMany(Program::class, 'entry_requirements')->using(EntryRequirement::class);
+        return $this->belongsToMany(EntryRequirement::class, 'entry_requirement_subjects')->using(EntryRequirementSubject::class)->withPivot('type','min_grade');
     }
 
     public function combinations(): BelongsToMany

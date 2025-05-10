@@ -46,8 +46,8 @@ class Program extends Model
         return $this->belongsTo(Institution::class);
     }
 
-    public function subjects(): BelongsToMany
+    public function entryRequirements()
     {
-        return $this->belongsToMany(Subject::class, 'entry_requirements')->using(EntryRequirement::class)->withPivot('min_grade','requirement_type');
+        return $this->hasMany(EntryRequirement::class);
     }
 }
