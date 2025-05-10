@@ -92,30 +92,17 @@ class ProgramRepository
      * Register entry requirements for a particular program
      * 
      * @param string $program_id
-     * @param string $subject_id
-     * @param string $min_grade
-     * @param string $requirement_type (Either compulsory, necessary or optional)
+     * @param array $data Details of a particular entry requirement
      * 
-     * @return void
+     * @return Illuminate\Database\Eloquent\Model
      */
-    public function addEntryRequirement($program_id, $subject_id, $min_grade, $requirement_type)
+    public function addEntryRequirement($program_id, $data)
     {
         $program = Program::findOrFail($program_id);
-        $program->subjects()->attach($subject_id, ['min_grade' => $min_grade, 'requirement_type' => $requirement_type]);
-    }
-
-    /**
-     * Synchronize a particular program to multiple entry requirements
-     * 
-     * @param string $program_id
-     * @param array $entry_requirements An array of $subject_id => ['min_grade' => $min_grade, 'requirement_type' => $requirement_type] mapping
-     * 
-     * @return void
-     */
-    public function addEntryRequirements(string $program_id, array $entry_requirements)
-    {
-        $program = Program::findOrFail($program_id);
-        $program->subjects()->sync($entry_requirements);
+        return $program->entryRequirements()->create([
+            'min_total_points' => $data['min_total_points'],
+            'required_subjects_count' => $data['required_subjects_count'],
+        ]);
     }
 
     /**
@@ -128,7 +115,7 @@ class ProgramRepository
     public function removeEntryRequirements(string $program_id)
     {
         $program = Program::findOrFail($program_id);
-        $program->subjects()->detach();
+        $program->entryRequirements()->delete();
     }
 
     /**
