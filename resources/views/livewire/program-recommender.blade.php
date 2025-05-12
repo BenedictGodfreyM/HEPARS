@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label class="pl-4" style="width: 100%;text-align: center;" wire:loading wire:target="addCombinationSubjectsToSelection">
-                                <i class="fas fa-2x fa-spinner fa-spin-pulse"></i>
+                                <i class="fas fa-2x fa-spinner fa-spin"></i>
                             </label>
                         </div>
                         @if(count($selectedSubjects) > 0)
@@ -47,11 +47,6 @@
                                         <option value="{{ $grade }}">{{ $grade }}</option>
                                     @endforeach
                                 </select>
-                                {{-- <div class="input-group-append">
-                                    <button type="button" wire:click="removeSubjectFromSelection({{ $index }})" class="btn btn-danger">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </button>
-                                </div> --}}
                             </div>
                         </div>
                         @endforeach
