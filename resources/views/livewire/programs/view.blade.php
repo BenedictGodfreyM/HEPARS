@@ -9,16 +9,12 @@
                     <dl>
                         <dt>Duration:</dt>
                         <dd>{{ $data->duration }} Years ({{ ($data->duration * 2) }} Semesters)</dd>
-                        @if(count($data->subjects) > 0)
+                        
+                        @if(count($data->entryRequirements) > 0)
                         <dt class="mt-3">Entry Requirements:</dt>
-                        <dd>
-                            <ul>
-                                @foreach($data->subjects as $key => $subject)
-                                <li>Atleast grade "{{ $subject->pivot->min_grade }}" in {{ $subject->name }}</li>
-                                @endforeach
-                            </ul>
-                        </dd>
+                        <dd>{{ format_entry_requirements($data->entryRequirements->first()) }}</dd>
                         @endif
+
                         @if(count($data->career_paths) > 0)
                         <dt class="mt-3">Potential Career Paths:</dt>
                         <dd>
