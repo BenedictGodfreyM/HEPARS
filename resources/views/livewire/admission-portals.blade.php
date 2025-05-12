@@ -2,6 +2,7 @@
     <div class="card card-solid">
         <div class="card-header">
             <h3 class="card-title">
+                @if($data->count() > 10)
                 <div class="input-group input-group-sm my-1" style="width: 110px;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Items:</span>
@@ -12,6 +13,7 @@
                         <option value="20">20</option>
                     </select>
                 </div>
+                @endif
             </h3>
 
             <div class="card-tools">
