@@ -4,20 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
 
-    Route::prefix('career_paths')->group(function () {
-
-        Route::prefix('{career_path_id}')->group(function () {
-
-            Route::get('/edit', [App\Http\Controllers\Backend\CareerPathController::class, 'edit'])->name('career_paths.edit');
-
-        });
-
-        Route::get('/register', [App\Http\Controllers\Backend\CareerPathController::class, 'register'])->name('career_paths.register');
-        
-        Route::get('/', [App\Http\Controllers\Backend\CareerPathController::class, 'index'])->name('career_paths');
-
-    });
-
     Route::prefix('combinations')->group(function () {
 
         Route::prefix('{combination_id}')->group(function () {
@@ -29,6 +15,34 @@ Route::prefix('auth')->group(function () {
         Route::get('/register', [App\Http\Controllers\Backend\CombinationController::class, 'register'])->name('combinations.register');
         
         Route::get('/', [App\Http\Controllers\Backend\CombinationController::class, 'index'])->name('combinations');
+
+    });
+
+    Route::prefix('disciplines')->group(function () {
+
+        Route::prefix('{discipline_id}')->group(function () {
+
+            Route::prefix('careers')->group(function () {
+
+                Route::prefix('{career_id}')->group(function () {
+
+                    Route::get('/edit', [App\Http\Controllers\Backend\CareerController::class, 'edit'])->name('disciplines.careers.edit');
+
+                });
+
+                Route::get('/register', [App\Http\Controllers\Backend\CareerController::class, 'register'])->name('disciplines.careers.register');
+                
+                Route::get('/', [App\Http\Controllers\Backend\CareerController::class, 'index'])->name('disciplines.careers');
+
+            });
+
+            Route::get('/edit', [App\Http\Controllers\Backend\DisciplineController::class, 'edit'])->name('disciplines.edit');
+
+        });
+
+        Route::get('/register', [App\Http\Controllers\Backend\DisciplineController::class, 'register'])->name('disciplines.register');
+        
+        Route::get('/', [App\Http\Controllers\Backend\DisciplineController::class, 'index'])->name('disciplines');
 
     });
 
