@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('career_paths', function (Blueprint $table) {
+        Schema::create('disciplines', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->string('id')->primary();
             $table->string('name');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('career_paths');
+        Schema::dropIfExists('disciplines');
     }
 };

@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('entry_requirements', function (Blueprint $table) {
+        Schema::table('institutions', function (Blueprint $table) {
             $table->dropColumn('admission_portal_link');
         });
     }

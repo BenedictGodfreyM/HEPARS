@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('career_path_programs');
+        Schema::dropIfExists('combination_subjects');
     }
 };

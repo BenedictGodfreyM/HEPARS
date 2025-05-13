@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('career_path_programs', function (Blueprint $table) {
+        Schema::create('career_programs', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->string('program_id')->index();
             $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
-            $table->string('career_path_id')->index();
-            $table->foreign('career_path_id')->references('id')->on('career_paths')->onDelete('cascade');
+            $table->string('career_id')->index();
+            $table->foreign('career_id')->references('id')->on('careers')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('career_path_programs');
+        Schema::dropIfExists('career_programs');
     }
 };

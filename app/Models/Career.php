@@ -4,9 +4,10 @@ namespace App\Models;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class CareerPath extends Model
+class Career extends Model
 {
     use Uuids;
 
@@ -30,11 +31,17 @@ class CareerPath extends Model
      * @var list<string>
      */
     protected $fillable = [
+        'institution_id',
         'name',
     ];
 
+    public function discipline(): BelongsTo
+    {
+        return $this->belongsTo(Discipline::class);
+    }
+
     public function programs(): BelongsToMany
     {
-        return $this->belongsToMany(Program::class, 'career_path_programs');
+        return $this->belongsToMany(Program::class, 'career_programs');
     }
 }

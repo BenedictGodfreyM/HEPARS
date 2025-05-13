@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entry_requirements');
+        Schema::dropIfExists('entry_requirement_subjects');
     }
 };

@@ -36,14 +36,14 @@ class Program extends Model
         'duration',
     ];
 
-    public function career_paths(): BelongsToMany
-    {
-        return $this->belongsToMany(CareerPath::class, 'career_path_programs');
-    }
-
     public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class);
+    }
+
+    public function careers(): BelongsToMany
+    {
+        return $this->belongsToMany(Career::class, 'career_programs');
     }
 
     public function entryRequirements()
