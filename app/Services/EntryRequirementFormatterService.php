@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\RequirementType;
 use App\Models\EntryRequirement;
+use Illuminate\Database\Eloquent\Collection;
 
 class EntryRequirementFormatterService
 {
@@ -21,35 +22,45 @@ class EntryRequirementFormatterService
         $necessaryWithSubsidiaryPass = $subsidiary->where('pivot.type', RequirementType::NECESSARY->value);
         $optionalWithPrincipalPass = $principal->where('pivot.type', RequirementType::OPTIONAL->value);
         $aboveMinimumPrincipalGrade = $principal->where('pivot.min_grade', '<>', 'E');
+        $compulsoryWithPrincipalPass = $this->extractCompulsorySubjectRequirements($optionalWithPrincipalPass, $requiredWithPrincipalPass);
 
         $output = [];
 
         // Principal Passes (Required and/or Optional Subjects)
         if ($principal->count() > 0) {
-            // There are only Required Subjects in the Requirements
             $requiredWithPrincipalPass_subjects = $requiredWithPrincipalPass->map(function ($reqSubject) { return $reqSubject->name; })->toArray();
+            $optionalWithPrincipalPass_subjects = $optionalWithPrincipalPass->map(function ($reqSubject) { return $reqSubject->name; })->toArray();
+            // There are only Required Subjects in the Requirements
             if($requiredWithPrincipalPass->count() > 1 && $optionalWithPrincipalPass->count() <= 0){
                 $plural = $requirement->required_subjects_count > 1 ? 'passes' : 'pass';
                 $output[] = ucwords($this->numberToWords($requirement->required_subjects_count)) . " principal {$plural} in " .
                                 $this->joinPhrases($requiredWithPrincipalPass_subjects, "and") . '.';
-            }
-
-            // The are Optional subjects and probably Required subjects in the Requirements
-            if ($optionalWithPrincipalPass->count() > 0) {
-                $optionalWithPrincipalPass_subjects = $optionalWithPrincipalPass->map(function ($reqSubject) { return $reqSubject->name; })->toArray();
-                $plural = $requirement->required_subjects_count > 1 ? 'passes' : 'pass';
-                $output[] = ucwords($this->numberToWords($requirement->required_subjects_count)) . " principal {$plural} in any of the following subjects: " .
-                            $this->joinPhrases($optionalWithPrincipalPass_subjects) . ".";
-                if($requiredWithPrincipalPass->count() > 0){
-                    $output[] = " One of the " . $this->numberToWords($requirement->required_subjects_count) . " principal {$plural} must be in " .
-                                $this->joinPhrases($requiredWithPrincipalPass_subjects) . ".";
+            }else{
+                // There are Required Subject(s) and several Optional Subjects (Distinct Groups)
+                if($compulsoryWithPrincipalPass->count() > 0 && $optionalWithPrincipalPass->count() > 0){
+                    $compulsoryWithPrincipalPass_subjects = $compulsoryWithPrincipalPass->map(function ($reqSubject) { return $reqSubject->name; })->toArray();
+                    $plural = $requirement->required_subjects_count > 1 ? 'passes' : 'pass';
+                    $output[] = ucwords($this->numberToWords($requirement->required_subjects_count)) . " principal {$plural} in " .
+                                    $this->joinPhrases($compulsoryWithPrincipalPass_subjects, ", ") . " and either " . 
+                                    $this->joinPhrases($optionalWithPrincipalPass_subjects) . ".";
+                }else{
+                    // The are Optional subjects and probably Required subjects in the Requirements
+                    if ($optionalWithPrincipalPass->count() > 0) {
+                        $plural = $requirement->required_subjects_count > 1 ? 'passes' : 'pass';
+                        $output[] = ucwords($this->numberToWords($requirement->required_subjects_count)) . " principal {$plural} in any of the following subjects: " .
+                                    $this->joinPhrases($optionalWithPrincipalPass_subjects) . ".";
+                        if($requiredWithPrincipalPass->count() > 0){
+                            $output[] = " One of the " . $this->numberToWords($requirement->required_subjects_count) . " principal {$plural} must be in " .
+                                        $this->joinPhrases($requiredWithPrincipalPass_subjects) . ".";
+                        }
+                    }
                 }
             }
-        }
 
-        // Minimum Total Points
-        if ($requirement->min_total_points > 1) {
-            $output[] = " With a minimum of {$requirement->min_total_points} points.";
+            // Minimum Total Points
+            if ($requirement->min_total_points > 1) {
+                $output[] = " With a minimum of {$requirement->min_total_points} points.";
+            }
         }
 
         // Above Minimum-Principal-Grade Requirement-Subjects
@@ -147,5 +158,21 @@ class EntryRequirementFormatterService
             $rest = $num % 1000;
             return $this->numberToWords($thousand) . ' thousand' . ($rest ? ($rest < 100 ? ' and ' : ' ') . $this->numberToWords($rest) : '');
         }
+    } 
+
+    /**
+     * Extract Compulsory Subject-Requirements (Check if there are required subjects that don't appear in the optional subjects group)
+     * 
+     * @param \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model> $needleCollection (Optional Subjects Group)
+     * @param \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model> $haystackCollection (Required Subjects Group)
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model>
+     */
+    private function extractCompulsorySubjectRequirements($needleCollection, $haystackCollection): Collection
+    {
+        $needles = $needleCollection->pluck('id')->toArray();
+        return $haystackCollection->reject(function ($item) use ($needles) {
+            return in_array($item->id, $needles);
+        });
     }
 }
