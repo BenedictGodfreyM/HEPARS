@@ -122,27 +122,27 @@ class ProgramRepository
      * Link a particular program to a specific Career Path
      * 
      * @param string $program_id
-     * @param string $career_path_id
+     * @param string $career_id
      * 
      * @return void
      */
-    public function linkToCareerPath(string $program_id, string $career_path_id)
+    public function linkToCareer(string $program_id, string $career_id)
     {
         $program = Program::findOrFail($program_id);
-        $program->career_paths()->attach($career_path_id);
+        $program->careers()->attach($career_id);
     }
 
     /**
      * Synchronize a particular program to multiple Career Paths
      * 
      * @param string $program_id
-     * @param array $career_paths Array of IDs of specific Career Paths
+     * @param array $careers Array of IDs of specific Careers
      * 
      * @return void
      */
-    public function linkToCareerPaths(string $program_id, array $career_paths)
+    public function linkToCareers(string $program_id, array $careers)
     {
         $program = Program::findOrFail($program_id);
-        $program->career_paths()->sync($career_paths);
+        $program->careers()->sync($careers);
     }
 }
