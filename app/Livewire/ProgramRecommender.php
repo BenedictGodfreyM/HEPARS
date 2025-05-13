@@ -2,9 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Repositories\CareerPathRepository;
 use App\Repositories\CombinationRepository;
-use App\Repositories\SubjectRepository;
+use App\Repositories\DisciplineRepository;
 use App\Services\RecommendationService;
 use Exception;
 use Livewire\Component;
@@ -15,7 +14,7 @@ class ProgramRecommender extends Component
     public $availableGrades = ['A','B','C','D','E','F'];
 
     public $selectedSubjects = [];
-    public $selectedCareerPath = "";
+    public $selectedCareer = "";
 
     public $recommendations = [];
 
@@ -31,7 +30,7 @@ class ProgramRecommender extends Component
     {
         return [
             'selectedSubjects' => 'required|array|min:3',
-            'selectedCareerPath' => 'required|string|exists:career_paths,id',
+            'selectedCareer' => 'required|string|exists:careers,id',
         ];
     }
 
@@ -41,9 +40,9 @@ class ProgramRecommender extends Component
             'selectedSubjects.required' => 'Please select subjects from your high school combination.',
             'selectedSubjects.array' => 'Invalid format of the selected subjects.',
             'selectedSubjects.min' => 'Please select atleast three subjects from your high school combination.',
-            'selectedCareerPath.required' => 'Please select a career of your choice.',
-            'selectedCareerPath.string' => 'Invalid format of the selected career choice.',
-            'selectedCareerPath.exists' => 'Invalid career choice.',
+            'selectedCareer.required' => 'Please select a career of your choice.',
+            'selectedCareer.string' => 'Invalid format of the selected career choice.',
+            'selectedCareer.exists' => 'Invalid career choice.',
         ];
     }
 
@@ -93,7 +92,7 @@ class ProgramRecommender extends Component
             foreach($this->selectedSubjects as $key => $selectedSubject){
                 $studentResults[$selectedSubject['subject']['id']] = $selectedSubject['grade'];
             }
-            $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareerPath, $studentResults);
+            $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareer, $studentResults);
             if(count($this->recommendations) <= 0) session()->flash('no_recommenadations', "Our algorithm could not generate any recommendations for you!. Try selecting an alternative career choice, if there is any.");
         }catch(Exception $e){
             session()->flash('error',$e->getMessage());
@@ -115,9 +114,9 @@ class ProgramRecommender extends Component
     {
         $combinationRepo = new CombinationRepository();
         $this->availableCombinations = $combinationRepo->allCombinationsWithoutPagination();
-        $careerPathsRepo = new CareerPathRepository();
+        $disciplinesRepo = new DisciplineRepository();
         return view('livewire.program-recommender', [
-            'career_paths' => $careerPathsRepo->allCareerPathsWithoutPagination()
+            'disciplines' => $disciplinesRepo->allDisciplinesWithoutPagination(),
         ]);
     }
 }

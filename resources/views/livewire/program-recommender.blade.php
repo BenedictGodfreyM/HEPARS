@@ -55,14 +55,18 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Career Choice</label>
-                            <select class="form-control @error('selectedCareerPath') is-invalid @enderror" wire:model="selectedCareerPath" required>
+                            <select class="form-control @error('selectedCareer') is-invalid @enderror" wire:model="selectedCareer" required>
                                 <option selected disabled value="">Select any Option</option>
-                                @foreach ($career_paths as $career_path)
-                                <option value="{{ $career_path->id }}">{{ $career_path->name }}</option>
+                                @foreach ($disciplines as $discipline)
+                                <optgroup label="{{ $discipline->name }}">
+                                    @foreach ($discipline->careers as $career)
+                                    <option value="{{ $career->id }}">{{ $career->name }}</option>
+                                    @endforeach
+                                </optgroup>
                                 @endforeach
                             </select>
-                            @error('selectedCareerPath')
-                            <span id="inputSelectedCareerPath-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @error('selectedCareer')
+                            <span id="inputSelectedCareer-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
