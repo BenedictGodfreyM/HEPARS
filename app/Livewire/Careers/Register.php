@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Livewire\CareerPaths;
+namespace App\Livewire\Careers;
 
-use App\Repositories\CareerPathRepository;
+use App\Repositories\CareerRepository;
+use App\Repositories\DisciplineRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Edit extends Component
+class Register extends Component
 {
-    public $careerPathId = "";
     public $name = "";
 
-    public function mount($career_path_id)
+    public $discipline_id = "";
+
+    public function mount($discipline_id)
     {
-        $this->careerPathId = $career_path_id;
-        $careerPathRepo = new CareerPathRepository();
-        $careerPathDetails = $careerPathRepo->findCareerPath($career_path_id);
-        $this->name = $careerPathDetails->name;
+        $this->discipline_id = $discipline_id;
+        session()->put('discipline_id', $discipline_id);
     }
 
     public function rules()
@@ -35,17 +35,18 @@ class Edit extends Component
         ];
     }
  
-    public function updateCareerPath()
+    public function registerCareer()
     {
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $careerPathRepo = new CareerPathRepository();
-            $careerPathRepo->updateCareerPath([
+            $disciplineRepo = new DisciplineRepository();
+            $disciplineRepo->addCareer([
                 'name' => $this->name,
-            ], $this->careerPathId);
+            ], $this->discipline_id);
             DB::commit();
-            session()->flash('success','Career Path is successfully updated.');
+            $this->reset();
+            session()->flash('success','Career is successfully registered.');
         }catch(Exception $e){
             DB::rollBack();
             session()->flash('error',$e->getMessage());
@@ -54,6 +55,8 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.career-paths.edit');
+        return view('livewire.careers.register', [
+            'disciplineId' => session()->get('discipline_id', ''),
+        ]);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\CareerPaths;
+namespace App\Livewire\Careers;
 
-use App\Repositories\CareerPathRepository;
+use App\Repositories\CareerRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -19,6 +19,13 @@ class Datatable extends Component
     public $sortDirection = 'asc';
     public $pageSize = 10;
     public $columns = ['name'];
+
+    public $discipline_id;
+
+    public function mount($discipline_id)
+    {
+        $this->discipline_id = $discipline_id;
+    }
 
     public function updatingSearch()
     {
@@ -38,13 +45,13 @@ class Datatable extends Component
 
     public function delete($id)
     {
-        $repository = new CareerPathRepository();
+        $repository = new CareerRepository();
         try{
             DB::beginTransaction();
-            $repository->destroyCareerPath($id);
+            $repository->destroyCareer($id);
             $this->render();
             DB::commit();
-            session()->flash('success','Career Path is successfully deleted.');
+            session()->flash('success','Career is successfully deleted.');
         }catch(Exception $e){
             DB::rollBack();
             session()->flash('error',$e->getMessage());
@@ -53,10 +60,11 @@ class Datatable extends Component
 
     public function render()
     {
-        $repository = new CareerPathRepository();
-        $data = $repository->allCareerPaths($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
+        $repository = new CareerRepository();
+        $data = $repository->careersFromDiscipline($this->discipline_id, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
 
-        return view('livewire.career-paths.datatable', [
+        return view('livewire.careers.datatable', [
+            'discipline_id' => $this->discipline_id,
             'data' => $data,
             'columns' => $this->columns,
         ]);
