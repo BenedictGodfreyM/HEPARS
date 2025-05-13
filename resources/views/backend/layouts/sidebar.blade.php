@@ -17,9 +17,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('career_paths') }}" class="nav-link {{(request()->is('auth/career_paths') || request()->is('auth/career_paths/*')) ? 'active' : ''}}">
+                    <a href="{{ route('disciplines') }}" class="nav-link {{(request()->is('auth/disciplines') || request()->is('auth/disciplines/*')) ? 'active' : ''}}">
                         <i class="nav-icon fas fa-graduation-cap"></i>
-                        <p>Career Paths</p>
+                        <p>Disciplines</p>
                     </a>
                 </li>
                 <li class="nav-item">
