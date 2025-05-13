@@ -3,7 +3,7 @@
 namespace App\Livewire\Programs;
 
 use App\Enums\RequirementType;
-use App\Repositories\CareerPathRepository;
+use App\Repositories\CareerRepository;
 use App\Repositories\EntryRequirementRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\SubjectRepository;
@@ -21,7 +21,7 @@ class Edit extends Component
     public $availableSubjects;
     public $availableGrades = ['A','B','C','D','E','S','F'];
 
-    public $selectedCareerPaths = [];
+    public $selectedCareers = [];
     public $selectedSubjects = [];
 
     public $institution_id = "";
@@ -50,8 +50,8 @@ class Edit extends Component
                 $this->markSelectedSubjectRequirementType($index, $subject->pivot->type);
             }
         }
-        foreach($programDetails->career_paths as $index => $career){
-            array_push($this->selectedCareerPaths, $career->id);
+        foreach($programDetails->careers as $index => $career){
+            array_push($this->selectedCareers, $career->id);
         }
     }
 
@@ -62,8 +62,8 @@ class Edit extends Component
             'duration' => ['required', 'integer', 'min:1', 'max:10'],
             'min_total_points' => ['required', 'integer', 'min:1', 'max:20'],
             'required_subjects_count' => ['required', 'integer', 'min:1', 'max:10'],
-            'selectedCareerPaths' => 'required|array|min:1',
-            'selectedCareerPaths.*' => 'exists:career_paths,id',
+            'selectedCareers' => 'required|array|min:1',
+            'selectedCareers.*' => 'exists:careers,id',
         ];
     }
 
@@ -84,10 +84,10 @@ class Edit extends Component
             'required_subjects_count.integer' => 'The number of required subjects should be in digits. (Eg. 2)',
             'required_subjects_count.min' => 'The number of required subjects should atleast be 1.',
             'required_subjects_count.max' => 'The number of required subjects should atmost be 10.',
-            'selectedCareerPaths.required' => 'Please select career paths associated with the program.',
-            'selectedCareerPaths.array' => 'Invalid format of the selected career paths.',
-            'selectedCareerPaths.min' => 'Please select atleast one career paths associated with the program.',
-            'selectedCareerPaths.*.exists' => 'Invalid career path selection.',
+            'selectedCareers.required' => 'Please select careers associated with the program.',
+            'selectedCareers.array' => 'Invalid format of the selected careers.',
+            'selectedCareers.min' => 'Please select atleast one careers associated with the program.',
+            'selectedCareers.*.exists' => 'Invalid career selection.',
         ];
     }
 
@@ -160,7 +160,7 @@ class Edit extends Component
             ], $this->program_id);
 
             if($isUpdated){
-                $programRepo->linkToCareerPaths($this->program_id, $this->selectedCareerPaths);
+                $programRepo->linkToCareers($this->program_id, $this->selectedCareers);
 
                 $program = $programRepo->findProgram($this->program_id);
                 foreach($program->entryRequirements as $entryRequirement){
@@ -194,11 +194,11 @@ class Edit extends Component
     {
         $subjectRepo = new SubjectRepository();
         $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
-        $careerPathsRepo = new CareerPathRepository();
+        $careersRepo = new CareerRepository();
         return view('livewire.programs.edit', [
             'institutionId' => session()->get('institution_id', ''),
             'programId' => session()->get('program_id', ''),
-            'career_paths' => $careerPathsRepo->allCareerPathsWithoutPagination()
+            'careers' => $careersRepo->allCareersWithoutPagination()
         ]);
     }
 }

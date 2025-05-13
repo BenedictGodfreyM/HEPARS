@@ -16,8 +16,8 @@
 <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
     $(function () {
-        $('.select2-career-paths').select2().on('change', function (e) {
-            @this.set('selectedCareerPaths', $(this).val());
+        $('.select2-careers').select2().on('change', function (e) {
+            @this.set('selectedCareers', $(this).val());
         });
     })
 </script>
@@ -51,14 +51,14 @@
                             @enderror
                         </div>
                         <div class="form-group" wire:ignore>
-                            <label for="inputProgramCareerPath">Career Paths</label>
-                            <select class="select2-career-paths select2-hidden-accessible form-control @error('selectedCareerPaths') is-invalid @enderror" multiple="" data-placeholder="Select Career Paths" id="inputProgramCareerPath" style="width: 100%;" wire:model="selectedCareerPaths">
-                                @foreach ($career_paths as $career_path)
-                                <option data-select2-id="{{ $career_path->id }}" value="{{ $career_path->id }}">{{ $career_path->name }}</option>
+                            <label for="inputProgramCareer">Careers</label>
+                            <select class="select2-careers select2-hidden-accessible form-control @error('selectedCareers') is-invalid @enderror" multiple="" data-placeholder="Select Careers" id="inputProgramCareer" style="width: 100%;" wire:model="selectedCareers">
+                                @foreach ($careers as $career)
+                                <option data-select2-id="{{ $career->id }}" value="{{ $career->id }}">{{ $career->name }}</option>
                                 @endforeach
                             </select>
-                            @error('selectedCareerPaths')
-                            <span id="inputProgramCareerPath-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @error('selectedCareers')
+                            <span id="inputProgramCareer-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <h5 class="mt-2">Entry Requirements</h5>
