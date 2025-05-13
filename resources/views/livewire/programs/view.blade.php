@@ -15,11 +15,11 @@
                         <dd>{{ format_entry_requirements($data->entryRequirements->first()) }}</dd>
                         @endif
 
-                        @if(count($data->career_paths) > 0)
-                        <dt class="mt-3">Potential Career Paths:</dt>
+                        @if(count($data->careers) > 0)
+                        <dt class="mt-3">Potential Careers:</dt>
                         <dd>
                             <ul>
-                                @foreach($data->career_paths as $key => $career)
+                                @foreach($data->careers as $key => $career)
                                 <li>{{ $career->name }}</li>
                                 @endforeach
                             </ul>
