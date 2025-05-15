@@ -3,5 +3,5 @@
 @section('page_title', 'Update Career Details')
 
 @section('page_content')
-    <livewire:careers.edit discipline_id="{{ $discipline->id }}" career_id="{{ $career->id }}" />
+    <livewire:careers.edit field_id="{{ $field->id }}" career_id="{{ $career->id }}" />
 @endsection

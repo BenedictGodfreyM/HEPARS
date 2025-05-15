@@ -20,11 +20,11 @@ class Datatable extends Component
     public $pageSize = 10;
     public $columns = ['name'];
 
-    public $discipline_id;
+    public $field_id;
 
-    public function mount($discipline_id)
+    public function mount($field_id)
     {
-        $this->discipline_id = $discipline_id;
+        $this->field_id = $field_id;
     }
 
     public function updatingSearch()
@@ -61,10 +61,10 @@ class Datatable extends Component
     public function render()
     {
         $repository = new CareerRepository();
-        $data = $repository->careersFromDiscipline($this->discipline_id, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
+        $data = $repository->careersFromField($this->field_id, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
 
         return view('livewire.careers.datatable', [
-            'discipline_id' => $this->discipline_id,
+            'field_id' => $this->field_id,
             'data' => $data,
             'columns' => $this->columns,
         ]);

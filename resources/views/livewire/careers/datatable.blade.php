@@ -62,7 +62,7 @@
                                     <td>{{ $item->$column }}</td>
                                 @endforeach
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('disciplines.careers.edit', ['discipline_id' => $discipline_id, 'career_id' => $item->id]) }}">Edit</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('fields.careers.edit', ['field_id' => $field_id, 'career_id' => $item->id]) }}">Edit</a>
                                     <button class="btn btn-danger btn-sm" wire:click="delete('{{ $item->id }}')">Delete</button>
                                 </td>
                             </tr>

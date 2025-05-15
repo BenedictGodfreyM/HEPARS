@@ -20,7 +20,7 @@
                         </div>
                     </div>  
                     <div class="card-footer">
-                        <a href="{{ route('disciplines.careers', ['discipline_id' => $disciplineId]) }}" class="btn btn-danger float-left">Back</a>
+                        <a href="{{ route('fields.careers', ['field_id' => $fieldId]) }}" class="btn btn-danger float-left">Back</a>
                         <button type="submit" class="btn btn-success float-right">
                             <span wire:loading wire:target="updateCareer"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Submitting...</span>
                             <span wire:loading.remove wire:target="updateCareer">Submit</span>

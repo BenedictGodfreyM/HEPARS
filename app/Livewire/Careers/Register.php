@@ -2,8 +2,7 @@
 
 namespace App\Livewire\Careers;
 
-use App\Repositories\CareerRepository;
-use App\Repositories\DisciplineRepository;
+use App\Repositories\FieldRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -12,12 +11,12 @@ class Register extends Component
 {
     public $name = "";
 
-    public $discipline_id = "";
+    public $field_id = "";
 
-    public function mount($discipline_id)
+    public function mount($field_id)
     {
-        $this->discipline_id = $discipline_id;
-        session()->put('discipline_id', $discipline_id);
+        $this->field_id = $field_id;
+        session()->put('field_id', $field_id);
     }
 
     public function rules()
@@ -40,10 +39,10 @@ class Register extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $disciplineRepo = new DisciplineRepository();
-            $disciplineRepo->addCareer([
+            $fieldRepo = new FieldRepository();
+            $fieldRepo->addCareer([
                 'name' => $this->name,
-            ], $this->discipline_id);
+            ], $this->field_id);
             DB::commit();
             $this->reset();
             session()->flash('success','Career is successfully registered.');
@@ -56,7 +55,7 @@ class Register extends Component
     public function render()
     {
         return view('livewire.careers.register', [
-            'disciplineId' => session()->get('discipline_id', ''),
+            'fieldId' => session()->get('field_id', ''),
         ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('backend.layouts.parent')
 
-@section('page_title', 'Careers in '. ucwords(strtolower($discipline->name)))
+@section('page_title', 'Careers in '. ucwords(strtolower($field->name)))
 
 @section('page_content')
 <div class="row">
@@ -10,14 +10,14 @@
                 <h3 class="card-title">Careers</h3>
                 <div class="card-tools">
                     <div class="btn-group show">
-                        <a href="{{ route('disciplines.careers.register', ['discipline_id' => $discipline->id]) }}" class="btn btn-sm btn-info">
+                        <a href="{{ route('fields.careers.register', ['field_id' => $field->id]) }}" class="btn btn-sm btn-info">
                             <i class="fas fa-plus"></i> Register
                         </a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <livewire:careers.datatable discipline_id="{{ $discipline->id }}" />
+                <livewire:careers.datatable field_id="{{ $field->id }}" />
             </div>
         </div>
     </div>

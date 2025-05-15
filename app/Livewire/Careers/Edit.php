@@ -12,12 +12,12 @@ class Edit extends Component
     public $careerId = "";
     public $name = "";
 
-    public $discipline_id = "";
+    public $field_id = "";
 
-    public function mount($discipline_id, $career_id)
+    public function mount($field_id, $career_id)
     {        
-        $this->discipline_id = $discipline_id;
-        session()->put('discipline_id', $discipline_id);
+        $this->field_id = $field_id;
+        session()->put('field_id', $field_id);
         $this->careerId = $career_id;
         session()->put('career_id', $career_id);
         $careerRepo = new CareerRepository();
@@ -47,7 +47,7 @@ class Edit extends Component
             DB::beginTransaction();
             $careerRepo = new CareerRepository();
             $careerRepo->updateCareer([
-                'discipline_id' => $this->discipline_id,
+                'field_id' => $this->field_id,
                 'name' => $this->name,
             ], $this->careerId);
             DB::commit();
@@ -61,7 +61,7 @@ class Edit extends Component
     public function render()
     {
         return view('livewire.careers.edit', [
-            'disciplineId' => session()->get('discipline_id', ''),
+            'fieldId' => session()->get('field_id', ''),
         ]);
     }
 }
