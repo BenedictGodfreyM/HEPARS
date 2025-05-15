@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Disciplines;
+namespace App\Livewire\Fields;
 
-use App\Repositories\DisciplineRepository;
+use App\Repositories\FieldRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -36,15 +36,15 @@ class Datatable extends Component
         $this->sortField = $field;
     }
 
-    public function delete($discipline_id)
+    public function delete($field_id)
     {
-        $disciplineRepo = new DisciplineRepository();
+        $fieldRepo = new FieldRepository();
         try{
             DB::beginTransaction();
-            $disciplineRepo->destroyDiscipline($discipline_id);
+            $fieldRepo->destroyField($field_id);
             $this->render();
             DB::commit();
-            session()->flash('success','Discipline is successfully deleted.');
+            session()->flash('success','Field is successfully deleted.');
         }catch(Exception $e){
             DB::rollBack();
             session()->flash('error',$e->getMessage());
@@ -53,9 +53,9 @@ class Datatable extends Component
 
     public function render()
     {
-        $repository = new DisciplineRepository();
-        $data = $repository->allDisciplines($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
-        return view('livewire.disciplines.datatable', [
+        $repository = new FieldRepository();
+        $data = $repository->allFields($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
+        return view('livewire.fields.datatable', [
             'data' => $data,
             'columns' => $this->columns,
         ]);
