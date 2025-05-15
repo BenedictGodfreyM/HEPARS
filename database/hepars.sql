@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 13, 2025 at 03:11 PM
+-- Generation Time: May 15, 2025 at 11:58 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -58,27 +58,27 @@ CREATE TABLE IF NOT EXISTS `cache_locks` (
 DROP TABLE IF EXISTS `careers`;
 CREATE TABLE IF NOT EXISTS `careers` (
   `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discipline_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `careers_discipline_id_index` (`discipline_id`)
+  KEY `careers_field_id_index` (`field_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `careers`
 --
 
-INSERT INTO `careers` (`id`, `discipline_id`, `name`, `created_at`, `updated_at`) VALUES
-('2349ce8a554434b8478552f4b4aadd05', '8a281b80d1c88bf50034ca8eefa64c5f', 'Electric Engineer', '2025-05-13 07:45:07', '2025-05-13 07:45:07'),
-('324bf040f248e5f752f0782bc8b466fb', '570ae4aa3df37b72cfeae50ee9220047', 'Medical Doctor', '2025-05-13 07:48:18', '2025-05-13 07:48:18'),
-('3f924d8b1701409e9ed664b1bd638a37', 'f5a9d9dd8eeeaced382cbb663c317f79', 'Beekeeper', '2025-05-13 12:02:45', '2025-05-13 12:02:45'),
-('447007624591328987ecc9c1ef8ffe9f', '570ae4aa3df37b72cfeae50ee9220047', 'Dentist', '2025-05-13 11:54:59', '2025-05-13 11:54:59'),
-('5ab8efd5070ca87d02066fd91e66b2bd', '8a281b80d1c88bf50034ca8eefa64c5f', 'Civil Engineer', '2025-05-13 07:42:34', '2025-05-13 07:58:49'),
-('675843a5bab92c4b3a2a3956ac610bfb', '0581eeb0b56b3789ede9a5a0b63bfef6', 'Environmental Laboratory Scientist', '2025-05-13 11:41:58', '2025-05-13 11:41:58'),
-('7f8e58e3a6c62a2c598650dcc76d18d4', '0581eeb0b56b3789ede9a5a0b63bfef6', 'Environmental Laboratory Technician', '2025-05-13 11:41:34', '2025-05-13 11:41:34'),
-('ce982ae149cf72e31268104eded72830', '570ae4aa3df37b72cfeae50ee9220047', 'Pharmacist', '2025-05-13 11:55:23', '2025-05-13 11:55:23');
+INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VALUES
+('1805feb784292d77558aae27626e3a48', '50454887affd0f1dcf0354a77aae629d', 'Dentist', '2025-05-15 08:54:22', '2025-05-15 08:54:22'),
+('26088e3530229d17b5e395e67648f469', '08e5be3d6ec275be8b4c8c819c10309a', 'Environmental Laboratory Technician', '2025-05-15 08:54:50', '2025-05-15 08:54:50'),
+('2c22cee36acb001283b7fc3113a7cfeb', '50454887affd0f1dcf0354a77aae629d', 'Pharmacist', '2025-05-15 08:54:02', '2025-05-15 08:54:02'),
+('3b0f0a92aa3bb442637449cc8d658510', '48f7c12599cac4824ec5f0f9a85b64db', 'Electric Engineer', '2025-05-15 08:55:28', '2025-05-15 08:55:28'),
+('5062c48b0c35cfbdfd110720525c7776', '48f7c12599cac4824ec5f0f9a85b64db', 'Civil Engineer', '2025-05-15 08:55:07', '2025-05-15 08:55:07'),
+('ae722daad34e68bfc7ed015f538124fb', '08e5be3d6ec275be8b4c8c819c10309a', 'Environmental Laboratory Scientist', '2025-05-15 08:54:42', '2025-05-15 08:54:42'),
+('d64957f8870b8c106729003eac435efe', '50454887affd0f1dcf0354a77aae629d', 'Medical Doctor (MD)', '2025-05-15 08:53:32', '2025-05-15 08:53:32'),
+('de43ec2245836e80a06a0f3629ef17e4', '50454887affd0f1dcf0354a77aae629d', 'Nurse', '2025-05-15 08:53:48', '2025-05-15 08:53:48');
 
 -- --------------------------------------------------------
 
@@ -96,18 +96,20 @@ CREATE TABLE IF NOT EXISTS `career_programs` (
   PRIMARY KEY (`id`),
   KEY `career_programs_program_id_index` (`program_id`),
   KEY `career_programs_career_id_index` (`career_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `career_programs`
 --
 
 INSERT INTO `career_programs` (`id`, `program_id`, `career_id`, `created_at`, `updated_at`) VALUES
-(1, 'acde11ba72feede28e96137d431ca186', '5ab8efd5070ca87d02066fd91e66b2bd', NULL, NULL),
-(2, '6c71a7bbb3398a769abfb1fadb5929a1', '324bf040f248e5f752f0782bc8b466fb', NULL, NULL),
-(3, '2df21b54695076255c90a8e3bc1949a0', '675843a5bab92c4b3a2a3956ac610bfb', NULL, NULL),
-(4, '2df21b54695076255c90a8e3bc1949a0', '7f8e58e3a6c62a2c598650dcc76d18d4', NULL, NULL),
-(5, '9f8815cbb3c5245a6fdf81c9d2a2191a', '3f924d8b1701409e9ed664b1bd638a37', NULL, NULL);
+(1, '2df21b54695076255c90a8e3bc1949a0', 'ae722daad34e68bfc7ed015f538124fb', NULL, NULL),
+(2, '2df21b54695076255c90a8e3bc1949a0', '26088e3530229d17b5e395e67648f469', NULL, NULL),
+(3, 'acde11ba72feede28e96137d431ca186', '5062c48b0c35cfbdfd110720525c7776', NULL, NULL),
+(4, '274abe94a2938438bc3d3a0a422da8c3', 'de43ec2245836e80a06a0f3629ef17e4', NULL, NULL),
+(5, '5499b5d315f03a7b33f880eb88545fe6', '1805feb784292d77558aae27626e3a48', NULL, NULL),
+(6, '6c71a7bbb3398a769abfb1fadb5929a1', 'd64957f8870b8c106729003eac435efe', NULL, NULL),
+(7, 'c7d1b2fc3b1195b94195450ae9c0c9b5', '2c22cee36acb001283b7fc3113a7cfeb', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,31 +217,6 @@ INSERT INTO `combination_subjects` (`id`, `combination_id`, `subject_id`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `disciplines`
---
-
-DROP TABLE IF EXISTS `disciplines`;
-CREATE TABLE IF NOT EXISTS `disciplines` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `disciplines`
---
-
-INSERT INTO `disciplines` (`id`, `name`, `created_at`, `updated_at`) VALUES
-('0581eeb0b56b3789ede9a5a0b63bfef6', 'ENVIRONMENTAL SCIENCE', '2025-05-13 11:40:51', '2025-05-13 11:40:51'),
-('570ae4aa3df37b72cfeae50ee9220047', 'MEDICINE', '2025-05-13 07:47:40', '2025-05-13 07:47:40'),
-('8a281b80d1c88bf50034ca8eefa64c5f', 'ENGINEERING', '2025-05-13 07:12:08', '2025-05-13 07:12:08'),
-('f5a9d9dd8eeeaced382cbb663c317f79', 'AGRICULTURE', '2025-05-13 12:02:23', '2025-05-13 12:02:23');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `entry_requirements`
 --
 
@@ -261,17 +238,18 @@ CREATE TABLE IF NOT EXISTS `entry_requirements` (
 
 INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `required_subjects_count`, `created_at`, `updated_at`) VALUES
 ('017a2b6654b3311be8ef846fedf099a4', '42e1316d01cedc078337729829653b5b', 9, 3, '2025-05-12 12:50:39', '2025-05-12 12:50:39'),
+('073be338f55e350db78da2ac8b004e9e', '2df21b54695076255c90a8e3bc1949a0', 4, 2, '2025-05-15 08:56:10', '2025-05-15 08:56:10'),
 ('114dfda1cab341736e704fc14afd1717', '7bcc3a2490d7ee562c8dc8cac9a25bd2', 8, 3, '2025-05-12 12:48:21', '2025-05-12 12:48:21'),
-('11549851058cfa7e1878f031f72f8290', '5499b5d315f03a7b33f880eb88545fe6', 6, 3, '2025-05-12 16:56:06', '2025-05-12 16:56:06'),
 ('158b0a4c58b7d47097eab72e4f6f2438', '5f614befa559981f694b049ba973dd3f', 4, 2, '2025-05-12 16:10:54', '2025-05-12 16:10:54'),
 ('163774c4d4ed9ae4d27c6f2449df1205', 'c1368857a497441654705eba40d31c59', 6, 3, '2025-05-12 16:43:56', '2025-05-12 16:43:56'),
 ('1716ccb983b5b585d353b38a6a2d9841', 'ebc4a771901acd053c8f21ca146d0eb6', 4, 2, '2025-05-12 15:41:06', '2025-05-12 15:41:06'),
-('224fba7d7da0e1e377a123f578b9e5eb', '2df21b54695076255c90a8e3bc1949a0', 4, 2, '2025-05-13 11:43:46', '2025-05-13 11:43:46'),
+('1bff5449b05ecf6a4306c09ae13dab2d', '274abe94a2938438bc3d3a0a422da8c3', 8, 3, '2025-05-15 08:57:13', '2025-05-15 08:57:13'),
 ('26f23336f45a68778bafc17cafb89511', '50bd144ecea17982c79347fbbb0b45fd', 4, 2, '2025-05-12 15:35:22', '2025-05-12 15:35:22'),
+('290d05b881a81bc39a3a3486c80803e3', '6c71a7bbb3398a769abfb1fadb5929a1', 6, 3, '2025-05-15 08:57:38', '2025-05-15 08:57:38'),
 ('2e8ab7c250bda54db1e02c374d6b7c2d', 'c67d1a2b2e50d41ccaef5c7cc7b857db', 4, 2, '2025-05-12 13:54:48', '2025-05-12 13:54:48'),
+('2f4ee60382e42a8a10e5df917518a91a', 'acde11ba72feede28e96137d431ca186', 4, 2, '2025-05-15 08:56:43', '2025-05-15 08:56:43'),
 ('30973a49f205744c181fdde2ae9532b6', '2898adbdcc25d3d7b23651ee5e80abb1', 4, 2, '2025-05-10 17:26:19', '2025-05-10 17:26:19'),
 ('316c47edb43dd04c0193b69945453d3c', 'ba47e9cf0055abce55d33e7ad7200626', 6, 3, '2025-05-12 16:53:25', '2025-05-12 16:53:25'),
-('3b1e3350cc023cf4940dda7b7707b386', 'acde11ba72feede28e96137d431ca186', 4, 2, '2025-05-13 09:25:58', '2025-05-13 09:25:58'),
 ('3d85356b54a06e7d399122ff1672a78d', '1dca1fe90b6afd34e477b9405c1a1f1c', 4, 2, '2025-05-12 16:18:55', '2025-05-12 16:18:55'),
 ('45b1f306a1652cb75a6472e55c62abed', '23240d5fa46f8ea7e2e8e403cbad0ffa', 4, 2, '2025-05-12 15:45:08', '2025-05-12 15:45:08'),
 ('4c851222374e7cc05dbe9b23f63c0336', '5631f8c13e9880d8bfa150c72589b695', 4, 2, '2025-05-11 07:43:54', '2025-05-11 07:43:54'),
@@ -281,19 +259,18 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('6ab83eb8deb6efb8f9b28665661ce94d', '63d4bd5e98166ae14a5599b9f85ab96f', 6, 3, '2025-05-12 17:04:55', '2025-05-12 17:04:55'),
 ('704f703100f09f05db5ef045c6e42dcc', '7a60250a7cd96e92cdb9d85ecbf500e7', 4, 2, '2025-05-12 16:21:53', '2025-05-12 16:21:53'),
 ('7a81f762b0d5b02328b8e57fe4d8fa2a', '449b2db1ef0be3148d75b31cf01b4b2f', 4, 2, '2025-05-11 07:52:05', '2025-05-11 07:52:05'),
-('7ba3ba30b5c685d8ff0d06f1e6077bd4', 'c7d1b2fc3b1195b94195450ae9c0c9b5', 6, 3, '2025-05-12 12:19:39', '2025-05-12 12:19:39'),
 ('9331ebae62147c495cbdf0c26d9dda4f', 'df57e1e7f5710b954943617651407528', 4, 2, '2025-05-12 15:53:10', '2025-05-12 15:53:10'),
+('957d080e00dc8a27786d0ee282239323', '5499b5d315f03a7b33f880eb88545fe6', 6, 3, '2025-05-15 08:57:25', '2025-05-15 08:57:25'),
 ('ac0183aef13fe44ec7da3f63dca5b8b9', 'b0e9d87e618d6a5d1257af8e36b720e2', 4, 2, '2025-05-12 15:55:54', '2025-05-12 15:55:54'),
 ('b11ee817938a955e00cb49ad12b72b00', '9d00aa0e1f3822e02abdcc57e0e3bc18', 6, 3, '2025-05-12 16:48:52', '2025-05-12 16:48:52'),
 ('b6017e72385f60d32908fb7d226b4e38', '3041a5d3546187206b68e2e34f1b498c', 4, 2, '2025-05-12 15:26:21', '2025-05-12 15:26:21'),
-('c376acaac6d5b6ed0322790b966ff1a1', '6c71a7bbb3398a769abfb1fadb5929a1', 6, 3, '2025-05-13 09:46:13', '2025-05-13 09:46:13'),
+('cc156b96c7f260dcac131305aee63264', 'c7d1b2fc3b1195b94195450ae9c0c9b5', 6, 3, '2025-05-15 08:57:54', '2025-05-15 08:57:54'),
 ('cfbc415dcbb07450b763c96fff3cf8c3', '9f8815cbb3c5245a6fdf81c9d2a2191a', 4, 2, '2025-05-13 12:09:38', '2025-05-13 12:09:38'),
 ('efe0a16aa323471d3cae586c2ab7b88a', 'e490db7b5a98a0aa59eebd9ba8986bb3', 4, 2, '2025-05-11 10:27:58', '2025-05-11 10:27:58'),
 ('f080de0b4d3ff5b9b25d8dfc0b36d1af', '3ec5e6b0206ab1fa3d4c63ca141f24ef', 4, 2, '2025-05-11 10:20:40', '2025-05-11 10:20:40'),
 ('f18edaf906c6481c81569c752ac6c5f9', '32f2acf3761302ddd4f73347a49cd526', 4, 2, '2025-05-10 19:20:25', '2025-05-10 19:20:25'),
 ('f553ec36a0fb30e0ab05ea8128ffe7ff', '756478f8bdd193b72d499db2538b66bb', 4, 2, '2025-05-10 16:06:35', '2025-05-10 16:06:35'),
-('f582d2da55509d63fe5da9bce9c66fdb', 'cd9323c76d11b08ba1b98764b68ba470', 6, 3, '2025-05-12 16:51:15', '2025-05-12 16:51:15'),
-('fd181fda293e3330370ec3554ce115e6', '274abe94a2938438bc3d3a0a422da8c3', 8, 3, '2025-05-12 12:13:13', '2025-05-12 12:13:13');
+('f582d2da55509d63fe5da9bce9c66fdb', 'cd9323c76d11b08ba1b98764b68ba470', 6, 3, '2025-05-12 16:51:15', '2025-05-12 16:51:15');
 
 -- --------------------------------------------------------
 
@@ -313,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `entry_requirement_subjects` (
   PRIMARY KEY (`id`),
   KEY `entry_requirement_subjects_entry_requirement_id_index` (`entry_requirement_id`),
   KEY `entry_requirement_subjects_subject_id_index` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `entry_requirement_subjects`
@@ -384,12 +361,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (62, 'efe0a16aa323471d3cae586c2ab7b88a', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
 (63, 'efe0a16aa323471d3cae586c2ab7b88a', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
 (64, 'efe0a16aa323471d3cae586c2ab7b88a', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
-(68, 'fd181fda293e3330370ec3554ce115e6', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(69, 'fd181fda293e3330370ec3554ce115e6', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
-(70, 'fd181fda293e3330370ec3554ce115e6', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
-(71, '7ba3ba30b5c685d8ff0d06f1e6077bd4', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(72, '7ba3ba30b5c685d8ff0d06f1e6077bd4', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(73, '7ba3ba30b5c685d8ff0d06f1e6077bd4', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (74, '114dfda1cab341736e704fc14afd1717', '111239143c8489ef8e53421791b2c3e9', 'required', 'C', NULL, NULL),
 (75, '114dfda1cab341736e704fc14afd1717', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
 (76, '114dfda1cab341736e704fc14afd1717', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'C', NULL, NULL),
@@ -526,9 +497,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (229, '316c47edb43dd04c0193b69945453d3c', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
 (230, '316c47edb43dd04c0193b69945453d3c', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
 (231, '316c47edb43dd04c0193b69945453d3c', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(232, '11549851058cfa7e1878f031f72f8290', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(233, '11549851058cfa7e1878f031f72f8290', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(234, '11549851058cfa7e1878f031f72f8290', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
 (235, '6ab83eb8deb6efb8f9b28665661ce94d', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
 (236, '6ab83eb8deb6efb8f9b28665661ce94d', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (237, '6ab83eb8deb6efb8f9b28665661ce94d', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
@@ -536,28 +504,37 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (239, '6ab83eb8deb6efb8f9b28665661ce94d', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
 (240, '6ab83eb8deb6efb8f9b28665661ce94d', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
 (241, '6ab83eb8deb6efb8f9b28665661ce94d', '921f5461645235088da06b1132a13754', 'optional', 'E', NULL, NULL),
-(242, '3b1e3350cc023cf4940dda7b7707b386', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'E', NULL, NULL),
-(243, '3b1e3350cc023cf4940dda7b7707b386', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
-(244, '3b1e3350cc023cf4940dda7b7707b386', '79a78e4e6a080e03d3ddf5aaca20b642', 'necessary', 'S', NULL, NULL),
-(245, 'c376acaac6d5b6ed0322790b966ff1a1', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(246, 'c376acaac6d5b6ed0322790b966ff1a1', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(247, 'c376acaac6d5b6ed0322790b966ff1a1', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(248, '224fba7d7da0e1e377a123f578b9e5eb', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
-(249, '224fba7d7da0e1e377a123f578b9e5eb', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
-(250, '224fba7d7da0e1e377a123f578b9e5eb', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
-(251, '224fba7d7da0e1e377a123f578b9e5eb', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
-(252, '224fba7d7da0e1e377a123f578b9e5eb', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
-(253, '224fba7d7da0e1e377a123f578b9e5eb', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
-(254, '224fba7d7da0e1e377a123f578b9e5eb', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'E', NULL, NULL),
-(255, '224fba7d7da0e1e377a123f578b9e5eb', 'de52cabd871248ebd540e4c1616d8477', 'required', 'E', NULL, NULL),
-(256, '224fba7d7da0e1e377a123f578b9e5eb', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
-(257, '224fba7d7da0e1e377a123f578b9e5eb', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
 (258, 'cfbc415dcbb07450b763c96fff3cf8c3', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (259, 'cfbc415dcbb07450b763c96fff3cf8c3', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'D', NULL, NULL),
 (260, 'cfbc415dcbb07450b763c96fff3cf8c3', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'D', NULL, NULL),
 (261, 'cfbc415dcbb07450b763c96fff3cf8c3', '921f5461645235088da06b1132a13754', 'optional', 'D', NULL, NULL),
 (262, 'cfbc415dcbb07450b763c96fff3cf8c3', '111239143c8489ef8e53421791b2c3e9', 'optional', 'D', NULL, NULL),
-(263, 'cfbc415dcbb07450b763c96fff3cf8c3', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'D', NULL, NULL);
+(263, 'cfbc415dcbb07450b763c96fff3cf8c3', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'D', NULL, NULL),
+(264, '073be338f55e350db78da2ac8b004e9e', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(265, '073be338f55e350db78da2ac8b004e9e', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(266, '073be338f55e350db78da2ac8b004e9e', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(267, '073be338f55e350db78da2ac8b004e9e', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(268, '073be338f55e350db78da2ac8b004e9e', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(269, '073be338f55e350db78da2ac8b004e9e', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
+(270, '073be338f55e350db78da2ac8b004e9e', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'E', NULL, NULL),
+(271, '073be338f55e350db78da2ac8b004e9e', 'de52cabd871248ebd540e4c1616d8477', 'required', 'E', NULL, NULL),
+(272, '073be338f55e350db78da2ac8b004e9e', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
+(273, '073be338f55e350db78da2ac8b004e9e', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(274, '2f4ee60382e42a8a10e5df917518a91a', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'E', NULL, NULL),
+(275, '2f4ee60382e42a8a10e5df917518a91a', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
+(276, '2f4ee60382e42a8a10e5df917518a91a', '79a78e4e6a080e03d3ddf5aaca20b642', 'necessary', 'S', NULL, NULL),
+(277, '1bff5449b05ecf6a4306c09ae13dab2d', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(278, '1bff5449b05ecf6a4306c09ae13dab2d', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(279, '1bff5449b05ecf6a4306c09ae13dab2d', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
+(280, '957d080e00dc8a27786d0ee282239323', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(281, '957d080e00dc8a27786d0ee282239323', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(282, '957d080e00dc8a27786d0ee282239323', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(283, '290d05b881a81bc39a3a3486c80803e3', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(284, '290d05b881a81bc39a3a3486c80803e3', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(285, '290d05b881a81bc39a3a3486c80803e3', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(286, 'cc156b96c7f260dcac131305aee63264', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(287, 'cc156b96c7f260dcac131305aee63264', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(288, 'cc156b96c7f260dcac131305aee63264', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -577,6 +554,30 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fields`
+--
+
+DROP TABLE IF EXISTS `fields`;
+CREATE TABLE IF NOT EXISTS `fields` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fields`
+--
+
+INSERT INTO `fields` (`id`, `name`, `created_at`, `updated_at`) VALUES
+('08e5be3d6ec275be8b4c8c819c10309a', 'ENVIRONMENTAL SCIENCE', '2025-05-15 08:53:10', '2025-05-15 08:53:10'),
+('48f7c12599cac4824ec5f0f9a85b64db', 'ENGINEERING', '2025-05-15 08:52:52', '2025-05-15 08:52:52'),
+('50454887affd0f1dcf0354a77aae629d', 'MEDICINE', '2025-05-15 08:52:58', '2025-05-15 08:52:58');
 
 -- --------------------------------------------------------
 
@@ -660,7 +661,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -678,14 +679,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2025_02_24_074954_create_institutions_table', 1),
 (10, '2025_02_24_075016_create_programs_table', 1),
 (11, '2025_02_24_075038_create_subjects_table', 1),
-(24, '2025_05_13_075056_create_careers_table', 7),
-(23, '2025_05_12_205554_create_disciplines_table', 7),
+(28, '2025_05_13_075211_create_career_programs_table', 7),
+(27, '2025_05_13_075056_create_careers_table', 7),
 (20, '2025_02_24_075117_create_entry_requirements_table', 5),
 (16, '2025_05_07_052535_add_admission_portal_link_to_institutions_table', 3),
 (17, '2025_05_08_073537_create_combinations_table', 4),
 (18, '2025_05_08_075211_create_combination_subjects_table', 4),
 (22, '2025_05_10_075117_create_entry_requirement_subjects_table', 6),
-(25, '2025_05_13_075211_create_career_programs_table', 7);
+(26, '2025_05_12_205554_create_fields_table', 7);
 
 -- --------------------------------------------------------
 
@@ -880,7 +881,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fBMJcywEWUt4mCDY46tDbhxjbQrZyCPl4vrGfTs4', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiNWVaeThkd3Q4QnUyQWF0cXBaamVHMzBpTUxsTlN6aEhrOGVOajNYUSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMzoiZGlzY2lwbGluZV9pZCI7czozMjoiZjVhOWQ5ZGQ4ZWVlYWNlZDM4MmNiYjY2M2MzMTdmNzkiO3M6OToiY2FyZWVyX2lkIjtzOjMyOiI1YWI4ZWZkNTA3MGNhODdkMDIwNjZmZDkxZTY2YjJiZCI7czoxNDoiaW5zdGl0dXRpb25faWQiO3M6MzI6ImE3MWE5MzZhMjJjOTRmMzA0NGE4OGExYTBhY2YwNWZiIjtzOjEwOiJwcm9ncmFtX2lkIjtzOjMyOiIyZGYyMWI1NDY5NTA3NjI1NWM5MGE4ZTNiYzE5NDlhMCI7fQ==', 1747149058);
+('NQxjXxn03gRgca3dHFQJdfieSeAcQdRoHwsJ57nD', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiYTdNaGY5eTRNRTc4Z0l3RVRCenJBSEhWSmpwaGdPMUtaYnk1NUNEdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo4OiJmaWVsZF9pZCI7czozMjoiNDhmN2MxMjU5OWNhYzQ4MjRlYzVmMGY5YTg1YjY0ZGIiO3M6MTQ6Imluc3RpdHV0aW9uX2lkIjtzOjMyOiI4NGVjMWZmZGQ0Mzk0OTBjMDc4NzVhZTQ1YzFkYzdmYiI7czoxMDoicHJvZ3JhbV9pZCI7czozMjoiYzdkMWIyZmMzYjExOTViOTQxOTU0NTBhZTljMGM5YjUiO30=', 1747310280);
 
 -- --------------------------------------------------------
 
@@ -952,7 +953,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Constraints for table `careers`
 --
 ALTER TABLE `careers`
-  ADD CONSTRAINT `careers_discipline_id_foreign` FOREIGN KEY (`discipline_id`) REFERENCES `disciplines` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `careers_field_id_foreign` FOREIGN KEY (`field_id`) REFERENCES `fields` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `career_programs`
