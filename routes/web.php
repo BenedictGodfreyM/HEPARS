@@ -18,31 +18,31 @@ Route::prefix('auth')->group(function () {
 
     });
 
-    Route::prefix('disciplines')->group(function () {
+    Route::prefix('fields')->group(function () {
 
-        Route::prefix('{discipline_id}')->group(function () {
+        Route::prefix('{field_id}')->group(function () {
 
             Route::prefix('careers')->group(function () {
 
                 Route::prefix('{career_id}')->group(function () {
 
-                    Route::get('/edit', [App\Http\Controllers\Backend\CareerController::class, 'edit'])->name('disciplines.careers.edit');
+                    Route::get('/edit', [App\Http\Controllers\Backend\CareerController::class, 'edit'])->name('fields.careers.edit');
 
                 });
 
-                Route::get('/register', [App\Http\Controllers\Backend\CareerController::class, 'register'])->name('disciplines.careers.register');
+                Route::get('/register', [App\Http\Controllers\Backend\CareerController::class, 'register'])->name('fields.careers.register');
                 
-                Route::get('/', [App\Http\Controllers\Backend\CareerController::class, 'index'])->name('disciplines.careers');
+                Route::get('/', [App\Http\Controllers\Backend\CareerController::class, 'index'])->name('fields.careers');
 
             });
 
-            Route::get('/edit', [App\Http\Controllers\Backend\DisciplineController::class, 'edit'])->name('disciplines.edit');
+            Route::get('/edit', [App\Http\Controllers\Backend\FieldController::class, 'edit'])->name('fields.edit');
 
         });
 
-        Route::get('/register', [App\Http\Controllers\Backend\DisciplineController::class, 'register'])->name('disciplines.register');
+        Route::get('/register', [App\Http\Controllers\Backend\FieldController::class, 'register'])->name('fields.register');
         
-        Route::get('/', [App\Http\Controllers\Backend\DisciplineController::class, 'index'])->name('disciplines');
+        Route::get('/', [App\Http\Controllers\Backend\FieldController::class, 'index'])->name('fields');
 
     });
 
