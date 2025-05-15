@@ -5,8 +5,6 @@ namespace App\Services;
 use App\Enums\RequirementType;
 use App\Models\EntryRequirement;
 use App\Models\Program;
-use App\Models\Subject;
-use Illuminate\Database\Eloquent\Collection;
 
 class RecommendationService
 {
@@ -62,7 +60,7 @@ class RecommendationService
         }
         
         if (isset($requirement->required_subjects_count)) {
-            // Student didn't pass as many subjects as required
+            // Student didn't pass (or take) as many subjects as required
             if (count($passedSubjects) < $requirement->required_subjects_count) {
                 return false;
             }
@@ -91,7 +89,7 @@ class RecommendationService
 
         $principals = $requiredWithPrincipalPass->count() + $necessaryWithPrincipalPass->count() + $optionalWithPrincipalPass->count();
         $additional = $necessaryWithPrincipalPass->count() + $necessaryWithSubsidiaryPass->count();
-        $passedCompulsorySubjects = $passedOptionalSubjects = $passedAdditionalSubjects = true;
+        $passedCompulsorySubjects = $passedCompulsoryAndOptionalSubjects = $passedAdditionalSubjects = true;
         
         // Principal Passes
         if ($principals > 0) {
@@ -112,22 +110,39 @@ class RecommendationService
                         $minimumRequiredPoints = GradeService::getPoints($compulsoryPrincipal->pivot->min_grade) ?? 0;
                         return ($studentPoints >= $minimumRequiredPoints);
                     });
-                    
-                    $passedOptionalSubjects = $optionalWithPrincipalPass->every(function ($optionalPrincipal) use ($studentResults) {
-                        if(!array_key_exists($optionalPrincipal->id,$studentResults)) return false;
+
+                    if(!$passedCompulsorySubjects) return false;
+
+                    $passedOptionalSubjectsCount = $optionalWithPrincipalPass->sum(function ($optionalPrincipal) use ($studentResults) {
+                        if(!array_key_exists($optionalPrincipal->id,$studentResults)) return 0;
                         $studentPoints = GradeService::getPoints($studentResults[$optionalPrincipal->id]) ?? 0;
                         $minimumRequiredPoints = GradeService::getPoints($optionalPrincipal->pivot->min_grade) ?? 0;
-                        return ($studentPoints >= $minimumRequiredPoints);
+                        return ($studentPoints >= $minimumRequiredPoints ? 1 : 0);
                     });
+                    
+                    // Check if cummulated points are sufficient
+                    $passedCompulsoryAndOptionalSubjects = (($compulsoryWithPrincipalPass->count() + $passedOptionalSubjectsCount) >= $requirement->required_subjects_count);
                 }else{
-                    // The are Optional subjects and probably Required subjects in the Requirements
+                    // There are Optional subjects and probably Required subjects in the Requirements
                     if ($optionalWithPrincipalPass->count() > 0) {
-                        $passedOptionalSubjects = $optionalWithPrincipalPass->every(function ($optionalPrincipal) use ($studentResults) {
-                            if(!array_key_exists($optionalPrincipal->id,$studentResults)) return false;
+                        $passedCompulsorySubjectCount = 0;
+                        if($requiredWithPrincipalPass->count() > 0){
+                            $passedCompulsorySubjects = $requiredWithPrincipalPass->contains(function ($requiredOPrincipal) use ($studentResults) {
+                                if(!array_key_exists($requiredOPrincipal->id,$studentResults)) return false;
+                                $studentPoints = GradeService::getPoints($studentResults[$requiredOPrincipal->id]) ?? 0;
+                                $minimumRequiredPoints = GradeService::getPoints($requiredOPrincipal->pivot->min_grade) ?? 0;
+                                return ($studentPoints >= $minimumRequiredPoints);
+                            });
+                            if($passedCompulsorySubjects) $passedCompulsorySubjectCount = 1;
+                        }
+
+                        $passedOptionalSubjectsCount = $optionalWithPrincipalPass->sum(function ($optionalPrincipal) use ($studentResults) {
+                            if(!array_key_exists($optionalPrincipal->id,$studentResults)) return 0;
                             $studentPoints = GradeService::getPoints($studentResults[$optionalPrincipal->id]) ?? 0;
                             $minimumRequiredPoints = GradeService::getPoints($optionalPrincipal->pivot->min_grade) ?? 0;
-                            return ($studentPoints >= $minimumRequiredPoints);
+                            return ($studentPoints >= $minimumRequiredPoints ? 1 : 0);
                         });
+                        $passedCompulsoryAndOptionalSubjects = (($passedCompulsorySubjectCount + $passedOptionalSubjectsCount) >= $requirement->required_subjects_count);
                     }
                 }
             }
@@ -153,10 +168,9 @@ class RecommendationService
                 });
             }
             $passedAdditionalSubjects = ($passedNecessaryPrincipal && $passedNecessarySubsidiary);
-            // dd(['passedNecessaryPrincipal' => $passedNecessaryPrincipal,'passedNecessarySubsidiary' => $passedNecessarySubsidiary,'passedAdditionalSubjects' => $passedAdditionalSubjects]);
         }
         
-        return ($passedCompulsorySubjects && $passedOptionalSubjects && $passedAdditionalSubjects);
+        return ($passedCompulsorySubjects && $passedCompulsoryAndOptionalSubjects && $passedAdditionalSubjects);
     }
 
     private function extractPrincipalWithType(EntryRequirement $requirement, string $type)
