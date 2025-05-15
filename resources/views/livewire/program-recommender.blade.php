@@ -57,9 +57,9 @@
                             <label>Career Choice</label>
                             <select class="form-control @error('selectedCareer') is-invalid @enderror" wire:model="selectedCareer" required>
                                 <option selected disabled value="">Select any Option</option>
-                                @foreach ($disciplines as $discipline)
-                                <optgroup label="{{ $discipline->name }}">
-                                    @foreach ($discipline->careers as $career)
+                                @foreach ($fields as $field)
+                                <optgroup label="{{ $field->name }}">
+                                    @foreach ($field->careers as $career)
                                     <option value="{{ $career->id }}">{{ $career->name }}</option>
                                     @endforeach
                                 </optgroup>

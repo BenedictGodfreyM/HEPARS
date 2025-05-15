@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Repositories\CombinationRepository;
-use App\Repositories\DisciplineRepository;
+use App\Repositories\FieldRepository;
 use App\Services\RecommendationService;
 use Exception;
 use Livewire\Component;
@@ -114,9 +114,9 @@ class ProgramRecommender extends Component
     {
         $combinationRepo = new CombinationRepository();
         $this->availableCombinations = $combinationRepo->allCombinationsWithoutPagination();
-        $disciplinesRepo = new DisciplineRepository();
+        $fieldRepo = new FieldRepository();
         return view('livewire.program-recommender', [
-            'disciplines' => $disciplinesRepo->allDisciplinesWithoutPagination(),
+            'fields' => $fieldRepo->allFieldsWithoutPagination(),
         ]);
     }
 }
