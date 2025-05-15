@@ -35,9 +35,9 @@ class Career extends Model
         'name',
     ];
 
-    public function discipline(): BelongsTo
+    public function Field(): BelongsTo
     {
-        return $this->belongsTo(Discipline::class);
+        return $this->belongsTo(Field::class);
     }
 
     public function programs(): BelongsToMany

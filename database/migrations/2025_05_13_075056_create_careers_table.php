@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('careers', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->string('id')->primary();
-            $table->string('discipline_id')->index();
-            $table->foreign('discipline_id')->references('id')->on('disciplines')->onDelete('cascade');
+            $table->string('field_id')->index();
+            $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });
