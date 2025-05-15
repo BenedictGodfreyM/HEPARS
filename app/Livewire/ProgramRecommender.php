@@ -93,7 +93,10 @@ class ProgramRecommender extends Component
                 $studentResults[$selectedSubject['subject']['id']] = $selectedSubject['grade'];
             }
             $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareer, $studentResults);
-            if(count($this->recommendations) <= 0) session()->flash('no_recommenadations', "Our algorithm could not generate any recommendations for you!. Try selecting an alternative career choice, if there is any.");
+            if(count($this->recommendations) <= 0) {
+                $this->resetForm();
+                session()->flash('no_recommenadations', "Our algorithm could not generate any recommendations for you!. Try selecting an alternative career choice, if there is any.");
+            }
         }catch(Exception $e){
             session()->flash('error',$e->getMessage());
         }
@@ -102,6 +105,7 @@ class ProgramRecommender extends Component
     public function clearRecommendations()
     {
         $this->recommendations = [];
+        $this->resetForm();
     }
 
     public function resetForm()
