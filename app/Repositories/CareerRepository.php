@@ -40,13 +40,13 @@ class CareerRepository
     }
 
     /**
-     * Retrieve all careers from a certain discipline
+     * Retrieve all careers from a certain field
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function careersFromDiscipline($discipline_id, $search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
+    public function careersFromField($field_id, $search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
-        return Career::where('discipline_id', '=', $discipline_id)
+        return Career::where('field_id', '=', $field_id)
                         ->where(function(Builder $query) use($search){
                             $query->where('name', 'like', '%' . $search . '%');
                         })
@@ -77,7 +77,7 @@ class CareerRepository
     public function updateCareer(array $data, string $id)
     {
         $career = Career::where('id', $id)->firstOrFail();
-        $career->discipline_id = $data['discipline_id'];
+        $career->field_id = $data['field_id'];
         $career->name = $data['name'];
         return $career->save();
     }
