@@ -39,16 +39,15 @@ class Register extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $fieldRepo = new FieldRepository();
-            $fieldRepo->addCareer([
+            (new FieldRepository())->addCareer([
                 'name' => $this->name,
             ], $this->field_id);
             DB::commit();
             $this->reset();
-            session()->flash('success','Career is successfully registered.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Career is successfully registered!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage()); 
         }      
     }
 

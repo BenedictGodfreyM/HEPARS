@@ -20,8 +20,7 @@ class Edit extends Component
         session()->put('field_id', $field_id);
         $this->careerId = $career_id;
         session()->put('career_id', $career_id);
-        $careerRepo = new CareerRepository();
-        $careerDetails = $careerRepo->findCareer($career_id);
+        $careerDetails = (new CareerRepository())->findCareer($career_id);
         $this->name = $careerDetails->name;
     }
 
@@ -45,23 +44,20 @@ class Edit extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $careerRepo = new CareerRepository();
-            $careerRepo->updateCareer([
+            (new CareerRepository())->updateCareer([
                 'field_id' => $this->field_id,
                 'name' => $this->name,
             ], $this->careerId);
             DB::commit();
-            session()->flash('success','Career is successfully updated.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Career is successfully updated!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }      
     }
 
     public function render()
     {
-        return view('livewire.careers.edit', [
-            'fieldId' => session()->get('field_id', ''),
-        ]);
+        return view('livewire.careers.edit');
     }
 }

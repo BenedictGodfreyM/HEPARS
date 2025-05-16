@@ -19,6 +19,11 @@ class Datatable extends Component
     public $sortDirection = 'asc';
     public $pageSize = 10;
     public $columns = ['name'];
+    
+    // For Toggling Modals
+    public $showEditorModel = false;
+    public $selectedRecord_FieldID;
+    public $selectedRecord_CareerID;
 
     public $field_id;
 
@@ -43,26 +48,35 @@ class Datatable extends Component
         $this->sortField = $field;
     }
 
+    public function openEditorModal($FieldID, $CareerID)
+    {
+        $this->selectedRecord_FieldID = $FieldID;
+        $this->selectedRecord_CareerID = $CareerID;
+        $this->showEditorModel = true;
+    }
+
+    public function closeEditorModel()
+    {
+        $this->showEditorModel = false;
+    }
+
     public function delete($id)
     {
         $repository = new CareerRepository();
         try{
-            DB::beginTransaction();
-            $repository->destroyCareer($id);
+            (new CareerRepository())->destroyCareer($id);
             $this->render();
             DB::commit();
-            session()->flash('success','Career is successfully deleted.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Career is successfully deleted.!");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }  
     }
 
     public function render()
     {
-        $repository = new CareerRepository();
-        $data = $repository->careersFromField($this->field_id, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
-
+        $data = (new CareerRepository())->careersFromField($this->field_id, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
         return view('livewire.careers.datatable', [
             'field_id' => $this->field_id,
             'data' => $data,
