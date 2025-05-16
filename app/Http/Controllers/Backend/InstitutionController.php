@@ -16,9 +16,4 @@ class InstitutionController extends Controller
     {
         return view('backend.institutions.register');
     }
-
-    public function edit(Request $request, $institutions_id)
-    {
-        return view('backend.institutions.edit', ['institution_id' => $institutions_id]);
-    }
 }

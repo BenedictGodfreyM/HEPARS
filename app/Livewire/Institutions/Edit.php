@@ -71,8 +71,7 @@ class Edit extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $institutionRepo = new InstitutionRepository();
-            $institutionRepo->updateInstitution([
+            (new InstitutionRepository())->updateInstitution([
                 'name' => $this->name,
                 'acronym' => $this->acronym,
                 'type' => $this->type,
@@ -82,10 +81,10 @@ class Edit extends Component
                 'admission_portal_link' => $this->admission_portal_link,
             ], $this->institutionId);
             DB::commit();
-            session()->flash('success','Institution is successfully updated.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Institution is successfully updated!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }      
     }
 

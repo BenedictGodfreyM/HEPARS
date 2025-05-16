@@ -19,6 +19,10 @@ class Datatable extends Component
     public $sortDirection = 'asc';
     public $pageSize = 10;
     public $columns = ['name','acronym','type','ownership','code','location'];
+    
+    // For Toggling Modals
+    public $showEditorModel = false;
+    public $selectedRecord_InstitutionID;
 
     public function updatingSearch()
     {
@@ -36,26 +40,34 @@ class Datatable extends Component
         $this->sortField = $field;
     }
 
+    public function openEditorModal($record_InstitutionID)
+    {
+        $this->selectedRecord_InstitutionID = $record_InstitutionID;
+        $this->showEditorModel = true;
+    }
+
+    public function closeEditorModel()
+    {
+        $this->showEditorModel = false;
+    }
+
     public function delete($id)
     {
-        $repository = new InstitutionRepository();
         try{
             DB::beginTransaction();
-            $repository->destroyInstitution($id);
+            (new InstitutionRepository())->destroyInstitution($id);
             $this->render();
             DB::commit();
-            session()->flash('success','Institution is successfully deleted.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Institution is successfully deleted.!");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }  
     }
 
     public function render()
     {
-        $repository = new InstitutionRepository();
-        $data = $repository->allInstitutions($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
-
+        $data = (new InstitutionRepository())->allInstitutions($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
         return view('livewire.institutions.datatable', [
             'data' => $data,
             'columns' => $this->columns,

@@ -56,8 +56,7 @@ class Register extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $institutionRepo = new InstitutionRepository();
-            $institutionRepo->storeInstitution([
+            (new InstitutionRepository())->storeInstitution([
                 'name' => $this->name,
                 'acronym' => $this->acronym,
                 'type' => $this->type,
@@ -68,10 +67,10 @@ class Register extends Component
             ]);
             DB::commit();
             $this->reset();
-            session()->flash('success','Institution is successfully registered.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Institution is successfully registered!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage()); 
         }      
     }
 
