@@ -20,6 +20,10 @@ class Datatable extends Component
     public $pageSize = 10;
     public $columns = ['name'];
 
+    // For Toggling Modals
+    public $showEditorModel = false;
+    public $selectedRecord_CombinationID;
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -36,25 +40,34 @@ class Datatable extends Component
         $this->sortField = $field;
     }
 
+    public function openEditorModal($record_CombinationID)
+    {
+        $this->selectedRecord_CombinationID = $record_CombinationID;
+        $this->showEditorModel = true;
+    }
+
+    public function closeEditorModel()
+    {
+        $this->showEditorModel = false;
+    }
+
     public function delete($combination_id)
     {
-        $combinationRepo = new CombinationRepository();
         try{
             DB::beginTransaction();
-            $combinationRepo->destroyCombination($combination_id);
+            (new CombinationRepository())->destroyCombination($combination_id);
             $this->render();
             DB::commit();
-            session()->flash('success','Combination is successfully deleted.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Combination is successfully deleted.!");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }  
     }
 
     public function render()
     {
-        $repository = new CombinationRepository();
-        $data = $repository->allCombinations($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
+        $data = (new CombinationRepository())->allCombinations($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
         return view('livewire.combinations.datatable', [
             'data' => $data,
             'columns' => $this->columns,

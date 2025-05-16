@@ -1,25 +1,19 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-<style>
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #007bff;
-        border-color: #006fe6;
-        color: #fff;
-        padding: 0 10px;
-        margin-top: .31rem;
-    }
-</style>
-@endpush
-
 @push('scripts')
-<script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
-    $(function () {
-        $('.select2-subjects').select2().on('change', function (e) {
-            @this.set('selectedSubjects', $(this).val());
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('flash-alert', (event) => {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+            Toast.fire({
+                icon: `${event.type}`,
+                title: `${event.title}: ${event.message}`
+            });
         });
-    })
+    });
 </script>
 @endpush
 
@@ -30,12 +24,6 @@
                 <!-- form start -->
                 <form wire:submit="registerCombination" action="" autocomplete="off">
                     <div class="card-body">
-                        @if(session()->has('success'))
-                        <livewire:shared.alert title="Success!" message="{{ session()->get('success') }}" css_class="alert-success" icon="fa-check" />
-                        @endif
-                        @if(session()->has('error'))
-                        <livewire:shared.alert title="Error!" message="{{ session()->get('error') }}" css_class="alert-danger" icon="fa-ban" />
-                        @endif
                         <div class="form-group">
                             <label for="inputCombinationName">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputCombinationName" placeholder="Enter Combination name (Eg. CBG, PCM, HGE, e.t.c )" wire:model="name">
@@ -43,16 +31,36 @@
                             <span id="inputCombinationName-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group" wire:ignore>
+                        <div class="form-group">
                             <label for="inputCombinationSubjects">Subjects</label>
-                            <select class="select2-subjects select2-hidden-accessible form-control @error('selectedSubjects') is-invalid @enderror" multiple="" data-placeholder="Select Subjects" id="inputCombinationSubjects" style="width: 100%;" wire:model="selectedSubjects">
-                                @foreach ($subjects as $subject)
-                                <option data-select2-id="{{ $subject->id }}" value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                @endforeach
+                            <select class="form-control" wire:change="addSubjectToSelection($event.target.value)" id="inputCombinationSubjects" wire:model="selectedOption">
+                                <option selected disabled value="">Select a Subject</option>
+                                @forelse ($availableSubjects as $subject)
+                                <option value="{{ $subject['id'] }}">{{ $subject['name'] }}</option>
+                                @empty
+                                <option value="">No Data Available</option>
+                                @endforelse
                             </select>
-                            @error('selectedSubjects')
-                            <span id="inputCombinationSubjects-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                        </div>
+                        @if(count($selectedSubjects) > 0)
+                        @foreach($selectedSubjects as $index => $subjectData)
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="{{ $subjectData['name'] }}" required readonly>
+                                <div class="input-group-append">
+                                    <button type="button" wire:click="removeSubjectFromSelection({{ $index }})" class="btn btn-danger">
+                                        <i class="fa fa-times" aria-hidden="true" wire:loading.remove wire:target="removeSubjectFromSelection({{ $index }})"></i>
+                                        <i class="fas fa-1x fa-spinner fa-spin" aria-hidden="true" wire:loading wire:target="removeSubjectFromSelection({{ $index }})"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
+                        <div class="form-group">
+                            <label class="pl-4" style="width: 100%;text-align: center;" wire:loading wire:target="addSubjectToSelection">
+                                <i class="fas fa-1x fa-spinner fa-spin"></i>
+                            </label>
                         </div>
                     </div>  
                     <div class="card-footer">

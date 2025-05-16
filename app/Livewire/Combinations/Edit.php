@@ -16,6 +16,8 @@ class Edit extends Component
 
     public $availableSubjects;
 
+    public $selectedOption = '';
+
     public function mount($combination_id)
     {
         $this->combination_id = $combination_id;
@@ -23,10 +25,9 @@ class Edit extends Component
         $combinationRepo = new CombinationRepository();
         $combinationDetails = $combinationRepo->findCombination($combination_id);
         $this->name = $combinationDetails->name;
-        $subjectRepo = new SubjectRepository();
-        $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
+        $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
         foreach($combinationDetails->subjects as $index => $subject){
-            array_push($this->selectedSubjects, $subject->id);
+            $this->addSubjectToSelection($subject->id);
         }
     }
 
@@ -34,8 +35,6 @@ class Edit extends Component
     {
         return [
             'name' => ['required', 'string'],
-            'selectedSubjects' => 'required|array|min:3',
-            'selectedSubjects.*' => 'exists:subjects,id',
         ];
     }
 
@@ -45,16 +44,42 @@ class Edit extends Component
             'name.required' => 'Please insert the name of the combination.',
             'name.string' => 'The name of the combination should be in alphanumeric characters.',
             'name.unique' => 'The name of the combination already exists.',
-            'selectedSubjects.required' => 'Please select subjects associated with the combination.',
-            'selectedSubjects.array' => 'Invalid format of the selected subjects.',
-            'selectedSubjects.min' => 'Please select atleast three subjects associated with the combination.',
-            'selectedSubjects.*.exists' => 'Invalid subject selection.',
         ];
+    }
+
+    private function subjectExists($subjects, $targetSubjectName)
+    {
+        foreach($subjects as $subject){
+            if(isset($subject['name']) && $subject['name'] === $targetSubjectName){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function addSubjectToSelection($subjectID)
+    {
+        $subject = call_user_func_array('array_merge', array_filter($this->availableSubjects->toArray(), function($subject) use ($subjectID) { 
+            return $subject['id'] === $subjectID; 
+        }));
+        if ($this->subjectExists($this->selectedSubjects, $subject['name'])) {
+            $this->dispatch("flash-alert", type: "info", title: "Info", message: "You've already selected the subject!.");
+            return;
+        }
+        $this->selectedSubjects[] = $subject;
+        $this->selectedOption = '';
+    }
+
+    public function removeSubjectFromSelection($index)
+    {
+        unset($this->selectedSubjects[$index]);
+        $this->selectedSubjects = array_values($this->selectedSubjects);
     }
 
     public function updateCombinationDetails()
     {
         $this->validate(); 
+        if(count($this->selectedSubjects) < 3) return $this->dispatch("flash-alert", type: "error", title: "Error", message: "Please select atleast three subjects associated with the combination!.");
         try{
             DB::beginTransaction();
             $combinationRepo = new CombinationRepository();
@@ -63,23 +88,22 @@ class Edit extends Component
             ], $this->combination_id);
 
             if($isUpdated){
-                $combinationRepo->linkToSubjects($this->combination_id, $this->selectedSubjects);
+                $combinationRepo->linkToSubjects($this->combination_id, array_pluck($this->selectedSubjects, "id"));
                 DB::commit();
-                session()->flash('success','Combination is successfully updated.');
+                $this->dispatch("flash-alert", type: "success", title: "Success", message: "Combination is successfully updated!.");
             }else{
                 DB::rollBack();
-                session()->flash('error', 'Unable to update combination details! Try again later.');  
+                $this->dispatch("flash-alert", type: "error", title: "Error", message: "Unable to update combination details! Try again later.");  
             }
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }
     }
 
     public function render()
     {
-        $subjectRepo = new SubjectRepository();
-        $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
+        $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
         return view('livewire.combinations.edit');
     }
 }
