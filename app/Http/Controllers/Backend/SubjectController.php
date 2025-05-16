@@ -16,9 +16,4 @@ class SubjectController extends Controller
     {
         return view('backend.subjects.register');
     }
-    
-    public function edit(Request $request, $subject_id)
-    {
-        return view('backend.subjects.edit', ['subject_id' => $subject_id ]);
-    }
 }

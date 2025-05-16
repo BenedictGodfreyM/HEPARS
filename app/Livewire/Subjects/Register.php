@@ -35,17 +35,16 @@ class Register extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $subjectRepo = new SubjectRepository();
-            $subjectRepo->storeSubject([
+            (new SubjectRepository())->storeSubject([
                 'name' => $this->name,
                 'code' => $this->code,
             ]);
             DB::commit();
             $this->reset();
-            session()->flash('success','Subject is successfully registered.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Subject is successfully registered!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage()); 
         }      
     }
 

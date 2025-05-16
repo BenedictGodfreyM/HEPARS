@@ -1,3 +1,22 @@
+@push('scripts')
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('flash-alert', (event) => {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+            Toast.fire({
+                icon: `${event.type}`,
+                title: `${event.title}: ${event.message}`
+            });
+        });
+    });
+</script>
+@endpush
+
 <div>
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -5,12 +24,6 @@
                 <!-- form start -->
                 <form wire:submit="registerSubject" action="">
                     <div class="card-body">
-                        @if(session()->has('success'))
-                        <livewire:shared.alert title="Success!" message="{{ session()->get('success') }}" css_class="alert-success" icon="fa-check" />
-                        @endif
-                        @if(session()->has('error'))
-                        <livewire:shared.alert title="Error!" message="{{ session()->get('error') }}" css_class="alert-danger" icon="fa-ban" />
-                        @endif
                         <div class="form-group">
                             <label for="inputSubjectName">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputSubjectName" placeholder="Enter Subject name (Eg. Physics)" wire:model="name">
@@ -34,7 +47,7 @@
                         </button>
                     </div>
                 </form>
-              </div>
+            </div>
         </div>
     </div>
 </div>

@@ -16,8 +16,7 @@ class Edit extends Component
     public function mount($subject_id)
     {
         $this->subjectId = $subject_id;
-        $subjectRepo = new SubjectRepository();
-        $subjectDetails = $subjectRepo->findSubject($subject_id);
+        $subjectDetails = (new SubjectRepository())->findSubject($subject_id);
         $this->name = $subjectDetails->name;
         $this->code = $subjectDetails->code;
     }
@@ -45,16 +44,15 @@ class Edit extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $subjectRepo = new SubjectRepository();
-            $subjectRepo->updateSubject([
+            (new SubjectRepository())->updateSubject([
                 'name' => $this->name,
                 'code' => $this->code,
             ], $this->subjectId);
             DB::commit();
-            session()->flash('success','Subject is successfully updated.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Subject is successfully updated!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }      
     }
 
