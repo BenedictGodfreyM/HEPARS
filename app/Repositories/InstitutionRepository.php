@@ -27,6 +27,7 @@ class InstitutionRepository
                             ->orWhere('acronym', 'like', '%' . $search . '%')
                             ->orWhere('type', 'like', '%' . $search . '%')
                             ->orWhere('ownership', 'like', '%' . $search . '%')
+                            ->orWhere('rank', 'like', '%' . $search . '%')
                             ->orWhere('code', 'like', '%' . $search . '%')
                             ->orWhere('location', 'like', '%' . $search . '%')
                             ->orderBy($sortField, $sortDirection)
@@ -50,6 +51,7 @@ class InstitutionRepository
             'code' => $data['code'],
             'location' => $data['location'],
             'admission_portal_link' => $data['admission_portal_link'],
+            'rank' => $data['rank'],
         ]);
     }
 
@@ -83,6 +85,7 @@ class InstitutionRepository
         $institution->code = $data['code'];
         $institution->location = $data['location'];
         $institution->admission_portal_link = $data['admission_portal_link'];
+        $institution->rank = $data['rank'];
         return $institution->save();
     }
 
