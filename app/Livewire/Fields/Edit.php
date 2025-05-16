@@ -16,8 +16,7 @@ class Edit extends Component
     {
         $this->field_id = $field_id;
         session()->put('field_id', $field_id);
-        $fieldRepo = new FieldRepository();
-        $fieldDetails = $fieldRepo->findField($field_id);
+        $fieldDetails = (new FieldRepository())->findField($field_id);
         $this->name = $fieldDetails->name;
     }
 
@@ -36,20 +35,19 @@ class Edit extends Component
         ];
     }
 
-    public function updatefieldDetails()
+    public function updateFieldDetails()
     {
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $fieldRepo = new FieldRepository();
-            $isUpdated = $fieldRepo->updateField([
+            (new FieldRepository())->updateField([
                 'name' => strtoupper($this->name),
             ], $this->field_id);
             DB::commit();
-            session()->flash('success','Field is successfully updated.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Field is successfully updated!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }
     }
 

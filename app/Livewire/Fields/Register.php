@@ -32,16 +32,15 @@ class Register extends Component
         $this->validate(); 
         try{
             DB::beginTransaction();
-            $fieldRepo = new FieldRepository();
-            $newField = $fieldRepo->storeField([
+            (new FieldRepository())->storeField([
                 'name' => strtoupper($this->name),
             ]);
             DB::commit();
             $this->reset();
-            session()->flash('success','Field is successfully registered.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Field is successfully registered!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage()); 
         }      
     }
 

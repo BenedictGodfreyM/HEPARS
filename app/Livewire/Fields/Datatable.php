@@ -19,6 +19,10 @@ class Datatable extends Component
     public $sortDirection = 'asc';
     public $pageSize = 10;
     public $columns = ['name'];
+    
+    // For Toggling Modals
+    public $showEditorModel = false;
+    public $selectedRecord_FieldID;
 
     public function updatingSearch()
     {
@@ -36,25 +40,34 @@ class Datatable extends Component
         $this->sortField = $field;
     }
 
+    public function openEditorModal($FieldID)
+    {
+        $this->selectedRecord_FieldID = $FieldID;
+        $this->showEditorModel = true;
+    }
+
+    public function closeEditorModel()
+    {
+        $this->showEditorModel = false;
+    }
+
     public function delete($field_id)
     {
         $fieldRepo = new FieldRepository();
         try{
-            DB::beginTransaction();
-            $fieldRepo->destroyField($field_id);
+            (new FieldRepository())->destroyField($field_id);
             $this->render();
             DB::commit();
-            session()->flash('success','Field is successfully deleted.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Field is successfully deleted.!");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }  
     }
 
     public function render()
     {
-        $repository = new FieldRepository();
-        $data = $repository->allFields($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
+        $data = (new FieldRepository())->allFields($this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
         return view('livewire.fields.datatable', [
             'data' => $data,
             'columns' => $this->columns,

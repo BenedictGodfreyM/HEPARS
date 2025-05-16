@@ -16,9 +16,4 @@ class FieldController extends Controller
     {
         return view('backend.fields.register');
     }
-    
-    public function edit(Request $request, $field_id)
-    {
-        return view('backend.fields.edit', ['field_id' => $field_id ]);
-    }
 }
