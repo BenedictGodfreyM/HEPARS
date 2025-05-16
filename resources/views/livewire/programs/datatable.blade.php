@@ -1,10 +1,23 @@
+@push('scripts')
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('flash-alert', (event) => {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+            Toast.fire({
+                icon: `${event.type}`,
+                title: `${event.title}: ${event.message}`
+            });
+        });
+    });
+</script>
+@endpush
+
 <div>
-    @if(session()->has('success'))
-    <livewire:shared.alert title="Success!" message="{{ session()->get('success') }}" css_class="alert-success" icon="fa-check" />
-    @endif
-    @if(session()->has('error'))
-    <livewire:shared.alert title="Error!" message="{{ session()->get('error') }}" css_class="alert-danger" icon="fa-ban" />
-    @endif
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
@@ -62,8 +75,18 @@
                                     <td>{{ $item->$column }}</td>
                                 @endforeach
                                 <td>
-                                    <a href="{{ route('institutions.programs.show', ['institution_id' => $this->institutionId, 'program_id' => $item->id]) }}" class="btn btn-info btn-sm">View</a>
-                                    <a href="{{ route('institutions.programs.edit', ['institution_id' => $this->institutionId, 'program_id' => $item->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <button class="btn btn-info btn-sm" wire:click="openDetailsModal('{{ $this->institutionId }}', '{{ $item->id }}')">
+                                        <span wire:loading wire:target="openDetailsModal('{{ $this->institutionId }}', '{{ $item->id }}')">
+                                            <i class="fas fa-1x fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove wire:target="openDetailsModal('{{ $this->institutionId }}', '{{ $item->id }}')">View</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-sm" wire:click="openEditorModal('{{ $this->institutionId }}', '{{ $item->id }}')">
+                                        <span wire:loading wire:target="openEditorModal('{{ $this->institutionId }}', '{{ $item->id }}')">
+                                            <i class="fas fa-1x fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove wire:target="openEditorModal('{{ $this->institutionId }}', '{{ $item->id }}')">Edit</span>
+                                    </button>
                                     <button class="btn btn-danger btn-sm" wire:click="delete('{{ $item->id }}')">Delete</button>
                                 </td>
                             </tr>
@@ -80,8 +103,42 @@
         <div class="card-footer">
             {{ $data->links() }}
         </div>
-        <div class="overlay" wire:loading.flex>
+        <div class="overlay" wire:loading.flex wire:target="searchQuery,sortBy,pageSize,previousPage,nextPage,gotoPage,delete">
             <i class="fas fa-3x fa-sync-alt fa-spin"></i>
         </div>
     </div>
+    @if($showDetailsModel)
+    <div class="modal fade show" id="modal-lg" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Program Details</h4>
+                    <button type="button" wire:click="closeDetailsModel" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="modal-body card-comments">
+                    @livewire('programs.view', ['institution_id' => $selectedRecord_InstitutionID,'program_id' => $selectedRecord_ProgramID], key($selectedRecord_ProgramID))
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    @if($showEditorModel)
+    <div class="modal fade show" id="modal-lg" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Program Details</h4>
+                    <button type="button" wire:click="closeEditorModel" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="modal-body card-comments">
+                    @livewire('programs.edit', ['institution_id' => $selectedRecord_InstitutionID,'program_id' => $selectedRecord_ProgramID], key($selectedRecord_ProgramID))
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>

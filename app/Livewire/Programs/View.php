@@ -9,21 +9,22 @@ class View extends Component
 {
     public $institutionId = "";
     public $programId = "";
+    public $data;
 
     public function mount($institution_id, $program_id)
     {
         $this->institutionId = $institution_id;
         $this->programId = $program_id;
+        $this->loadData();
+    }
+
+    public function loadData()
+    {
+        $this->data = (new ProgramRepository())->findProgram($this->programId); 
     }
 
     public function render()
     {
-        $repository = new ProgramRepository();
-        $data = $repository->findProgram($this->programId);
-        return view('livewire.programs.view', [
-            'institutionID' => $this->institutionId,
-            'programID' => $this->programId,
-            'data' => $data,
-        ]);
+        return view('livewire.programs.view');
     }
 }

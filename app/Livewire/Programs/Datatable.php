@@ -22,6 +22,12 @@ class Datatable extends Component
 
     public $institutionId;
 
+    // For Toggling Modals
+    public $showDetailsModel = false;
+    public $showEditorModel = false;
+    public $selectedRecord_ProgramID;
+    public $selectedRecord_InstitutionID;
+
     public function mount($institution_id)
     {
         $this->institutionId = $institution_id;
@@ -43,25 +49,47 @@ class Datatable extends Component
         $this->sortField = $field;
     }
 
+    public function openDetailsModal($record_InstitutionID, $record_ProgramID)
+    {
+        $this->selectedRecord_InstitutionID = $record_InstitutionID;
+        $this->selectedRecord_ProgramID = $record_ProgramID;
+        $this->showDetailsModel = true;
+    }
+
+    public function closeDetailsModel()
+    {
+        $this->showDetailsModel = false;
+    }
+
+    public function openEditorModal($record_InstitutionID, $record_ProgramID)
+    {
+        $this->selectedRecord_InstitutionID = $record_InstitutionID;
+        $this->selectedRecord_ProgramID = $record_ProgramID;
+        $this->showEditorModel = true;
+    }
+
+    public function closeEditorModel()
+    {
+        $this->showEditorModel = false;
+    }
+
     public function delete($program_id)
     {
-        $programRepo = new ProgramRepository();
         try{
             DB::beginTransaction();
-            $programRepo->destroyProgram($program_id);
+            (new ProgramRepository())->destroyProgram($program_id);
             $this->render();
             DB::commit();
-            session()->flash('success','Program is successfully deleted.');
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Program is successfully deleted.!");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());
         }  
     }
 
     public function render()
     {
-        $repository = new ProgramRepository();
-        $data = $repository->institutionPrograms($this->institutionId, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
+        $data = (new ProgramRepository())->institutionPrograms($this->institutionId, $this->searchQuery, $this->sortField, $this->sortDirection, $this->pageSize);
         return view('livewire.programs.datatable', [
             'institutionId' => $this->institutionId,
             'data' => $data,

@@ -19,6 +19,7 @@ class Register extends Component
     public $min_total_points = "";
     public $required_subjects_count = "";
 
+    public $availableCareers;
     public $availableSubjects;
     public $availableGrades = ['A','B','C','D','E','S','F'];
 
@@ -27,14 +28,15 @@ class Register extends Component
 
     public $institution_id = "";
 
-    public $selectedOption = '';
+    public $selectedOption1 = '';
+    public $selectedOption2 = '';
 
     public function mount($institution_id)
     {
         $this->institution_id = $institution_id;
         session()->put('institution_id', $institution_id);
-        $subjectRepo = new SubjectRepository();
-        $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
+        $this->availableCareers = (new CareerRepository())->allCareersWithoutPagination();
+        $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
     }
 
     public function rules()
@@ -44,8 +46,6 @@ class Register extends Component
             'duration' => ['required', 'integer', 'min:1', 'max:10'],
             'min_total_points' => ['required', 'integer', 'min:1', 'max:20'],
             'required_subjects_count' => ['required', 'integer', 'min:1', 'max:10'],
-            'selectedCareers' => 'required|array|min:1',
-            'selectedCareers.*' => 'exists:careers,id',
         ];
     }
 
@@ -66,21 +66,36 @@ class Register extends Component
             'required_subjects_count.integer' => 'The number of required subjects should be in digits. (Eg. 2)',
             'required_subjects_count.min' => 'The number of required subjects should atleast be 1.',
             'required_subjects_count.max' => 'The number of required subjects should atmost be 10.',
-            'selectedCareers.required' => 'Please select careers associated with the program.',
-            'selectedCareers.array' => 'Invalid format of the selected careers.',
-            'selectedCareers.min' => 'Please select atleast one careers associated with the program.',
-            'selectedCareers.*.exists' => 'Invalid career selection.',
         ];
     }
 
-    private function subjectExists($subjects, $targetSubjectName)
+    private function careerExists($careers, $targetCareerName)
     {
-        foreach($subjects as $subject){
-            if(isset($subject['subject']['name']) && $subject['subject']['name'] === $targetSubjectName){
+        foreach($careers as $career){
+            if(isset($career['career']['name']) && $career['career']['name'] === $targetCareerName){
                 return true;
             }
         }
         return false;
+    }
+
+    public function addCareerToSelection($careerID)
+    {
+        $career = call_user_func_array('array_merge', array_filter($this->availableCareers->toArray(), function($career) use ($careerID) { 
+            return $career['id'] === $careerID; 
+        }));
+        if ($this->careerExists($this->selectedCareers, $career['name'])) {
+            $this->dispatch("flash-alert", type: "info", title: "Info", message: "You've already selected the career!.");
+            return;
+        }
+        $this->selectedCareers[] = $career;
+        $this->selectedOption1 = '';
+    }
+
+    public function removeCareerFromSelection($index)
+    {
+        unset($this->selectedCareers[$index]);
+        $this->selectedCareers = array_values($this->selectedCareers);
     }
 
     public function addSubjectToSelection($subjectID)
@@ -90,7 +105,7 @@ class Register extends Component
         // if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
             $this->selectedSubjects[] = $selectionToAdd;
         // }
-        $this->selectedOption = '';
+        $this->selectedOption2 = '';
     }
 
     public function removeSubjectFromSelection($index)
@@ -129,9 +144,10 @@ class Register extends Component
     }
  
     public function registerProgram()
-    {
+    {   
         $this->validate(); 
-        if($this->duplicateSubjectRequirementsFound($this->selectedSubjects)) return session()->flash('error','Duplicate subject requirements.');
+        if($this->duplicateSubjectRequirementsFound($this->selectedSubjects)) return $this->dispatch("flash-alert", type: "error", title: "Error", message: "Check for duplicate subject requirements!.");
+        if(count($this->selectedCareers) <= 0) return $this->dispatch("flash-alert", type: "error", title: "Error", message: "Please select atleast one career associated with the program!.");
         try{
             DB::beginTransaction();
             $institutionRepo = new InstitutionRepository();
@@ -141,7 +157,7 @@ class Register extends Component
             ], $this->institution_id);
 
             $programRepo = new ProgramRepository();
-            $programRepo->linkToCareers($newProgram->id, $this->selectedCareers);
+            $programRepo->linkToCareers($newProgram->id, array_pluck($this->selectedCareers, "id"));
             $newEntryRequirement = $programRepo->addEntryRequirement($newProgram->id, [
                 'min_total_points' => $this->min_total_points,
                 'required_subjects_count' => $this->required_subjects_count,
@@ -156,22 +172,21 @@ class Register extends Component
             $this->reset();
             $this->selectedCareers = [];
             $this->selectedSubjects = [];
-            $this->selectedOption = '';
-            session()->flash('success','Program is successfully registered.');
+            $this->selectedOption1 = '';
+            $this->selectedOption2 = '';
+            $this->dispatch("flash-alert", type: "success", title: "Success", message: "Program is successfully registered!.");
         }catch(Exception $e){
             DB::rollBack();
-            session()->flash('error',$e->getMessage());
+            $this->dispatch("flash-alert", type: "error", title: "Error", message: $e->getMessage());  
         }      
     }
 
     public function render()
     {
-        $subjectRepo = new SubjectRepository();
-        $this->availableSubjects = $subjectRepo->allSubjectsWithoutPagination();
-        $careersRepo = new CareerRepository();
+        $this->availableCareers = (new CareerRepository())->allCareersWithoutPagination();
+        $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
         return view('livewire.programs.register', [
             'institutionId' => session()->get('institution_id', ''),
-            'careers' => $careersRepo->allCareersWithoutPagination()
         ]);
     }
 }

@@ -20,24 +20,4 @@ class ProgramController extends Controller
         $institutionRepo = new InstitutionRepository();
         return view('backend.programs.register', ['institution' => $institutionRepo->findInstitution($institution_id)]);
     }
-    
-    public function show(Request $request, $institution_id, $program_id)
-    {
-        $institutionRepo = new InstitutionRepository();
-        $programRepo = new ProgramRepository();
-        return view('backend.programs.show', [
-            'institution' => $institutionRepo->findInstitution($institution_id),
-            'program' => $programRepo->findProgram($program_id)
-        ]);
-    }
-    
-    public function edit(Request $request, $institution_id, $program_id)
-    {
-        $institutionRepo = new InstitutionRepository();
-        $programRepo = new ProgramRepository();
-        return view('backend.programs.edit', [
-            'institution' => $institutionRepo->findInstitution($institution_id),
-            'program' => $programRepo->findProgram($program_id)
-        ]);
-    }
 }
