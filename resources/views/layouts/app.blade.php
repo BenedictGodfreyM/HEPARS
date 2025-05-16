@@ -12,6 +12,10 @@
         <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
         <!-- overlayScrollbars -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+        <!-- SweetAlert2 -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+        <!-- Toastr -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
 
@@ -36,6 +40,10 @@
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- overlayScrollbars -->
         <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+        <!-- SweetAlert2 -->
+        <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+        <!-- Toastr -->
+        <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
         <!-- AdminLTE App -->
         <script src="{{ asset('assets/js/adminlte.js') }}"></script>
 
