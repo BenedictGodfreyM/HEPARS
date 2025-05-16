@@ -42,6 +42,13 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="inputInstitutionRank">Rank</label>
+                    <input type="number" class="form-control @error('rank') is-invalid @enderror" id="inputInstitutionRank" placeholder="Enter institution's rank (Eg. 2)" wire:model="rank">
+                    @error('rank')
+                    <span id="inputInstitutionRank-Error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="inputInstitutionCode">Code</label>
                     <input type="text" class="form-control @error('code') is-invalid @enderror" id="inputInstitutionCode" placeholder="Enter institution's TCU code (Eg. AR)" wire:model="code">
                     @error('code')

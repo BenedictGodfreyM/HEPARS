@@ -18,7 +18,7 @@ class Datatable extends Component
     public $sortField = 'id';
     public $sortDirection = 'asc';
     public $pageSize = 10;
-    public $columns = ['name','acronym','type','ownership','code','location'];
+    public $columns = ['name','acronym','type','ownership','rank','code','location'];
     
     // For Toggling Modals
     public $showEditorModel = false;

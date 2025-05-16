@@ -19,6 +19,7 @@ class Edit extends Component
     public $code = "";
     public $location = "";
     public $admission_portal_link = "";
+    public $rank = "";
     public $institutionId = "";
 
     public function mount($institution_id)
@@ -33,6 +34,7 @@ class Edit extends Component
         $this->code = $institutionDetails->code;
         $this->location = $institutionDetails->location;
         $this->admission_portal_link = $institutionDetails->admission_portal_link;
+        $this->rank = $institutionDetails->rank;
     }
 
     public function rules()
@@ -45,6 +47,7 @@ class Edit extends Component
             'code' => ['required', 'max:5'],
             'location' => ['required', 'string'],
             'admission_portal_link' => ['required', 'string'],
+            'rank' => ['required', 'integer', 'min:1'],
         ];
     }
 
@@ -63,6 +66,9 @@ class Edit extends Component
             'location.string' => 'The geographical location of the institution should be in alphanumeric characters.',
             'admission_portal_link.required' => 'Please insert a link to the admission portal of the institution.',
             'admission_portal_link.string' => 'The link to the admission portal of the institution is invalid.',
+            'rank.required' => 'Please insert the rank of the institution.',
+            'rank.integer' => 'The rank of the institution should be in digits. (Eg. 4)',
+            'rank.min' => 'The highest rank is represented by number one (1).',
         ];
     }
  
@@ -79,6 +85,7 @@ class Edit extends Component
                 'code' => $this->code,
                 'location' => $this->location,
                 'admission_portal_link' => $this->admission_portal_link,
+                'rank' => $this->rank,
             ], $this->institutionId);
             DB::commit();
             $this->dispatch("flash-alert", type: "success", title: "Success", message: "Institution is successfully updated!.");
