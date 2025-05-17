@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 16, 2025 at 07:27 PM
+-- Generation Time: May 17, 2025 at 06:18 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -24,13 +24,70 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `accreditations`
+--
+
+DROP TABLE IF EXISTS `accreditations`;
+CREATE TABLE IF NOT EXISTS `accreditations` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` int UNSIGNED NOT NULL,
+  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `accreditations`
+--
+
+INSERT INTO `accreditations` (`id`, `status`, `rating`, `description`, `created_at`, `updated_at`) VALUES
+('41358efa03b04af26873859fe9e15980', 'Accredited', 3, 'The recognition or approval of a higher education institution by a National Regulatory Authority (Accreditation Agency), that it has met specific quality standards.', '2025-05-17 03:07:14', '2025-05-17 08:00:12'),
+('78650ff3a5ceb7df49483dde5273cb7f', 'Provisional Licence', 1, 'A temporary authorization given to a higher education institution by a National Regulatory Authority to operate (under strict monitoring) before it receives full accreditation or a full operational license.', '2025-05-17 03:44:41', '2025-05-17 08:19:21'),
+('ca4008b0665abc6dd50630d6f047f7fb', 'Chartered', 4, 'A higher level of recognition that grants a higher education institution legal autonomy to operate fully, award degrees, and govern itself. Signifies a high level of competency and commitment to professional development (Recognition of expertise and career advancement).', '2025-05-17 03:30:20', '2025-05-17 08:16:01'),
+('f9908a5af2b38b637fe4d8fd395dcffb', 'Certificate of Full Registration', 2, 'A confirmation that a higher education institution has met all regulatory requirements to operate as a full institution.', '2025-05-17 03:46:57', '2025-05-17 08:25:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accreditation_institutions`
+--
+
+DROP TABLE IF EXISTS `accreditation_institutions`;
+CREATE TABLE IF NOT EXISTS `accreditation_institutions` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `accreditation_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `accreditation_institutions_accreditation_id_index` (`accreditation_id`),
+  KEY `accreditation_institutions_institution_id_index` (`institution_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `accreditation_institutions`
+--
+
+INSERT INTO `accreditation_institutions` (`id`, `accreditation_id`, `institution_id`, `created_at`, `updated_at`) VALUES
+(1, '41358efa03b04af26873859fe9e15980', '24c41e67b7e00c6fd19b14a5efae3a98', NULL, NULL),
+(2, 'ca4008b0665abc6dd50630d6f047f7fb', '24c41e67b7e00c6fd19b14a5efae3a98', NULL, NULL),
+(3, '41358efa03b04af26873859fe9e15980', '84ec1ffdd439490c07875ae45c1dc7fb', NULL, NULL),
+(4, 'ca4008b0665abc6dd50630d6f047f7fb', '84ec1ffdd439490c07875ae45c1dc7fb', NULL, NULL),
+(5, '41358efa03b04af26873859fe9e15980', 'a71a936a22c94f3044a88a1a0acf05fb', NULL, NULL),
+(6, 'ca4008b0665abc6dd50630d6f047f7fb', 'a71a936a22c94f3044a88a1a0acf05fb', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cache`
 --
 
 DROP TABLE IF EXISTS `cache`;
 CREATE TABLE IF NOT EXISTS `cache` (
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,8 +100,8 @@ CREATE TABLE IF NOT EXISTS `cache` (
 
 DROP TABLE IF EXISTS `cache_locks`;
 CREATE TABLE IF NOT EXISTS `cache_locks` (
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -57,9 +114,9 @@ CREATE TABLE IF NOT EXISTS `cache_locks` (
 
 DROP TABLE IF EXISTS `careers`;
 CREATE TABLE IF NOT EXISTS `careers` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `field_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -89,8 +146,8 @@ INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VAL
 DROP TABLE IF EXISTS `career_programs`;
 CREATE TABLE IF NOT EXISTS `career_programs` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `program_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `career_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `program_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `career_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -121,8 +178,8 @@ INSERT INTO `career_programs` (`id`, `program_id`, `career_id`, `created_at`, `u
 
 DROP TABLE IF EXISTS `combinations`;
 CREATE TABLE IF NOT EXISTS `combinations` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -156,8 +213,8 @@ INSERT INTO `combinations` (`id`, `name`, `created_at`, `updated_at`) VALUES
 DROP TABLE IF EXISTS `combination_subjects`;
 CREATE TABLE IF NOT EXISTS `combination_subjects` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `combination_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `combination_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -224,8 +281,8 @@ INSERT INTO `combination_subjects` (`id`, `combination_id`, `subject_id`, `creat
 
 DROP TABLE IF EXISTS `entry_requirements`;
 CREATE TABLE IF NOT EXISTS `entry_requirements` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `program_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `program_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `min_total_points` int UNSIGNED NOT NULL,
   `required_subjects_count` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -283,10 +340,10 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 DROP TABLE IF EXISTS `entry_requirement_subjects`;
 CREATE TABLE IF NOT EXISTS `entry_requirement_subjects` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `entry_requirement_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entry_requirement_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` enum('required','optional','necessary') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `min_grade` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min_grade` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -547,11 +604,11 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -565,8 +622,8 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 
 DROP TABLE IF EXISTS `fields`;
 CREATE TABLE IF NOT EXISTS `fields` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -589,28 +646,30 @@ INSERT INTO `fields` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 DROP TABLE IF EXISTS `institutions`;
 CREATE TABLE IF NOT EXISTS `institutions` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `acronym` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('University','University College','University Campus College','Non-University') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ownership` enum('Private','Public') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` char(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `acronym` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('University','University College','University Campus College','Non-University') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ownership` enum('Private','Public') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` char(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `admission_portal_link` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `rank` int UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`)
+  `affiliation_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `institutions_affiliation_id_index` (`affiliation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `institutions`
 --
 
-INSERT INTO `institutions` (`id`, `name`, `acronym`, `type`, `ownership`, `code`, `location`, `created_at`, `updated_at`, `admission_portal_link`, `rank`) VALUES
-('24c41e67b7e00c6fd19b14a5efae3a98', 'Ardhi University', 'ARU', 'University', 'Public', 'AR', 'Dar es Salaam', '2025-02-28 10:32:30', '2025-05-16 16:21:35', 'https://admission.aru.ac.tz/', 4),
-('84ec1ffdd439490c07875ae45c1dc7fb', ' Muhimbili  University of  Health and  Allied Sciences', 'MUHAS', 'University', 'Public', 'MH', 'Dar es  Salaam', '2025-03-05 06:45:20', '2025-05-16 16:21:47', 'https://oas.muhas.ac.tz', 2),
-('a71a936a22c94f3044a88a1a0acf05fb', ' University of  Dar es Salaam ', 'UDSM', 'University', 'Public', 'UD', 'Dar es  Salaam ', '2025-03-05 06:46:32', '2025-05-09 11:50:50', 'https://admission.udsm.ac.tz', 1);
+INSERT INTO `institutions` (`id`, `name`, `acronym`, `type`, `ownership`, `code`, `location`, `created_at`, `updated_at`, `admission_portal_link`, `rank`, `affiliation_id`) VALUES
+('24c41e67b7e00c6fd19b14a5efae3a98', 'Ardhi University', 'ARU', 'University', 'Public', 'AR', 'Dar es Salaam', '2025-02-28 10:32:30', '2025-05-17 15:15:59', 'https://admission.aru.ac.tz/', 4, NULL),
+('84ec1ffdd439490c07875ae45c1dc7fb', ' Muhimbili  University of  Health and  Allied Sciences', 'MUHAS', 'University', 'Public', 'MH', 'Dar es  Salaam', '2025-03-05 06:45:20', '2025-05-16 16:21:47', 'https://oas.muhas.ac.tz', 2, NULL),
+('a71a936a22c94f3044a88a1a0acf05fb', ' University of  Dar es Salaam ', 'UDSM', 'University', 'Public', 'UD', 'Dar es  Salaam ', '2025-03-05 06:46:32', '2025-05-09 11:50:50', 'https://admission.udsm.ac.tz', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -621,8 +680,8 @@ INSERT INTO `institutions` (`id`, `name`, `acronym`, `type`, `ownership`, `code`
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE IF NOT EXISTS `jobs` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `queue` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint UNSIGNED NOT NULL,
   `reserved_at` int UNSIGNED DEFAULT NULL,
   `available_at` int UNSIGNED NOT NULL,
@@ -639,13 +698,13 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 
 DROP TABLE IF EXISTS `job_batches`;
 CREATE TABLE IF NOT EXISTS `job_batches` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
   `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `failed_job_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
   `finished_at` int DEFAULT NULL,
@@ -661,10 +720,10 @@ CREATE TABLE IF NOT EXISTS `job_batches` (
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -690,7 +749,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2025_05_08_075211_create_combination_subjects_table', 4),
 (22, '2025_05_10_075117_create_entry_requirement_subjects_table', 6),
 (26, '2025_05_12_205554_create_fields_table', 7),
-(29, '2025_05_16_052535_add_rank_to_institutions_table', 8);
+(29, '2025_05_16_052535_add_rank_to_institutions_table', 8),
+(30, '2025_05_16_202054_create_accreditations_table', 9),
+(31, '2025_05_16_275211_create_accreditation_institutions_table', 9),
+(32, '2025_05_17_052535_add_affiliation_id_to_institutions_table', 9);
 
 -- --------------------------------------------------------
 
@@ -700,8 +762,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -715,10 +777,10 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
 DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -755,7 +817,7 @@ DROP TABLE IF EXISTS `permission_user`;
 CREATE TABLE IF NOT EXISTS `permission_user` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `permission_id` int UNSIGNED NOT NULL,
-  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -772,9 +834,9 @@ CREATE TABLE IF NOT EXISTS `permission_user` (
 
 DROP TABLE IF EXISTS `programs`;
 CREATE TABLE IF NOT EXISTS `programs` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `institution_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration` tinyint NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -831,9 +893,9 @@ INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `level` int NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -852,7 +914,7 @@ DROP TABLE IF EXISTS `role_user`;
 CREATE TABLE IF NOT EXISTS `role_user` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `role_id` int UNSIGNED NOT NULL,
-  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -869,11 +931,11 @@ CREATE TABLE IF NOT EXISTS `role_user` (
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE IF NOT EXISTS `sessions` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
@@ -885,7 +947,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LMcWMHAMHjLM07PVxMFNsDO0dQilD9TKH3D0l63u', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYjRTZmFUU2VrSGJvWGt1Z3VaNmpIMUlKTFlsa3Vta3EyeDg2T1RUaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2luc3RpdHV0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6ImNvbWJpbmF0aW9uX2lkIjtzOjMyOiIwYzgxYzM2MzI1Y2YxZjkyM2JhNjE5ZTg2NTE2YjkxMCI7fQ==', 1747423309);
+('LMcWMHAMHjLM07PVxMFNsDO0dQilD9TKH3D0l63u', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYjRTZmFUU2VrSGJvWGt1Z3VaNmpIMUlKTFlsa3Vta3EyeDg2T1RUaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2luc3RpdHV0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6ImNvbWJpbmF0aW9uX2lkIjtzOjMyOiIwYzgxYzM2MzI1Y2YxZjkyM2JhNjE5ZTg2NTE2YjkxMCI7fQ==', 1747423309),
+('OJpm2OrW2IsCrFPvdWmISzEQ5WwrAuggmF3Yf3CJ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRlVsMlo0VmRPYllmczlLeWZvOENpdDU3Zng3NmRnSzBta2FDbFZwVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2luc3RpdHV0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1747505855);
 
 -- --------------------------------------------------------
 
@@ -895,9 +958,9 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 
 DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE IF NOT EXISTS `subjects` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -935,14 +998,14 @@ INSERT INTO `subjects` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `surname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `surname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `profile_photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_photo` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -952,6 +1015,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `accreditation_institutions`
+--
+ALTER TABLE `accreditation_institutions`
+  ADD CONSTRAINT `accreditation_institutions_accreditation_id_foreign` FOREIGN KEY (`accreditation_id`) REFERENCES `accreditations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `accreditation_institutions_institution_id_foreign` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `careers`
@@ -985,6 +1055,12 @@ ALTER TABLE `entry_requirements`
 ALTER TABLE `entry_requirement_subjects`
   ADD CONSTRAINT `entry_requirement_subjects_entry_requirement_id_foreign` FOREIGN KEY (`entry_requirement_id`) REFERENCES `entry_requirements` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `entry_requirement_subjects_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `institutions`
+--
+ALTER TABLE `institutions`
+  ADD CONSTRAINT `institutions_affiliation_id_foreign` FOREIGN KEY (`affiliation_id`) REFERENCES `institutions` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `programs`
