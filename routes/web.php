@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
 
+    Route::prefix('accreditation')->group(function () {
+
+        Route::get('/register', [App\Http\Controllers\Backend\AccreditationController::class, 'register'])->name('accreditation.register');
+        
+        Route::get('/', [App\Http\Controllers\Backend\AccreditationController::class, 'index'])->name('accreditation');
+
+    });
+
     Route::prefix('combinations')->group(function () {
 
         Route::get('/register', [App\Http\Controllers\Backend\CombinationController::class, 'register'])->name('combinations.register');
