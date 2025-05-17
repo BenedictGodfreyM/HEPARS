@@ -84,7 +84,7 @@
     </div>
     @if(count($recommendations) > 0)
     <div class="modal fade show" id="modal-lg" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">We recommend these programs...</h4>
@@ -101,7 +101,7 @@
                             {{ $recomendation->name }}
                             <span class="text-muted float-right">{{ $recomendation->duration }} Years ({{ ($recomendation->duration * 2) }} Semesters)</span>
                           </span>
-                          Offered by <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->name }}</cite>.
+                          Offered by <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->name }} ({{ $recomendation->institution->acronym }})</cite>.
                         </div>
                     </div>
                     @endforeach
