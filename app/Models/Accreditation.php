@@ -38,6 +38,21 @@ class Accreditation extends Model
     protected $casts = [
         'rating' => 'integer',
     ];
+    
+    /**
+     * Get the percentage of autonomy symbolised by the accreditation status'
+     * 
+     * @return string
+     */
+    public function getAutonomyAttribute(): string
+    {
+        $maxRating = self::max('rating');
+
+        // Prevent division by zero
+        if ($maxRating === 0) return 0;
+
+        return (round((($this->rating / $maxRating) * 100), 0, PHP_ROUND_HALF_DOWN) . "%");
+    }
 
     public function institutions(): BelongsToMany
     {
