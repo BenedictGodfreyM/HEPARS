@@ -17,6 +17,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('accreditation') }}" class="nav-link {{(request()->is('auth/accreditation') || request()->is('auth/accreditation/*')) ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-certificate"></i>
+                        <p>Accreditation Status</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('fields') }}" class="nav-link {{(request()->is('auth/fields') || request()->is('auth/fields/*')) ? 'active' : ''}}">
                         <i class="nav-icon fas fa-graduation-cap"></i>
                         <p>Fields</p>
@@ -29,15 +35,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('subjects') }}" class="nav-link {{(request()->is('auth/subjects') || request()->is('auth/subjects/*')) ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>High School Subjects</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('combinations') }}" class="nav-link {{(request()->is('auth/combinations') || request()->is('auth/combinations/*')) ? 'active' : ''}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>Combinations</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('subjects') }}" class="nav-link {{(request()->is('auth/subjects') || request()->is('auth/subjects/*')) ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>High School Subjects</p>
                     </a>
                 </li>
             </ul>
