@@ -5,8 +5,8 @@
         </div>
         <div class="card-body">
             <dl>
-                <dt>Rating:</dt>
-                <dd>{{ $data->rating }}</dd>
+                <dt>Level of Autonomy:</dt>
+                <dd>{{ $data->autonomy }}</dd>
                 
                 <dt class="mt-3">Description:</dt>
                 <dd>{{ $data->description }}</dd>
