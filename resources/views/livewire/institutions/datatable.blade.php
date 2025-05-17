@@ -75,7 +75,13 @@
                                     <td>{{ $item->$column }}</td>
                                 @endforeach
                                 <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('institutions.programs', ['institution_id' => $item->id]) }}">Programs</a>
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('institutions.programs', ['institution_id' => $item->id]) }}">Programs</a>
+                                    <button class="btn btn-info btn-sm" wire:click="openDetailsModal('{{ $item->id }}')">
+                                        <span wire:loading wire:target="openDetailsModal('{{ $item->id }}')">
+                                            <i class="fas fa-1x fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove wire:target="openDetailsModal('{{ $item->id }}')">View</span>
+                                    </button>
                                     <button class="btn btn-primary btn-sm" wire:click="openEditorModal('{{ $item->id }}')">
                                         <span wire:loading wire:target="openEditorModal('{{ $item->id }}')">
                                             <i class="fas fa-1x fa-spinner fa-spin"></i>
@@ -102,6 +108,23 @@
             <i class="fas fa-3x fa-sync-alt fa-spin"></i>
         </div>
     </div>
+    @if($showDetailsModel)
+    <div class="modal fade show" id="modal-md" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Institution Details</h4>
+                    <button type="button" wire:click="closeDetailsModel" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="modal-body card-comments">
+                    @livewire('institutions.view', ['institution_id' => $selectedRecord_InstitutionID], key($selectedRecord_InstitutionID))
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
     @if($showEditorModel)
     <div class="modal fade show" id="modal-lg" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">

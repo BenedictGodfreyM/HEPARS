@@ -11,6 +11,20 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Affiliated To</label>
+                    <select id="inputInstitutionAffiliation" class="form-control @error('affiliation_id') is-invalid @enderror" wire:model="affiliation_id">
+                        <option selected="" value="">Select an Institution</option>
+                        @forelse ($allMotherInstitutions as $institution)
+                        <option value="{{ $institution['id'] }}">{{ $institution['name'] }} ({{ $institution['acronym'] }})</option>
+                        @empty
+                        <option value="">No Data Available</option>
+                        @endforelse
+                    </select>
+                    @error('affiliation_id')
+                    <span id="inputInstitutionAffiliation-Error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="inputInstitutionAcronym">Acronym</label>
                     <input type="text" class="form-control @error('acronym') is-invalid @enderror" id="inputInstitutionAcronym" placeholder="Enter institution acronym (Eg. ARU)" wire:model="acronym">
                     @error('acronym')
@@ -47,6 +61,37 @@
                     @error('rank')
                     <span id="inputInstitutionRank-Error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
+                </div>
+                <div class="form-group">
+                    <label for="inputInstitutionAccreditationStatus">Accreditation Status</label>
+                    <select class="form-control" wire:change="addAccreditationToSelection($event.target.value)" id="inputInstitutionAccreditationStatus" wire:model="selectedOption">
+                        <option selected disabled value="">Select an Accreditation Status</option>
+                        @forelse ($availableAccreditations as $accreditation)
+                        <option value="{{ $accreditation['id'] }}">{{ $accreditation['status'] }}</option>
+                        @empty
+                        <option value="">No Data Available</option>
+                        @endforelse
+                    </select>
+                </div>
+                @if(count($selectedAccreditations) > 0)
+                @foreach($selectedAccreditations as $index => $AccreditationData)
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ $AccreditationData['status'] }}" required readonly>
+                        <div class="input-group-append">
+                            <button type="button" wire:click="removeAccreditationFromSelection({{ $index }})" class="btn btn-danger">
+                                <i class="fa fa-times" aria-hidden="true" wire:loading.remove wire:target="removeAccreditationFromSelection({{ $index }})"></i>
+                                <i class="fas fa-1x fa-spinner fa-spin" aria-hidden="true" wire:loading wire:target="removeAccreditationFromSelection({{ $index }})"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+                <div class="form-group">
+                    <label class="pl-4" style="width: 100%;text-align: center;" wire:loading wire:target="addAccreditationToSelection">
+                        <i class="fas fa-1x fa-spinner fa-spin"></i>
+                    </label>
                 </div>
                 <div class="form-group">
                     <label for="inputInstitutionCode">Code</label>

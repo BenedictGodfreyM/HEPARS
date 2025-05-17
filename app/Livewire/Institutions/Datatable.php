@@ -18,9 +18,10 @@ class Datatable extends Component
     public $sortField = 'id';
     public $sortDirection = 'asc';
     public $pageSize = 10;
-    public $columns = ['name','acronym','type','ownership','rank','code','location'];
+    public $columns = ['name','acronym','type','ownership','code','location'];
     
     // For Toggling Modals
+    public $showDetailsModel = false;
     public $showEditorModel = false;
     public $selectedRecord_InstitutionID;
 
@@ -38,6 +39,17 @@ class Datatable extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function openDetailsModal($record_InstitutionID)
+    {
+        $this->selectedRecord_InstitutionID = $record_InstitutionID;
+        $this->showDetailsModel = true;
+    }
+
+    public function closeDetailsModel()
+    {
+        $this->showDetailsModel = false;
     }
 
     public function openEditorModal($record_InstitutionID)
