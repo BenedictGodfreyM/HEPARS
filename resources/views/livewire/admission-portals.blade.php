@@ -38,7 +38,7 @@
                                     <div class="col-12">
                                         <h2 class="lead">
                                             <b>{{ $item->name }}</b>
-                                            <span class="badge bg-secondary">{{ $item->ownership }}</span>
+                                            <span class="badge bg-secondary">{{ $item->ownership }} {{ $item->type }}</span>
                                         </h2>
                                         <p class="text-muted text-sm">
                                             <a href="{{ $item->admission_portal_link }}" class="link-black text-sm" target="_blank"><i class="fas fa-link mr-1"></i> Admission Portal</a>
