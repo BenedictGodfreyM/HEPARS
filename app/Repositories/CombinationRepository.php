@@ -24,6 +24,7 @@ class CombinationRepository
     public function allCombinations($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
         return Combination::where('name', 'like', '%' . $search . '%')
+                        ->orWhere('category', 'like', '%' . $search . '%')
                         ->orderBy($sortField, $sortDirection)
                         ->paginate($perPage);
     }
@@ -48,7 +49,8 @@ class CombinationRepository
     public function storeCombination(array $data)
     {
         return Combination::create([
-            'name' => $data['name']
+            'name' => $data['name'],
+            'category' => $data['category'],
         ]);
     }
 
@@ -76,6 +78,7 @@ class CombinationRepository
     {
         $combination = Combination::where('id', $id)->firstOrFail();
         $combination->name = $data['name'];
+        $combination->category = $data['category'];
         return $combination->save();
     }
 
