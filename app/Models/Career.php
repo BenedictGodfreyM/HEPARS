@@ -35,7 +35,7 @@ class Career extends Model
         'name',
     ];
 
-    public function Field(): BelongsTo
+    public function field(): BelongsTo
     {
         return $this->belongsTo(Field::class);
     }
