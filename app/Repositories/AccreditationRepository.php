@@ -21,7 +21,7 @@ class AccreditationRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allAccreditations($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
+    public function allAccreditations($search, $sortField = "status", $sortDirection = "desc", $perPage = 10)
     {
         return Accreditation::where('status', 'like', '%' . $search . '%')
                         ->orWhere('rating', 'like', '%' . $search . '%')
