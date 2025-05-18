@@ -117,6 +117,11 @@
                                 <br>
                                 Institution Status: 
                                 <cite title="{{ $recomendation->institution->accreditation_status }}">{{ $recomendation->institution->accreditation_status }}</cite>
+                                <br>
+                                @if($recomendation->institution->affiliatedTo)
+                                Affiliated To:
+                                <cite title="{{ $recomendation->institution->affiliatedTo->name }}">{{ $recomendation->institution->affiliatedTo->name }} ({{ $recomendation->institution->affiliatedTo->acronym }})</cite>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -157,6 +162,11 @@
                                 <br>
                                 Institution Status: 
                                 <cite title="{{ $recomendation->institution->accreditation_status }}">{{ $recomendation->institution->accreditation_status }}</cite>
+                                <br>
+                                @if($recomendation->institution->affiliatedTo)
+                                Affiliated To:
+                                <cite title="{{ $recomendation->institution->affiliatedTo->name }}">{{ $recomendation->institution->affiliatedTo->name }} ({{ $recomendation->institution->affiliatedTo->acronym }})</cite>
+                                @endif
                             </div>
                         </div>
                         @endforeach
