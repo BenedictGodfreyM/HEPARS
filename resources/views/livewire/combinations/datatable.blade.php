@@ -73,7 +73,12 @@
                             <tr>
                                 @foreach ($columns as $column)
                                     <td>
-                                        {{ $item->$column }} @foreach($item->subjects as $combination_subject) <span class="badge bg-secondary text-md">{{ $combination_subject->name }}</span> @endforeach
+                                        {{ $item->$column }} 
+                                        @if($item->$column === "name")
+                                        @foreach($item->subjects as $combination_subject) 
+                                        <span class="badge bg-secondary text-md">{{ $combination_subject->name }}</span> 
+                                        @endforeach
+                                        @endif
                                     </td>
                                 @endforeach
                                 <td>

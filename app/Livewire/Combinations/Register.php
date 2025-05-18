@@ -2,15 +2,18 @@
 
 namespace App\Livewire\Combinations;
 
+use App\Enums\CombinationCategory;
 use App\Repositories\CombinationRepository;
 use App\Repositories\SubjectRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Register extends Component
 {
     public $name = "";    
+    public $category = "";    
     public $selectedSubjects = [];  
     public $availableSubjects;
 
@@ -25,6 +28,7 @@ class Register extends Component
     {
         return [
             'name' => ['required', 'string', 'unique:combinations,name'],
+            'category' => ['required', Rule::in([CombinationCategory::NATURAL_SCIENCE,CombinationCategory::ARTS])],
         ];
     }
 
@@ -34,6 +38,7 @@ class Register extends Component
             'name.required' => 'Please insert the name of the combination.',
             'name.string' => 'The name of the combination should be in alphanumeric characters.',
             'name.unique' => 'The name of the combination already exists.',
+            'category.required' => 'Please choose the category of the combination.',
         ];
     }
 
@@ -75,6 +80,7 @@ class Register extends Component
             $combinationRepo = new CombinationRepository();
             $newCombination = $combinationRepo->storeCombination([
                 'name' => strtoupper($this->name),
+                'category' => strtoupper($this->category),
             ]);
             $combinationRepo->linkToSubjects($newCombination->id, array_pluck($this->selectedSubjects, "id"));
             DB::commit();

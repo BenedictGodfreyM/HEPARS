@@ -2,16 +2,19 @@
 
 namespace App\Livewire\Combinations;
 
+use App\Enums\CombinationCategory;
 use App\Repositories\CombinationRepository;
 use App\Repositories\SubjectRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Edit extends Component
 {
     public $combination_id = "";
     public $name = "";
+    public $category = "";
     public $selectedSubjects = [];
 
     public $availableSubjects;
@@ -25,6 +28,7 @@ class Edit extends Component
         $combinationRepo = new CombinationRepository();
         $combinationDetails = $combinationRepo->findCombination($combination_id);
         $this->name = $combinationDetails->name;
+        $this->category = $combinationDetails->category;
         $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
         foreach($combinationDetails->subjects as $index => $subject){
             $this->addSubjectToSelection($subject->id);
@@ -35,6 +39,7 @@ class Edit extends Component
     {
         return [
             'name' => ['required', 'string'],
+            'category' => ['required', Rule::in([CombinationCategory::NATURAL_SCIENCE,CombinationCategory::ARTS])],
         ];
     }
 
@@ -44,6 +49,7 @@ class Edit extends Component
             'name.required' => 'Please insert the name of the combination.',
             'name.string' => 'The name of the combination should be in alphanumeric characters.',
             'name.unique' => 'The name of the combination already exists.',
+            'category.required' => 'Please choose the category of the combination.',
         ];
     }
 
@@ -85,6 +91,7 @@ class Edit extends Component
             $combinationRepo = new CombinationRepository();
             $isUpdated = $combinationRepo->updateCombination([
                 'name' => strtoupper($this->name),
+                'category' => strtoupper($this->category),
             ], $this->combination_id);
 
             if($isUpdated){

@@ -32,6 +32,17 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Category</label>
+                            <select id="inputCombinationCategory" class="form-control @error('category') is-invalid @enderror" wire:model="category">
+                                <option selected value="">Select Combination Category</option>
+                                <option value="Natural Science">Natural Science Combination</option>
+                                <option value="Arts">Arts Combination</option>
+                            </select>
+                            @error('category')
+                            <span id="inputCombinationCategory-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="inputCombinationSubjects">Subjects</label>
                             <select class="form-control" wire:change="addSubjectToSelection($event.target.value)" id="inputCombinationSubjects" wire:model="selectedOption">
                                 <option selected disabled value="">Select a Subject</option>
