@@ -13,23 +13,38 @@ class RecommendationService
     /**
      * Request a list of programs and institutions they are offered based on the career choice and high school results
      *
-     * @param string $career_id
+     * @param string $career_id ID of selected career
+     * @param array $careers Array of career IDs (Careers in the same Field as the selected Career)
      * @param array $studentResults (array($subjectId => $studentGrade) Eg. array(de52cabd871248ebd540e4c1616d8477 => 'A'))
      * 
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return array<string, Illuminate\Database\Eloquent\Collection<int, App\Models\Program>>
      */
-    public function getRecommendations(string $career_id, array $studentResults)
+    public function getRecommendations(string $career_id, array $careers, array $studentResults): array
     {
-        $programs = Program::query()->whereHas('careers', function ($query) use ($career_id) {
-            $query->where('careers.id', $career_id);
-        })->with(['institution','entryRequirements'])->get();
+        $programs = Program::query()->whereHas('careers', function ($query) use ($careers) {
+            $query->whereIn('careers.id', $careers);
+        })->with(['careers','institution','entryRequirements'])->get();
 
-        return $programs->filter(function ($program) use ($studentResults) {
+        $recommendedPrograms = $programs->filter(function ($program) use ($studentResults) {
             return $program->entryRequirements->contains(function ($requirement) use ($studentResults) {
                 if (!$requirement) return false;
                 return $this->studentResultsMeetsRequirement($requirement, $studentResults);
             });
-        })->take(10);
+        });
+
+        $recommendations['BasedOnSelectedCareer'] = $recommendedPrograms->filter(function ($program) use ($career_id) {
+            return $program->careers->contains(function ($career) use ($career_id) { 
+                return $career->id === $career_id;
+            });
+        })->sort(function ($a, $b) { return $a->institution->rank <=> $b->institution->rank; });
+
+        $recommendations['BasedOnRelatedCareers'] = $recommendedPrograms->reject(function ($program) use ($career_id) {
+            return $program->careers->contains(function ($career) use ($career_id) { 
+                return $career->id === $career_id;
+            });
+        })->sort(function ($a, $b) { return $a->institution->rank <=> $b->institution->rank; });
+
+        return $recommendations;
     }
 
     protected function studentResultsMeetsRequirement(EntryRequirement $requirement, array $studentResults): bool
