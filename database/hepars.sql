@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 17, 2025 at 06:18 PM
+-- Generation Time: May 18, 2025 at 01:50 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `accreditations`;
 CREATE TABLE IF NOT EXISTS `accreditations` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `rating` int UNSIGNED NOT NULL,
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -57,8 +57,8 @@ INSERT INTO `accreditations` (`id`, `status`, `rating`, `description`, `created_
 DROP TABLE IF EXISTS `accreditation_institutions`;
 CREATE TABLE IF NOT EXISTS `accreditation_institutions` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `accreditation_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `institution_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accreditation_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institution_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -182,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `combinations` (
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `category` enum('Natural Science','Arts') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -189,20 +190,20 @@ CREATE TABLE IF NOT EXISTS `combinations` (
 -- Dumping data for table `combinations`
 --
 
-INSERT INTO `combinations` (`id`, `name`, `created_at`, `updated_at`) VALUES
-('006744490469cf2fcacfca50141c746c', 'CBA', '2025-05-09 10:17:11', '2025-05-09 10:17:11'),
-('0c81c36325cf1f923ba619e86516b910', 'CBN', '2025-05-09 10:18:06', '2025-05-09 10:18:06'),
-('311049eadf26eae39d65add0c9e84ac4', 'CBG', '2025-05-08 10:27:45', '2025-05-08 10:27:45'),
-('4810ed06fcbe93d369bb022042ed4e90', 'KLF', '2025-05-09 10:46:22', '2025-05-09 10:46:22'),
-('520d274a54d9c0d931edaeab4ede799c', 'HGL', '2025-05-09 10:25:03', '2025-05-09 10:25:03'),
-('5e89fa3a703854fc11451a8127674403', 'PGM', '2025-05-09 09:45:40', '2025-05-09 09:45:40'),
-('66db45b3285aa1020574a47fc2f77e3d', 'HGE', '2025-05-08 10:21:45', '2025-05-08 10:21:45'),
-('a2af328c3ae2af91d58d2baf66b11295', 'PCB', '2025-05-08 09:38:54', '2025-05-08 09:38:54'),
-('a3b4459156823fe8ecd3d69e188f8f0e', 'EGM', '2025-05-09 09:49:32', '2025-05-09 09:49:32'),
-('a5dc912be0f2908687e0e3a57d8ac7cd', 'HGK', '2025-05-09 10:37:08', '2025-05-09 10:37:08'),
-('b6c72663f827a764811aa41a9cc3851b', 'ECA', '2025-05-09 10:50:14', '2025-05-09 10:50:14'),
-('e95ee1e6223ef34654f74687a7fffeb3', 'PCM', '2025-05-08 10:19:49', '2025-05-08 10:19:49'),
-('fce432faea73c74b6e62063263023ed6', 'HKL', '2025-05-09 10:39:10', '2025-05-09 10:39:10');
+INSERT INTO `combinations` (`id`, `name`, `created_at`, `updated_at`, `category`) VALUES
+('006744490469cf2fcacfca50141c746c', 'CBA', '2025-05-09 10:17:11', '2025-05-18 10:37:59', 'Natural Science'),
+('0c81c36325cf1f923ba619e86516b910', 'CBN', '2025-05-09 10:18:06', '2025-05-18 10:38:16', 'Natural Science'),
+('311049eadf26eae39d65add0c9e84ac4', 'CBG', '2025-05-08 10:27:45', '2025-05-18 10:37:47', 'Natural Science'),
+('4810ed06fcbe93d369bb022042ed4e90', 'KLF', '2025-05-09 10:46:22', '2025-05-18 10:38:24', 'Arts'),
+('520d274a54d9c0d931edaeab4ede799c', 'HGL', '2025-05-09 10:25:03', '2025-05-18 10:38:33', 'Arts'),
+('5e89fa3a703854fc11451a8127674403', 'PGM', '2025-05-09 09:45:40', '2025-05-18 10:37:16', 'Natural Science'),
+('66db45b3285aa1020574a47fc2f77e3d', 'HGE', '2025-05-08 10:21:45', '2025-05-18 10:38:41', 'Arts'),
+('a2af328c3ae2af91d58d2baf66b11295', 'PCB', '2025-05-08 09:38:54', '2025-05-18 10:36:59', 'Natural Science'),
+('a3b4459156823fe8ecd3d69e188f8f0e', 'EGM', '2025-05-09 09:49:32', '2025-05-18 10:37:32', 'Natural Science'),
+('a5dc912be0f2908687e0e3a57d8ac7cd', 'HGK', '2025-05-09 10:37:08', '2025-05-18 10:38:50', 'Arts'),
+('b6c72663f827a764811aa41a9cc3851b', 'ECA', '2025-05-09 10:50:14', '2025-05-18 10:39:00', 'Arts'),
+('e95ee1e6223ef34654f74687a7fffeb3', 'PCM', '2025-05-08 10:19:49', '2025-05-18 10:36:33', 'Natural Science'),
+('fce432faea73c74b6e62063263023ed6', 'HKL', '2025-05-09 10:39:10', '2025-05-18 10:39:07', 'Arts');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `combination_subjects` (
   PRIMARY KEY (`id`),
   KEY `combination_subjects_combination_id_index` (`combination_id`),
   KEY `combination_subjects_subject_id_index` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `combination_subjects`
@@ -657,7 +658,7 @@ CREATE TABLE IF NOT EXISTS `institutions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `admission_portal_link` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `rank` int UNSIGNED NOT NULL,
-  `affiliation_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `affiliation_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `institutions_affiliation_id_index` (`affiliation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -723,7 +724,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -752,7 +753,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2025_05_16_052535_add_rank_to_institutions_table', 8),
 (30, '2025_05_16_202054_create_accreditations_table', 9),
 (31, '2025_05_16_275211_create_accreditation_institutions_table', 9),
-(32, '2025_05_17_052535_add_affiliation_id_to_institutions_table', 9);
+(32, '2025_05_17_052535_add_affiliation_id_to_institutions_table', 9),
+(33, '2025_05_18_052535_add_category_to_combinations_table', 10);
 
 -- --------------------------------------------------------
 
@@ -947,8 +949,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LMcWMHAMHjLM07PVxMFNsDO0dQilD9TKH3D0l63u', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYjRTZmFUU2VrSGJvWGt1Z3VaNmpIMUlKTFlsa3Vta3EyeDg2T1RUaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2luc3RpdHV0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6ImNvbWJpbmF0aW9uX2lkIjtzOjMyOiIwYzgxYzM2MzI1Y2YxZjkyM2JhNjE5ZTg2NTE2YjkxMCI7fQ==', 1747423309),
-('OJpm2OrW2IsCrFPvdWmISzEQ5WwrAuggmF3Yf3CJ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRlVsMlo0VmRPYllmczlLeWZvOENpdDU3Zng3NmRnSzBta2FDbFZwVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2luc3RpdHV0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1747505855);
+('IOUKT89V69gjx4Kxy97sgwK7ReLnlihWKqc0u7kv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZTRmTTFOZEVaMldyWXJpbUQxSnRhNGFOOUd6OXVLa2EwMjMxNmVobSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2NvbWJpbmF0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6ImNvbWJpbmF0aW9uX2lkIjtzOjMyOiJmY2U0MzJmYWVhNzNjNzRiNmU2MjA2MzI2MzAyM2VkNiI7fQ==', 1747575696);
 
 -- --------------------------------------------------------
 
