@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Repositories\CareerRepository;
 use App\Repositories\CombinationRepository;
 use App\Repositories\FieldRepository;
 use App\Services\RecommendationService;
@@ -19,6 +20,9 @@ class ProgramRecommender extends Component
     public $recommendations = [];
 
     public $selectedOption = '';
+
+    // For toggling the recommendations model
+    public $showRecommendations = false;
 
     public function mount()
     {
@@ -90,15 +94,19 @@ class ProgramRecommender extends Component
             foreach($this->selectedSubjects as $key => $selectedSubject){
                 $studentResults[$selectedSubject['subject']['id']] = $selectedSubject['grade'];
             }
-            $unsortedRecommendations = (new RecommendationService)->getRecommendations($this->selectedCareer, $studentResults);
+
+            $selectedCareer_Details = (new CareerRepository)->findCareer($this->selectedCareer);
+            $relatedCareers = $selectedCareer_Details->field->careers->map(function ($career) { return $career->id; })->toArray();
+
+            $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareer, $relatedCareers, $studentResults);
             
-            // Sort recommended programs according to the rank of the institution they are offered
-            $this->recommendations = $unsortedRecommendations->sort(function ($a, $b) { return $a->institution->rank <=> $b->institution->rank; });
-            
-            if(count($this->recommendations) <= 0) {
+            if(count($this->recommendations['BasedOnSelectedCareer']) <= 0 && count($this->recommendations['BasedOnRelatedCareers']) <= 0) {
                 $this->resetForm();
-                session()->flash('no_recommenadations', "Our algorithm could not generate any recommendations for you!. Try selecting an alternative career choice, if there is any.");
+                return session()->flash('no_recommenadations', "Our algorithm could not generate any recommendations for you!. Try selecting an alternative career choice, if there is any.");
             }
+            
+            $this->recommendations['CareerField'] = ucwords(strtolower($selectedCareer_Details->field->name));
+            return $this->showRecommendations = true;
         }catch(Exception $e){
             session()->flash('error',$e->getMessage());
         }
@@ -106,6 +114,7 @@ class ProgramRecommender extends Component
 
     public function clearRecommendations()
     {
+        $this->showRecommendations = false;
         $this->recommendations = [];
         $this->resetForm();
     }
@@ -115,6 +124,11 @@ class ProgramRecommender extends Component
         $this->reset();
         $this->selectedSubjects = [];
         $this->selectedOption = '';
+    }
+
+    public function printRecommendations()
+    {
+        // 
     }
 
     public function render()

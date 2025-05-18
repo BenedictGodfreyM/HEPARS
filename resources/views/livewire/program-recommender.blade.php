@@ -82,36 +82,93 @@
             </form>
         </div>
     </div>
-    @if(count($recommendations) > 0)
+    @if($showRecommendations)
     <div class="modal fade show" id="modal-lg" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">We recommend these programs...</h4>
                     <button type="button" wire:click="clearRecommendations" class="close" data-dismiss="modal" aria-label="Close">
-                    <span wire:loading wire:target="clearRecommendations" aria-hidden="true"><i class="fas fa-1x fa-sync-alt fa-spin"></i></span>
-                    <span wire:loading.remove wire:target="clearRecommendations" aria-hidden="true">×</span>
+                        <span wire:loading wire:target="clearRecommendations" aria-hidden="true">
+                            <i class="fas fa-1x fa-sync-alt fa-spin"></i>
+                        </span>
+                        <span wire:loading.remove wire:target="clearRecommendations" aria-hidden="true">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </span>
                     </button>
                 </div>
-                <div class="modal-body card-comments">
-                    @foreach($recommendations as $key => $recomendation)
-                    <div class="card-comment">
-                        <div class="comment-text">
-                          <span class="username">
-                            {{ $recomendation->name }}
-                            <span class="text-muted float-right">{{ $recomendation->duration }} Years ({{ ($recomendation->duration * 2) }} Semesters)</span>
-                          </span>
-                          Offered by <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->name }} ({{ $recomendation->institution->acronym }})</cite>.
+                <div class="modal-body">
+                    @if(count($recommendations['BasedOnSelectedCareer']) > 0)
+                    <h5>Based on your Career Choice</h5>
+                    <div class="card-comments px-2 py-2">
+                        @foreach($recommendations['BasedOnSelectedCareer'] as $key => $recomendation)
+                        <div class="card-comment">
+                            <div class="comment-text">
+                                <span class="username">
+                                    {{ $recomendation->name }}
+                                    <span class="text-muted float-right">{{ $recomendation->duration }} Years ({{ ($recomendation->duration * 2) }} Semesters)</span>
+                                </span>
+                                Offered by: 
+                                <cite title="{{ $recomendation->institution->name }}">
+                                    {{ $recomendation->institution->name }} ({{ $recomendation->institution->acronym }}).<br>
+                                    This is a {{ strtolower($recomendation->institution->ownership) }} {{ strtolower($recomendation->institution->type) }}, 
+                                    located in {{ $recomendation->institution->location }}.
+                                </cite>
+                                <br>
+                                Institution Status: 
+                                <cite title="{{ $recomendation->institution->accreditation_status }}">{{ $recomendation->institution->accreditation_status }}</cite>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    @else
+                    <div class="row">
+                        <div class="col-12 mt-3 text-center">
+                            <p class="lead text-warning">
+                                Sorry!. Based on your career choice, we couldn't find programs you qualify in.<br>
+                                @if(count($recommendations['BasedOnRelatedCareers']) > 0)
+                                    However, you qualify for other programs within the field of {{ $recommendations['CareerField'] }}.<br> 
+                                    Check out the list below:
+                                @else
+                                    Try selecting a different career.
+                                @endif
+                            </p>
                         </div>
                     </div>
-                    @endforeach
+                    @endif
+                    @if(count($recommendations['BasedOnRelatedCareers']) > 0)
+                    @if(count($recommendations['BasedOnSelectedCareer']) > 0)
+                    <h5 class="mt-2">More from {{ $recommendations['CareerField'] }} Field</h5>
+                    @endif
+                    <div class="card-comments px-2 py-2">
+                        @foreach($recommendations['BasedOnRelatedCareers'] as $key => $recomendation)
+                        <div class="card-comment">
+                            <div class="comment-text">
+                                <span class="username">
+                                    {{ $recomendation->name }}
+                                    <span class="text-muted float-right">{{ $recomendation->duration }} Years ({{ ($recomendation->duration * 2) }} Semesters)</span>
+                                </span>
+                                Offered by: 
+                                <cite title="{{ $recomendation->institution->name }}">
+                                    {{ $recomendation->institution->name }} ({{ $recomendation->institution->acronym }}).<br>
+                                    This is a {{ strtolower($recomendation->institution->ownership) }} {{ strtolower($recomendation->institution->type) }}, 
+                                    located in {{ $recomendation->institution->location }}.
+                                </cite>
+                                <br>
+                                Institution Status: 
+                                <cite title="{{ $recomendation->institution->accreditation_status }}">{{ $recomendation->institution->accreditation_status }}</cite>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
-                {{-- <div class="modal-footer justify-content-between">
-                    <button type="button" wire:click="clearRecommendations" class="btn btn-default" data-dismiss="modal">
-                        <span wire:loading wire:target="clearRecommendations"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Exiting...</span>
-                        <span wire:loading.remove wire:target="clearRecommendations">Close</span>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" wire:click="printRecommendations" class="btn btn-default" data-dismiss="modal" disabled>
+                        <span wire:loading wire:target="printRecommendations"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Processing...</span>
+                        <span wire:loading.remove wire:target="printRecommendations"><i class="fas fa-print"></i> Print</span>
                     </button>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
