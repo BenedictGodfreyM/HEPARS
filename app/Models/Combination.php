@@ -31,6 +31,7 @@ class Combination extends Model
      */
     protected $fillable = [
         'name',
+        'category',
     ];
 
     public function subjects(): BelongsToMany
