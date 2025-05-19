@@ -25,6 +25,7 @@ class ProgramRepository
     public function allPrograms($search, $sortField = "name", $sortDirection = "desc", $perPage = 10)
     {
         return Program::where('name', 'like', '%' . $search . '%')
+                        ->orWhere('competition_scale', 'like', '%' . $search . '%')
                         ->orWhere('duration', 'like', '%' . $search . '%')
                         ->orderBy($sortField, $sortDirection)
                         ->paginate($perPage);
@@ -40,6 +41,7 @@ class ProgramRepository
         return Program::where('institution_id', '=', $institution_id)
                         ->where(function(Builder $query) use($search){
                             $query->where('name', 'like', '%' . $search . '%')
+                                    ->orWhere('competition_scale', 'like', '%' . $search . '%')
                                     ->orWhere('duration', 'like', '%' . $search . '%');
                         })
                         ->orderBy($sortField, $sortDirection)
@@ -71,6 +73,7 @@ class ProgramRepository
         $program = Program::where('id', $id)->firstOrFail();
         $program->institution_id = $data['institution_id'];
         $program->name = $data['name'];
+        $program->competition_scale = $data['competition_scale'];
         $program->duration = $data['duration'];
         return $program->save();
     }
