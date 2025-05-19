@@ -25,6 +25,8 @@ class SubjectRepository
     {
         return Subject::where('name', 'like', '%' . $search . '%')
                         ->orWhere('code', 'like', '%' . $search . '%')
+                        ->orWhere('is_compulsory', 'like', '%' . $search . '%')
+                        ->orWhere('is_additional', 'like', '%' . $search . '%')
                         ->orderBy($sortField, $sortDirection)
                         ->paginate($perPage);
     }
@@ -40,6 +42,18 @@ class SubjectRepository
     }
 
     /**
+     * Retrieve all subjects that are neither compulsory nor additional (Without Pagination)
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function allSubjectsNotCompulsoryAndAdditionalWithoutPagination()
+    {
+        return Subject::query()->where('is_compulsory', false)
+                                ->where('is_additional', false)
+                                ->orderBy('name','asc')->get();
+    }
+
+    /**
      * Save details of a subject to the database
      * 
      * @param array $data Details of a particular subject
@@ -51,6 +65,8 @@ class SubjectRepository
         return Subject::create([
             'name' => $data['name'],
             'code' => $data['code'],
+            'is_compulsory' => $data['is_compulsory'],
+            'is_additional' => $data['is_additional'],
         ]);
     }
 
@@ -79,6 +95,8 @@ class SubjectRepository
         $subject = Subject::where('id', $id)->firstOrFail();
         $subject->name = $data['name'];
         $subject->code = $data['code'];
+        $subject->is_compulsory = $data['is_compulsory'];
+        $subject->is_additional = $data['is_additional'];
         return $subject->save();
     }
 
