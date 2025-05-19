@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 18, 2025 at 01:50 PM
+-- Generation Time: May 19, 2025 at 08:14 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -724,7 +724,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -754,7 +754,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2025_05_16_202054_create_accreditations_table', 9),
 (31, '2025_05_16_275211_create_accreditation_institutions_table', 9),
 (32, '2025_05_17_052535_add_affiliation_id_to_institutions_table', 9),
-(33, '2025_05_18_052535_add_category_to_combinations_table', 10);
+(33, '2025_05_18_052535_add_category_to_combinations_table', 10),
+(34, '2025_05_18_052536_add_is_compulsory_to_subjects_table', 11),
+(35, '2025_05_18_052537_add_is_additional_to_subjects_table', 11);
 
 -- --------------------------------------------------------
 
@@ -949,7 +951,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('IOUKT89V69gjx4Kxy97sgwK7ReLnlihWKqc0u7kv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZTRmTTFOZEVaMldyWXJpbUQxSnRhNGFOOUd6OXVLa2EwMjMxNmVobSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoL2NvbWJpbmF0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6ImNvbWJpbmF0aW9uX2lkIjtzOjMyOiJmY2U0MzJmYWVhNzNjNzRiNmU2MjA2MzI2MzAyM2VkNiI7fQ==', 1747575696);
+('92zbNjQ7V8T5T5BUrdTPefhKYOudC1gIVAMwgpXx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibjNJM3lXdHZIQnhFQnRQSm9CanBDaDFIUkZJNWIyWDNVdDNtS2pORSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1747642395);
 
 -- --------------------------------------------------------
 
@@ -964,6 +966,8 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `code` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `is_compulsory` tinyint(1) NOT NULL DEFAULT '0',
+  `is_additional` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -971,25 +975,25 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
-('0f356d614e6881dd5ae8ffc9989732e9', 'Fine Arts', 'FA', '2025-05-10 11:28:16', '2025-05-10 11:28:16'),
-('111239143c8489ef8e53421791b2c3e9', 'Physics', 'P', '2025-03-05 11:42:28', '2025-05-16 13:35:20'),
-('1502838edf28cac9b0390cd616bd0240', 'Accountancy', 'A', '2025-03-11 07:34:25', '2025-05-09 10:20:40'),
-('17ae1bb333f280e72bdfeecf08342617', 'Computer Science', 'CS', '2025-05-10 11:27:44', '2025-05-10 11:27:44'),
-('17afca89d6c133ae83d57d65acc89dd2', 'Nutrition', 'N', '2025-03-14 07:36:48', '2025-05-09 10:20:49'),
-('1a50115832dd08b87a189d155c62eb31', 'Commerce', 'C', '2025-03-11 07:33:45', '2025-05-09 10:20:58'),
-('2e45ec206a607ba85a8cb0160e99ade4', 'Kiswahili', 'K', '2025-03-11 07:33:19', '2025-05-09 10:21:07'),
-('3028d0e628e27d5384fe2c334634db6d', 'General Studies', 'GS', '2025-05-09 10:23:43', '2025-05-09 10:23:43'),
-('499fb4fc5cb36c9413f708e2290ee465', 'English Language', 'L', '2025-03-11 07:31:41', '2025-05-09 10:21:30'),
-('535e955119b624e341febdce9a5ab025', 'History', 'H', '2025-03-11 07:34:07', '2025-05-09 10:21:40'),
-('78a92fb99cfdc7f1e537f9caef0e0684', 'Advanced Mathematics', 'M', '2025-03-11 07:32:31', '2025-05-09 10:22:05'),
-('79a78e4e6a080e03d3ddf5aaca20b642', 'Chemistry', 'C', '2025-03-05 11:43:22', '2025-05-09 10:22:16'),
-('921f5461645235088da06b1132a13754', 'Agriculture', 'A', '2025-03-14 07:36:36', '2025-05-09 10:22:27'),
-('b7b5fc68fb85dd88dc124a38ec488f2c', 'Economics', 'E', '2025-03-11 07:33:28', '2025-05-09 10:22:40'),
-('ba1c45bc4d5a9ba46387ba1837f90910', 'Basic Applied Mathematics', 'BAM', '2025-03-09 08:41:11', '2025-05-09 10:20:02'),
-('bbd67ff82f9f3749b72687aa7caa5bba', 'Geography', 'G', '2025-03-11 07:33:58', '2025-05-09 10:22:52'),
-('de52cabd871248ebd540e4c1616d8477', 'Biology', 'B', '2025-03-09 08:40:11', '2025-05-09 10:23:02'),
-('f38d3cf78b785d2b10281ebe33c15d8c', 'French', 'F', '2025-05-09 10:45:40', '2025-05-09 10:45:40');
+INSERT INTO `subjects` (`id`, `name`, `code`, `created_at`, `updated_at`, `is_compulsory`, `is_additional`) VALUES
+('0f356d614e6881dd5ae8ffc9989732e9', 'Fine Arts', 'FA', '2025-05-10 11:28:16', '2025-05-10 11:28:16', 0, 0),
+('111239143c8489ef8e53421791b2c3e9', 'Physics', 'P', '2025-03-05 11:42:28', '2025-05-16 13:35:20', 0, 0),
+('1502838edf28cac9b0390cd616bd0240', 'Accountancy', 'A', '2025-03-11 07:34:25', '2025-05-09 10:20:40', 0, 0),
+('17ae1bb333f280e72bdfeecf08342617', 'Computer Science', 'CS', '2025-05-10 11:27:44', '2025-05-10 11:27:44', 0, 0),
+('17afca89d6c133ae83d57d65acc89dd2', 'Nutrition', 'N', '2025-03-14 07:36:48', '2025-05-09 10:20:49', 0, 0),
+('1a50115832dd08b87a189d155c62eb31', 'Commerce', 'C', '2025-03-11 07:33:45', '2025-05-09 10:20:58', 0, 0),
+('2e45ec206a607ba85a8cb0160e99ade4', 'Kiswahili', 'K', '2025-03-11 07:33:19', '2025-05-09 10:21:07', 0, 0),
+('3028d0e628e27d5384fe2c334634db6d', 'General Studies', 'GS', '2025-05-09 10:23:43', '2025-05-19 04:56:00', 1, 1),
+('499fb4fc5cb36c9413f708e2290ee465', 'English Language', 'L', '2025-03-11 07:31:41', '2025-05-09 10:21:30', 0, 0),
+('535e955119b624e341febdce9a5ab025', 'History', 'H', '2025-03-11 07:34:07', '2025-05-09 10:21:40', 0, 0),
+('78a92fb99cfdc7f1e537f9caef0e0684', 'Advanced Mathematics', 'M', '2025-03-11 07:32:31', '2025-05-09 10:22:05', 0, 0),
+('79a78e4e6a080e03d3ddf5aaca20b642', 'Chemistry', 'C', '2025-03-05 11:43:22', '2025-05-09 10:22:16', 0, 0),
+('921f5461645235088da06b1132a13754', 'Agriculture', 'A', '2025-03-14 07:36:36', '2025-05-09 10:22:27', 0, 0),
+('b7b5fc68fb85dd88dc124a38ec488f2c', 'Economics', 'E', '2025-03-11 07:33:28', '2025-05-09 10:22:40', 0, 0),
+('ba1c45bc4d5a9ba46387ba1837f90910', 'Basic Applied Mathematics', 'BAM', '2025-03-09 08:41:11', '2025-05-19 05:06:04', 0, 1),
+('bbd67ff82f9f3749b72687aa7caa5bba', 'Geography', 'G', '2025-03-11 07:33:58', '2025-05-09 10:22:52', 0, 0),
+('de52cabd871248ebd540e4c1616d8477', 'Biology', 'B', '2025-03-09 08:40:11', '2025-05-09 10:23:02', 0, 0),
+('f38d3cf78b785d2b10281ebe33c15d8c', 'French', 'F', '2025-05-09 10:45:40', '2025-05-09 10:45:40', 0, 0);
 
 -- --------------------------------------------------------
 
