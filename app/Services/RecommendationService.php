@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\RequirementType;
 use App\Models\EntryRequirement;
 use App\Models\Program;
+use Illuminate\Database\Eloquent\Collection;
 
 class RecommendationService
 {
@@ -97,7 +98,12 @@ class RecommendationService
         $necessaryWithSubsidiaryPass = $this->extractSubsidiaryWithType($requirement, RequirementType::NECESSARY->value);
         $optionalWithPrincipalPass = $this->extractPrincipalWithType($requirement, RequirementType::OPTIONAL->value);
 
+        // Group by Requirement Type (Data with IDs only)
+        $requiredWithPrincipalPassIDs = $requiredWithPrincipalPass->pluck('id')->toArray();
+        $necessaryWithPrincipalPassIDs = $necessaryWithPrincipalPass->pluck('id')->toArray();
+        $necessaryWithSubsidiaryPassIDs = $necessaryWithSubsidiaryPass->pluck('id')->toArray();
         $optionalWithPrincipalPassIDs = $optionalWithPrincipalPass->pluck('id')->toArray();
+
         $compulsoryWithPrincipalPass = $requiredWithPrincipalPass->reject(function ($item) use ($optionalWithPrincipalPassIDs) {
             return in_array($item->id, $optionalWithPrincipalPassIDs);
         });
@@ -116,6 +122,8 @@ class RecommendationService
                     $minimumRequiredPoints = GradeService::getPoints($requiredPrincipal->pivot->min_grade) ?? 0;
                     return ($studentPoints >= $minimumRequiredPoints);
                 });
+                $passedSubsiquentEvaluation = $this->hasNPrincipalPasses($studentResults, $requiredWithPrincipalPassIDs, $requirement->required_subjects_count, $requirement->min_total_points);
+                if(!$passedSubsiquentEvaluation) return false;
             }else{
                 // There are Required Subject(s) and several Optional Subjects (Distinct Groups)
                 if($compulsoryWithPrincipalPass->count() > 0 && $optionalWithPrincipalPass->count() > 0){
@@ -186,6 +194,54 @@ class RecommendationService
         }
         
         return ($passedCompulsorySubjects && $passedCompulsoryAndOptionalSubjects && $passedAdditionalSubjects);
+    }
+
+    private function hasNPrincipalPasses(array $studentResults, array $requiredPrincipals, int $totalRequiredPrincipals, int $minTotalPoints):bool
+    {
+        if($totalRequiredPrincipals == 2) return $this->hasTwoPrincipalPasses($studentResults, $requiredPrincipals, $minTotalPoints);
+        if($totalRequiredPrincipals == 3) return $this->hasThreePrincipalPasses($studentResults, $requiredPrincipals, $minTotalPoints);
+        return false;
+    }
+
+    private function hasTwoPrincipalPasses(array $studentResults, array $requiredPrincipals, int $minTotalPoints): bool
+    {
+        $found = false;
+        for ($i = 0; $i < count($requiredPrincipals); $i++) {
+            for ($j = $i + 1; $j < count($requiredPrincipals); $j++) {
+                $index1 = $requiredPrincipals[$i];
+                $index2 = $requiredPrincipals[$j];
+
+                $totalPoints = GradeService::getPoints($studentResults[$index1]) + GradeService::getPoints($studentResults[$index2]);
+                if (isset($studentResults[$index1], $studentResults[$index2]) && $totalPoints >= $minTotalPoints) {
+                    $found = true;
+                    break 2;
+                }
+            }
+        }
+
+        return $found;
+    }
+
+    private function hasThreePrincipalPasses(array $studentResults, array $requiredPrincipals, int $minTotalPoints): bool
+    {
+        $found = false;
+        for ($i = 0; $i < count($requiredPrincipals); $i++) {
+            for ($j = $i + 1; $j < count($requiredPrincipals); $j++) {
+                for ($k = $j + 1; $k < count($requiredPrincipals); $k++) {
+                    $index1 = $requiredPrincipals[$i];
+                    $index2 = $requiredPrincipals[$j];
+                    $index3 = $requiredPrincipals[$k];
+
+                    $totalPoints = GradeService::getPoints($studentResults[$index1]) + GradeService::getPoints($studentResults[$index2]) + GradeService::getPoints($studentResults[$index3]);
+                    if (isset($studentResults[$index1], $studentResults[$index2], $studentResults[$index3]) && $totalPoints >= $minTotalPoints) {
+                        $found = true;
+                        break 3;
+                    }
+                }
+            }
+        }
+
+        return $found;
     }
 
     private function extractPrincipalWithType(EntryRequirement $requirement, string $type)
