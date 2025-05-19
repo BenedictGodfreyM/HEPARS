@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Programs;
 
+use App\Enums\ProgramCompetitionScale;
 use App\Enums\RequirementType;
 use App\Repositories\CareerRepository;
 use App\Repositories\EntryRequirementRepository;
@@ -10,11 +11,13 @@ use App\Repositories\ProgramRepository;
 use App\Repositories\SubjectRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Register extends Component
 {
     public $name = "";
+    public $competition_scale = "";
     public $duration = "";
     public $min_total_points = "";
     public $required_subjects_count = "";
@@ -43,6 +46,7 @@ class Register extends Component
     {
         return [
             'name' => ['required', 'string'],
+            'competition_scale' => ['required', Rule::in([ProgramCompetitionScale::HIGH_COMPETITION,ProgramCompetitionScale::MODERATE_COMPETITION,ProgramCompetitionScale::LOW_COMPETITION])],
             'duration' => ['required', 'integer', 'min:1', 'max:10'],
             'min_total_points' => ['required', 'integer', 'min:1', 'max:20'],
             'required_subjects_count' => ['required', 'integer', 'min:1', 'max:10'],
@@ -54,6 +58,7 @@ class Register extends Component
         return [
             'name.required' => 'Please insert the name of the program.',
             'name.string' => 'The name of the program should be in alphanumeric characters.',
+            'competition_scale.required' => 'Please choose the competition level of the program.',
             'duration.required' => 'Please insert the duration of the program.',
             'duration.integer' => 'The duration of the program should be in number of years. (Eg. 3)',
             'duration.min' => 'The duration of the program should atleast be 1 year.',
@@ -153,6 +158,7 @@ class Register extends Component
             $institutionRepo = new InstitutionRepository();
             $newProgram = $institutionRepo->addProgram([
                 'name' => $this->name,
+                'competition_scale' => $this->competition_scale,
                 'duration' => $this->duration,
             ], $this->institution_id);
 

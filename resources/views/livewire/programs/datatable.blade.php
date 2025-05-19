@@ -51,16 +51,18 @@
                 <thead>
                     <tr>
                         @foreach ($columns as $column)
-                            <th wire:click="sortBy('{{ $column }}')" style="cursor: pointer;">
+                            <th @if($column != "competition level") wire:click="sortBy('{{ $column }}')" @endif style="cursor: pointer;">
                                 {{ ucfirst($column) }}
-                                @if ($sortField === $column)
-                                    @if ($sortDirection === 'asc')
-                                        <i class="fas fa-sort-up"></i>
+                                @if($column != "competition level")
+                                    @if ($sortField === $column)
+                                        @if ($sortDirection === 'asc')
+                                            <i class="fas fa-sort-up"></i>
+                                        @else
+                                            <i class="fas fa-sort-down"></i>
+                                        @endif
                                     @else
-                                        <i class="fas fa-sort-down"></i>
+                                        <i class="fas fa-sort"></i>
                                     @endif
-                                @else
-                                    <i class="fas fa-sort"></i>
                                 @endif
                             </th>
                         @endforeach

@@ -32,6 +32,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Competition Level</label>
+                            <select id="inputProgramCompetitionLevel" class="form-control @error('competition_scale') is-invalid @enderror" wire:model="competition_scale">
+                                <option selected="" value="">Competition Level</option>
+                                <option value="High Competition">High Competition</option>
+                                <option value="Moderate Competition">Moderate Competition</option>
+                                <option value="Low Competition">Low Competition</option>
+                            </select>
+                            @error('competition_scale')
+                            <span id="inputProgramCompetitionLevel-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="inputProgramDuration">Duration (Number of Years)</label>
                             <input type="number" class="form-control @error('duration') is-invalid @enderror" id="inputProgramDuration" placeholder="Enter Program duration (Eg. 3)" wire:model="duration">
                             @error('duration')

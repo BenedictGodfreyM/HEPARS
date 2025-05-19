@@ -18,7 +18,7 @@ class Datatable extends Component
     public $sortField = 'id';
     public $sortDirection = 'asc';
     public $pageSize = 10;
-    public $columns = ['name','duration'];
+    public $columns = ['name','competition level','duration'];
 
     public $institutionId;
 
