@@ -17,6 +17,23 @@
                     <span id="inputSubjectCode-Error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="inputSubjectType">Type</label>
+                    <div class="row border round mx-1 py-2">
+                        <div class="col-md-6">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="customCheckbox-1" wire:model="is_compulsory">
+                                <label for="customCheckbox-1" class="custom-control-label">Compulsory</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" id="customCheckbox-2" wire:model="is_additional">
+                                <label for="customCheckbox-2" class="custom-control-label">Additional</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>  
             <div class="card-footer">
                 <button type="submit" class="btn btn-success float-right">

@@ -12,6 +12,8 @@ class Edit extends Component
     public $subjectId = "";
     public $name = "";
     public $code = "";
+    public $is_compulsory = false;
+    public $is_additional = false;
 
     public function mount($subject_id)
     {
@@ -19,6 +21,8 @@ class Edit extends Component
         $subjectDetails = (new SubjectRepository())->findSubject($subject_id);
         $this->name = $subjectDetails->name;
         $this->code = $subjectDetails->code;
+        $this->is_compulsory = $subjectDetails->is_compulsory;
+        $this->is_additional = $subjectDetails->is_additional;
     }
 
     public function rules()
@@ -26,6 +30,8 @@ class Edit extends Component
         return [
             'name' => ['required', 'string'],
             'code' => ['required', 'string'],
+            'is_compulsory' => ['required','boolean'],
+            'is_additional' => ['required','boolean'],
         ];
     }
 
@@ -36,6 +42,10 @@ class Edit extends Component
             'name.string' => 'The name of the subject should be in alphanumeric characters.',
             'code.required' => 'Please insert the code of the subject.',
             'code.string' => 'The code of the subject should be in alphanumeric characters.',
+            'is_compulsory.required' => 'Please specify if this subject is compulsory.',
+            'is_compulsory.boolean' => 'This field must be checked as true or false.',
+            'is_additional.required' => 'Please specify if this is an additional subject.',
+            'is_additional.boolean' => 'This field must be checked as true or false.',
         ];
     }
  
@@ -47,6 +57,8 @@ class Edit extends Component
             (new SubjectRepository())->updateSubject([
                 'name' => $this->name,
                 'code' => $this->code,
+                'is_compulsory' => $this->is_compulsory,
+                'is_additional' => $this->is_additional,
             ], $this->subjectId);
             DB::commit();
             $this->dispatch("flash-alert", type: "success", title: "Success", message: "Subject is successfully updated!.");

@@ -11,12 +11,16 @@ class Register extends Component
 {
     public $name = "";
     public $code = "";
+    public $is_compulsory = false;
+    public $is_additional = false;
 
     public function rules()
     {
         return [
             'name' => ['required', 'string'],
             'code' => ['required', 'string'],
+            'is_compulsory' => ['required','boolean'],
+            'is_additional' => ['required','boolean'],
         ];
     }
 
@@ -27,6 +31,10 @@ class Register extends Component
             'name.string' => 'The name of the subject should be in alphanumeric characters.',
             'code.required' => 'Please insert the code of the subject.',
             'code.string' => 'The code of the subject should be in alphanumeric characters.',
+            'is_compulsory.required' => 'Please specify if this subject is compulsory.',
+            'is_compulsory.boolean' => 'This field must be checked as true or false.',
+            'is_additional.required' => 'Please specify if this is an additional subject.',
+            'is_additional.boolean' => 'This field must be checked as true or false.',
         ];
     }
  
@@ -38,6 +46,8 @@ class Register extends Component
             (new SubjectRepository())->storeSubject([
                 'name' => $this->name,
                 'code' => $this->code,
+                'is_compulsory' => $this->is_compulsory,
+                'is_additional' => $this->is_additional,
             ]);
             DB::commit();
             $this->reset();
