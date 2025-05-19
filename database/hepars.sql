@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 19, 2025 at 08:14 AM
+-- Generation Time: May 19, 2025 at 11:58 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `accreditation_institutions` (
   PRIMARY KEY (`id`),
   KEY `accreditation_institutions_accreditation_id_index` (`accreditation_id`),
   KEY `accreditation_institutions_institution_id_index` (`institution_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `accreditation_institutions`
@@ -76,7 +76,9 @@ INSERT INTO `accreditation_institutions` (`id`, `accreditation_id`, `institution
 (3, '41358efa03b04af26873859fe9e15980', '84ec1ffdd439490c07875ae45c1dc7fb', NULL, NULL),
 (4, 'ca4008b0665abc6dd50630d6f047f7fb', '84ec1ffdd439490c07875ae45c1dc7fb', NULL, NULL),
 (5, '41358efa03b04af26873859fe9e15980', 'a71a936a22c94f3044a88a1a0acf05fb', NULL, NULL),
-(6, 'ca4008b0665abc6dd50630d6f047f7fb', 'a71a936a22c94f3044a88a1a0acf05fb', NULL, NULL);
+(6, 'ca4008b0665abc6dd50630d6f047f7fb', 'a71a936a22c94f3044a88a1a0acf05fb', NULL, NULL),
+(8, '41358efa03b04af26873859fe9e15980', 'e7d789969965d30b5d782ed901f42c75', NULL, NULL),
+(9, 'ca4008b0665abc6dd50630d6f047f7fb', 'e7d789969965d30b5d782ed901f42c75', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `career_programs` (
   PRIMARY KEY (`id`),
   KEY `career_programs_program_id_index` (`program_id`),
   KEY `career_programs_career_id_index` (`career_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `career_programs`
@@ -168,7 +170,9 @@ INSERT INTO `career_programs` (`id`, `program_id`, `career_id`, `created_at`, `u
 (6, '6c71a7bbb3398a769abfb1fadb5929a1', 'd64957f8870b8c106729003eac435efe', NULL, NULL),
 (7, 'c7d1b2fc3b1195b94195450ae9c0c9b5', '2c22cee36acb001283b7fc3113a7cfeb', NULL, NULL),
 (8, '63d4bd5e98166ae14a5599b9f85ab96f', 'ae722daad34e68bfc7ed015f538124fb', NULL, NULL),
-(9, '63d4bd5e98166ae14a5599b9f85ab96f', '26088e3530229d17b5e395e67648f469', NULL, NULL);
+(9, '63d4bd5e98166ae14a5599b9f85ab96f', '26088e3530229d17b5e395e67648f469', NULL, NULL),
+(13, '874f91396a7c6f62b220f9bc1ba7b8f3', 'd64957f8870b8c106729003eac435efe', NULL, NULL),
+(14, '019ce65024551f545ac4fb88298394bc', 'de43ec2245836e80a06a0f3629ef17e4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -302,7 +306,6 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('158b0a4c58b7d47097eab72e4f6f2438', '5f614befa559981f694b049ba973dd3f', 4, 2, '2025-05-12 16:10:54', '2025-05-12 16:10:54'),
 ('163774c4d4ed9ae4d27c6f2449df1205', 'c1368857a497441654705eba40d31c59', 6, 3, '2025-05-12 16:43:56', '2025-05-12 16:43:56'),
 ('1716ccb983b5b585d353b38a6a2d9841', 'ebc4a771901acd053c8f21ca146d0eb6', 4, 2, '2025-05-12 15:41:06', '2025-05-12 15:41:06'),
-('1bff5449b05ecf6a4306c09ae13dab2d', '274abe94a2938438bc3d3a0a422da8c3', 8, 3, '2025-05-15 08:57:13', '2025-05-15 08:57:13'),
 ('26f23336f45a68778bafc17cafb89511', '50bd144ecea17982c79347fbbb0b45fd', 4, 2, '2025-05-12 15:35:22', '2025-05-12 15:35:22'),
 ('290d05b881a81bc39a3a3486c80803e3', '6c71a7bbb3398a769abfb1fadb5929a1', 6, 3, '2025-05-15 08:57:38', '2025-05-15 08:57:38'),
 ('2e8ab7c250bda54db1e02c374d6b7c2d', 'c67d1a2b2e50d41ccaef5c7cc7b857db', 4, 2, '2025-05-12 13:54:48', '2025-05-12 13:54:48'),
@@ -321,6 +324,9 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('7a81f762b0d5b02328b8e57fe4d8fa2a', '449b2db1ef0be3148d75b31cf01b4b2f', 4, 2, '2025-05-11 07:52:05', '2025-05-11 07:52:05'),
 ('9331ebae62147c495cbdf0c26d9dda4f', 'df57e1e7f5710b954943617651407528', 4, 2, '2025-05-12 15:53:10', '2025-05-12 15:53:10'),
 ('957d080e00dc8a27786d0ee282239323', '5499b5d315f03a7b33f880eb88545fe6', 6, 3, '2025-05-15 08:57:25', '2025-05-15 08:57:25'),
+('986c0220b3de868944c05264427fc1eb', '019ce65024551f545ac4fb88298394bc', 6, 3, '2025-05-19 08:45:54', '2025-05-19 08:45:54'),
+('9bddf7eb97080a990aa4534e19da8de6', '874f91396a7c6f62b220f9bc1ba7b8f3', 6, 3, '2025-05-19 08:09:31', '2025-05-19 08:09:31'),
+('a89c7f85d3caed62060aea512ec896ab', '274abe94a2938438bc3d3a0a422da8c3', 8, 3, '2025-05-19 07:49:35', '2025-05-19 07:49:35'),
 ('ac0183aef13fe44ec7da3f63dca5b8b9', 'b0e9d87e618d6a5d1257af8e36b720e2', 4, 2, '2025-05-12 15:55:54', '2025-05-12 15:55:54'),
 ('b11ee817938a955e00cb49ad12b72b00', '9d00aa0e1f3822e02abdcc57e0e3bc18', 6, 3, '2025-05-12 16:48:52', '2025-05-12 16:48:52'),
 ('b6017e72385f60d32908fb7d226b4e38', '3041a5d3546187206b68e2e34f1b498c', 4, 2, '2025-05-12 15:26:21', '2025-05-12 15:26:21'),
@@ -350,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `entry_requirement_subjects` (
   PRIMARY KEY (`id`),
   KEY `entry_requirement_subjects_entry_requirement_id_index` (`entry_requirement_id`),
   KEY `entry_requirement_subjects_subject_id_index` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=328 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `entry_requirement_subjects`
@@ -566,9 +572,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (274, '2f4ee60382e42a8a10e5df917518a91a', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'E', NULL, NULL),
 (275, '2f4ee60382e42a8a10e5df917518a91a', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
 (276, '2f4ee60382e42a8a10e5df917518a91a', '79a78e4e6a080e03d3ddf5aaca20b642', 'necessary', 'S', NULL, NULL),
-(277, '1bff5449b05ecf6a4306c09ae13dab2d', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(278, '1bff5449b05ecf6a4306c09ae13dab2d', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
-(279, '1bff5449b05ecf6a4306c09ae13dab2d', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
 (280, '957d080e00dc8a27786d0ee282239323', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
 (281, '957d080e00dc8a27786d0ee282239323', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (282, '957d080e00dc8a27786d0ee282239323', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
@@ -594,7 +597,18 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (322, '4cb419dcde84b235311983f2cacca372', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'E', NULL, NULL),
 (323, '4cb419dcde84b235311983f2cacca372', 'de52cabd871248ebd540e4c1616d8477', 'required', 'E', NULL, NULL),
 (324, '4cb419dcde84b235311983f2cacca372', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
-(325, '4cb419dcde84b235311983f2cacca372', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL);
+(325, '4cb419dcde84b235311983f2cacca372', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(331, 'a89c7f85d3caed62060aea512ec896ab', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(332, 'a89c7f85d3caed62060aea512ec896ab', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(333, 'a89c7f85d3caed62060aea512ec896ab', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
+(335, '9bddf7eb97080a990aa4534e19da8de6', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(336, '9bddf7eb97080a990aa4534e19da8de6', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(337, '9bddf7eb97080a990aa4534e19da8de6', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(338, '986c0220b3de868944c05264427fc1eb', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(339, '986c0220b3de868944c05264427fc1eb', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(340, '986c0220b3de868944c05264427fc1eb', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(341, '986c0220b3de868944c05264427fc1eb', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(342, '986c0220b3de868944c05264427fc1eb', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -670,7 +684,8 @@ CREATE TABLE IF NOT EXISTS `institutions` (
 INSERT INTO `institutions` (`id`, `name`, `acronym`, `type`, `ownership`, `code`, `location`, `created_at`, `updated_at`, `admission_portal_link`, `rank`, `affiliation_id`) VALUES
 ('24c41e67b7e00c6fd19b14a5efae3a98', 'Ardhi University', 'ARU', 'University', 'Public', 'AR', 'Dar es Salaam', '2025-02-28 10:32:30', '2025-05-17 15:15:59', 'https://admission.aru.ac.tz/', 4, NULL),
 ('84ec1ffdd439490c07875ae45c1dc7fb', ' Muhimbili  University of  Health and  Allied Sciences', 'MUHAS', 'University', 'Public', 'MH', 'Dar es  Salaam', '2025-03-05 06:45:20', '2025-05-16 16:21:47', 'https://oas.muhas.ac.tz', 2, NULL),
-('a71a936a22c94f3044a88a1a0acf05fb', ' University of  Dar es Salaam ', 'UDSM', 'University', 'Public', 'UD', 'Dar es  Salaam ', '2025-03-05 06:46:32', '2025-05-09 11:50:50', 'https://admission.udsm.ac.tz', 1, NULL);
+('a71a936a22c94f3044a88a1a0acf05fb', ' University of  Dar es Salaam ', 'UDSM', 'University', 'Public', 'UD', 'Dar es  Salaam ', '2025-03-05 06:46:32', '2025-05-09 11:50:50', 'https://admission.udsm.ac.tz', 1, NULL),
+('e7d789969965d30b5d782ed901f42c75', 'Kairuki University', 'KU', 'University', 'Private', 'HK', 'Dar es Salaam', '2025-05-19 08:05:25', '2025-05-19 08:05:25', 'https://osim.hkmu.ac.tz', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -724,7 +739,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -756,7 +771,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (32, '2025_05_17_052535_add_affiliation_id_to_institutions_table', 9),
 (33, '2025_05_18_052535_add_category_to_combinations_table', 10),
 (34, '2025_05_18_052536_add_is_compulsory_to_subjects_table', 11),
-(35, '2025_05_18_052537_add_is_additional_to_subjects_table', 11);
+(35, '2025_05_18_052537_add_is_additional_to_subjects_table', 11),
+(37, '2025_05_19_052537_add_competition_scale_to_programs_table', 12);
 
 -- --------------------------------------------------------
 
@@ -844,6 +860,7 @@ CREATE TABLE IF NOT EXISTS `programs` (
   `duration` tinyint NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `competition_scale` enum('High Competition','Moderate Competition','Low Competition') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `programs_institution_id_index` (`institution_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -852,41 +869,43 @@ CREATE TABLE IF NOT EXISTS `programs` (
 -- Dumping data for table `programs`
 --
 
-INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`, `updated_at`) VALUES
-('1dca1fe90b6afd34e477b9405c1a1f1c', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Quantity Surveying and Construction Economics', 4, '2025-05-12 16:18:55', '2025-05-12 16:18:55'),
-('23240d5fa46f8ea7e2e8e403cbad0ffa', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Regional Development Planning', 4, '2025-05-12 15:45:08', '2025-05-12 15:45:08'),
-('274abe94a2938438bc3d3a0a422da8c3', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Nursing', 4, '2025-03-14 07:31:43', '2025-03-14 07:31:43'),
-('2898adbdcc25d3d7b23651ee5e80abb1', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Municipal and Industrial Services Engineering', 4, '2025-05-10 17:26:19', '2025-05-10 17:26:19'),
-('2df21b54695076255c90a8e3bc1949a0', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Environmental Laboratory Science and Technology', 4, '2025-05-12 16:24:57', '2025-05-12 16:24:57'),
-('3041a5d3546187206b68e2e34f1b498c', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Housing and Infrastructure Planning', 4, '2025-05-12 15:26:21', '2025-05-12 15:26:21'),
-('32f2acf3761302ddd4f73347a49cd526', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Architecture ', 5, '2025-03-07 11:26:46', '2025-03-07 11:26:46'),
-('3ec5e6b0206ab1fa3d4c63ca141f24ef', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Landscape  Architecture ', 4, '2025-03-08 08:24:49', '2025-03-08 08:24:49'),
-('42e1316d01cedc078337729829653b5b', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Physiotherapy', 4, '2025-05-12 12:50:39', '2025-05-12 12:50:39'),
-('449b2db1ef0be3148d75b31cf01b4b2f', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Interior  Design ', 4, '2025-03-08 08:18:31', '2025-03-08 08:18:31'),
-('508abd074cee03faa487e0d9052a1d03', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Land Management and Valuation', 4, '2025-05-12 15:31:26', '2025-05-12 15:31:26'),
-('50bd144ecea17982c79347fbbb0b45fd', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Information  Systems  Management', 3, '2025-03-07 11:19:50', '2025-03-07 11:19:50'),
-('5499b5d315f03a7b33f880eb88545fe6', '84ec1ffdd439490c07875ae45c1dc7fb', 'Doctor of Dental Surgery', 5, '2025-05-12 16:56:06', '2025-05-12 16:56:06'),
-('5631f8c13e9880d8bfa150c72589b695', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Geomatics ', 4, '2025-03-08 08:30:24', '2025-03-08 08:30:24'),
-('587a540cab0235453b49f13f24770736', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Arts in Economics', 3, '2025-05-12 15:59:22', '2025-05-12 15:59:22'),
-('5f614befa559981f694b049ba973dd3f', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Accounting and Finance', 3, '2025-05-12 16:10:54', '2025-05-12 16:10:54'),
-('63d4bd5e98166ae14a5599b9f85ab96f', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Environmental Health Sciences', 3, '2025-05-12 17:04:55', '2025-05-12 17:04:55'),
-('6c71a7bbb3398a769abfb1fadb5929a1', '84ec1ffdd439490c07875ae45c1dc7fb', 'Doctor of Medicine', 5, '2025-03-14 05:12:01', '2025-03-14 05:12:01'),
-('756478f8bdd193b72d499db2538b66bb', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Computer Systems and Networks', 3, '2025-05-10 16:06:35', '2025-05-10 16:06:35'),
-('7a60250a7cd96e92cdb9d85ecbf500e7', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Geographical Information Systems and Remote Sensing', 3, '2025-05-12 16:21:53', '2025-05-12 16:21:53'),
-('7bcc3a2490d7ee562c8dc8cac9a25bd2', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Biomedical Engineering', 4, '2025-05-12 12:48:21', '2025-05-12 12:48:21'),
-('9d00aa0e1f3822e02abdcc57e0e3bc18', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Diagnostic and Therapeutic Radiography', 4, '2025-05-12 16:48:52', '2025-05-12 16:48:52'),
-('9f8815cbb3c5245a6fdf81c9d2a2191a', 'a71a936a22c94f3044a88a1a0acf05fb', 'Bachelor of Science in Beekeeping Science and Technology', 3, '2025-05-13 12:09:38', '2025-05-13 12:09:38'),
-('a6d09a6a2942b5ed6c5150b4bb909b74', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Arts in Community Development', 3, '2025-05-10 16:50:13', '2025-05-10 16:50:13'),
-('acde11ba72feede28e96137d431ca186', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Civil Engineering', 4, '2025-05-12 16:01:01', '2025-05-12 16:01:01'),
-('b0e9d87e618d6a5d1257af8e36b720e2', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Urban and Regional Planning', 4, '2025-05-12 15:55:54', '2025-05-12 15:55:54'),
-('ba47e9cf0055abce55d33e7ad7200626', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Occupational Therapy', 4, '2025-05-12 16:53:25', '2025-05-12 16:53:25'),
-('c1368857a497441654705eba40d31c59', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Medical Laboratory Sciences', 3, '2025-05-12 16:43:56', '2025-05-12 16:43:56'),
-('c67d1a2b2e50d41ccaef5c7cc7b857db', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Environmental Science and  Management ', 4, '2025-03-08 08:57:33', '2025-03-08 11:36:18'),
-('c7d1b2fc3b1195b94195450ae9c0c9b5', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Pharmacy', 4, '2025-03-14 05:15:12', '2025-03-14 05:15:12'),
-('cd9323c76d11b08ba1b98764b68ba470', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Audiology & Speech Language Pathology', 4, '2025-05-12 16:51:15', '2025-05-12 16:51:15'),
-('df57e1e7f5710b954943617651407528', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Real Estate, Finance and Investment', 4, '2025-05-12 15:53:10', '2025-05-12 15:53:10'),
-('e490db7b5a98a0aa59eebd9ba8986bb3', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Environmental  Engineering ', 4, '2025-03-08 08:32:02', '2025-03-08 11:53:15'),
-('ebc4a771901acd053c8f21ca146d0eb6', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Property and Facility Management', 4, '2025-05-12 15:41:06', '2025-05-12 15:41:06');
+INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`, `updated_at`, `competition_scale`) VALUES
+('019ce65024551f545ac4fb88298394bc', 'e7d789969965d30b5d782ed901f42c75', 'Bachelor of Science in Nursing', 4, '2025-05-19 08:45:54', '2025-05-19 08:45:54', 'Moderate Competition'),
+('1dca1fe90b6afd34e477b9405c1a1f1c', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Quantity Surveying and Construction Economics', 4, '2025-05-12 16:18:55', '2025-05-12 16:18:55', 'Low Competition'),
+('23240d5fa46f8ea7e2e8e403cbad0ffa', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Regional Development Planning', 4, '2025-05-12 15:45:08', '2025-05-12 15:45:08', 'Low Competition'),
+('274abe94a2938438bc3d3a0a422da8c3', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Nursing', 4, '2025-03-14 07:31:43', '2025-05-19 07:42:10', 'High Competition'),
+('2898adbdcc25d3d7b23651ee5e80abb1', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Municipal and Industrial Services Engineering', 4, '2025-05-10 17:26:19', '2025-05-10 17:26:19', 'Low Competition'),
+('2df21b54695076255c90a8e3bc1949a0', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Environmental Laboratory Science and Technology', 4, '2025-05-12 16:24:57', '2025-05-12 16:24:57', 'Low Competition'),
+('3041a5d3546187206b68e2e34f1b498c', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Housing and Infrastructure Planning', 4, '2025-05-12 15:26:21', '2025-05-12 15:26:21', 'Low Competition'),
+('32f2acf3761302ddd4f73347a49cd526', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Architecture ', 5, '2025-03-07 11:26:46', '2025-03-07 11:26:46', 'Low Competition'),
+('3ec5e6b0206ab1fa3d4c63ca141f24ef', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Landscape  Architecture ', 4, '2025-03-08 08:24:49', '2025-03-08 08:24:49', 'Low Competition'),
+('42e1316d01cedc078337729829653b5b', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Physiotherapy', 4, '2025-05-12 12:50:39', '2025-05-12 12:50:39', 'High Competition'),
+('449b2db1ef0be3148d75b31cf01b4b2f', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Interior  Design ', 4, '2025-03-08 08:18:31', '2025-03-08 08:18:31', 'Low Competition'),
+('508abd074cee03faa487e0d9052a1d03', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Land Management and Valuation', 4, '2025-05-12 15:31:26', '2025-05-12 15:31:26', 'Low Competition'),
+('50bd144ecea17982c79347fbbb0b45fd', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Information  Systems  Management', 3, '2025-03-07 11:19:50', '2025-03-07 11:19:50', 'Low Competition'),
+('5499b5d315f03a7b33f880eb88545fe6', '84ec1ffdd439490c07875ae45c1dc7fb', 'Doctor of Dental Surgery', 5, '2025-05-12 16:56:06', '2025-05-12 16:56:06', 'High Competition'),
+('5631f8c13e9880d8bfa150c72589b695', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Geomatics ', 4, '2025-03-08 08:30:24', '2025-03-08 08:30:24', 'Low Competition'),
+('587a540cab0235453b49f13f24770736', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Arts in Economics', 3, '2025-05-12 15:59:22', '2025-05-12 15:59:22', 'Low Competition'),
+('5f614befa559981f694b049ba973dd3f', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Accounting and Finance', 3, '2025-05-12 16:10:54', '2025-05-12 16:10:54', 'Low Competition'),
+('63d4bd5e98166ae14a5599b9f85ab96f', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Environmental Health Sciences', 3, '2025-05-12 17:04:55', '2025-05-12 17:04:55', 'High Competition'),
+('6c71a7bbb3398a769abfb1fadb5929a1', '84ec1ffdd439490c07875ae45c1dc7fb', 'Doctor of Medicine', 5, '2025-03-14 05:12:01', '2025-03-14 05:12:01', 'High Competition'),
+('756478f8bdd193b72d499db2538b66bb', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Computer Systems and Networks', 3, '2025-05-10 16:06:35', '2025-05-10 16:06:35', 'Low Competition'),
+('7a60250a7cd96e92cdb9d85ecbf500e7', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Geographical Information Systems and Remote Sensing', 3, '2025-05-12 16:21:53', '2025-05-12 16:21:53', 'Low Competition'),
+('7bcc3a2490d7ee562c8dc8cac9a25bd2', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Biomedical Engineering', 4, '2025-05-12 12:48:21', '2025-05-12 12:48:21', 'High Competition'),
+('874f91396a7c6f62b220f9bc1ba7b8f3', 'e7d789969965d30b5d782ed901f42c75', 'Doctor of Medicine', 5, '2025-05-19 08:09:31', '2025-05-19 08:09:31', 'Moderate Competition'),
+('9d00aa0e1f3822e02abdcc57e0e3bc18', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Diagnostic and Therapeutic Radiography', 4, '2025-05-12 16:48:52', '2025-05-12 16:48:52', 'High Competition'),
+('9f8815cbb3c5245a6fdf81c9d2a2191a', 'a71a936a22c94f3044a88a1a0acf05fb', 'Bachelor of Science in Beekeeping Science and Technology', 3, '2025-05-13 12:09:38', '2025-05-13 12:09:38', 'Low Competition'),
+('a6d09a6a2942b5ed6c5150b4bb909b74', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Arts in Community Development', 3, '2025-05-10 16:50:13', '2025-05-10 16:50:13', 'Low Competition'),
+('acde11ba72feede28e96137d431ca186', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Civil Engineering', 4, '2025-05-12 16:01:01', '2025-05-12 16:01:01', 'Low Competition'),
+('b0e9d87e618d6a5d1257af8e36b720e2', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Urban and Regional Planning', 4, '2025-05-12 15:55:54', '2025-05-12 15:55:54', 'Low Competition'),
+('ba47e9cf0055abce55d33e7ad7200626', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Occupational Therapy', 4, '2025-05-12 16:53:25', '2025-05-12 16:53:25', 'High Competition'),
+('c1368857a497441654705eba40d31c59', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Medical Laboratory Sciences', 3, '2025-05-12 16:43:56', '2025-05-12 16:43:56', 'High Competition'),
+('c67d1a2b2e50d41ccaef5c7cc7b857db', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Environmental Science and  Management ', 4, '2025-03-08 08:57:33', '2025-03-08 11:36:18', 'Low Competition'),
+('c7d1b2fc3b1195b94195450ae9c0c9b5', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Pharmacy', 4, '2025-03-14 05:15:12', '2025-03-14 05:15:12', 'High Competition'),
+('cd9323c76d11b08ba1b98764b68ba470', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Audiology & Speech Language Pathology', 4, '2025-05-12 16:51:15', '2025-05-12 16:51:15', 'High Competition'),
+('df57e1e7f5710b954943617651407528', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Real Estate, Finance and Investment', 4, '2025-05-12 15:53:10', '2025-05-12 15:53:10', 'Low Competition'),
+('e490db7b5a98a0aa59eebd9ba8986bb3', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Environmental  Engineering ', 4, '2025-03-08 08:32:02', '2025-03-08 11:53:15', 'Low Competition'),
+('ebc4a771901acd053c8f21ca146d0eb6', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Property and Facility Management', 4, '2025-05-12 15:41:06', '2025-05-12 15:41:06', 'Low Competition');
 
 -- --------------------------------------------------------
 
@@ -951,7 +970,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('92zbNjQ7V8T5T5BUrdTPefhKYOudC1gIVAMwgpXx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibjNJM3lXdHZIQnhFQnRQSm9CanBDaDFIUkZJNWIyWDNVdDNtS2pORSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1747642395);
+('92zbNjQ7V8T5T5BUrdTPefhKYOudC1gIVAMwgpXx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibjNJM3lXdHZIQnhFQnRQSm9CanBDaDFIUkZJNWIyWDNVdDNtS2pORSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6Imluc3RpdHV0aW9uX2lkIjtzOjMyOiI4NGVjMWZmZGQ0Mzk0OTBjMDc4NzVhZTQ1YzFkYzdmYiI7czoxMDoicHJvZ3JhbV9pZCI7czozMjoiNDJlMTMxNmQwMWNlZGMwNzgzMzc3Mjk4Mjk2NTNiNWIiO30=', 1747655256);
 
 -- --------------------------------------------------------
 
