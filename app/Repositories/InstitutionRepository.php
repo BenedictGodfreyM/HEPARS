@@ -149,6 +149,7 @@ class InstitutionRepository
         $institution = Institution::findOrFail($institution_id);
         return $institution->programs()->create([
             'name' => $data['name'],
+            'competition_scale' => $data['competition_scale'],
             'duration' => $data['duration'],
         ]);
     }
