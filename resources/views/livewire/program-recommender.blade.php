@@ -1,6 +1,6 @@
 <div>
     <div class="callout callout-info">
-        <h5>Hello!</h5>
+        <h5>Hello!</h5> 
         <p>
             Welcome to the Higher Education Program Recommendation System. 
             We look forward to helping you find the appropriate undergraduate program that best serves your interests. 
@@ -106,6 +106,9 @@
                             <div class="comment-text">
                                 <span class="username">
                                     {{ $recomendation->name }}
+                                    @if($recomendation->competition_scale === "High Competition")
+                                    <span class="badge bg-danger">High Competition</span>
+                                    @endif
                                     <span class="text-muted float-right">{{ $recomendation->duration }} Years ({{ ($recomendation->duration * 2) }} Semesters)</span>
                                 </span>
                                 Offered by: 
@@ -116,12 +119,18 @@
                                 </cite>
                                 <br>
                                 Institution Status: 
-                                <cite title="{{ $recomendation->institution->accreditation_status }}">{{ $recomendation->institution->accreditation_status }}</cite>
-                                <br>
+                                <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->accreditation_status }}</cite>
                                 @if($recomendation->institution->affiliatedTo)
+                                <br>
                                 Affiliated To:
-                                <cite title="{{ $recomendation->institution->affiliatedTo->name }}">{{ $recomendation->institution->affiliatedTo->name }} ({{ $recomendation->institution->affiliatedTo->acronym }})</cite>
+                                <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->affiliatedTo->name }} ({{ $recomendation->institution->affiliatedTo->acronym }})</cite>
                                 @endif
+                                <br>
+                                <cite title="Link to Admission Portal">
+                                    <a href="{{ $recomendation->institution->admission_portal_link }}" class="link-black text-sm" target="_blank">
+                                        <i class="fas fa-link mr-1"></i> Link to Admission Portal
+                                    </a>
+                                </cite>
                             </div>
                         </div>
                         @endforeach
@@ -150,7 +159,10 @@
                         <div class="card-comment">
                             <div class="comment-text">
                                 <span class="username">
-                                    {{ $recomendation->name }}
+                                    {{ $recomendation->name }} 
+                                    @if($recomendation->competition_scale === "High Competition")
+                                    <span class="badge bg-danger">High Competition</span>
+                                    @endif
                                     <span class="text-muted float-right">{{ $recomendation->duration }} Years ({{ ($recomendation->duration * 2) }} Semesters)</span>
                                 </span>
                                 Offered by: 
@@ -161,12 +173,18 @@
                                 </cite>
                                 <br>
                                 Institution Status: 
-                                <cite title="{{ $recomendation->institution->accreditation_status }}">{{ $recomendation->institution->accreditation_status }}</cite>
-                                <br>
+                                <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->accreditation_status }}</cite>
                                 @if($recomendation->institution->affiliatedTo)
+                                <br>
                                 Affiliated To:
-                                <cite title="{{ $recomendation->institution->affiliatedTo->name }}">{{ $recomendation->institution->affiliatedTo->name }} ({{ $recomendation->institution->affiliatedTo->acronym }})</cite>
+                                <cite title="{{ $recomendation->institution->name }}">{{ $recomendation->institution->affiliatedTo->name }} ({{ $recomendation->institution->affiliatedTo->acronym }})</cite>
                                 @endif
+                                <br>
+                                <cite title="Link to Admission Portal">
+                                    <a href="{{ $recomendation->institution->admission_portal_link }}" class="link-black text-sm" target="_blank">
+                                        <i class="fas fa-link mr-1"></i> Link to Admission Portal
+                                    </a>
+                                </cite>
                             </div>
                         </div>
                         @endforeach
