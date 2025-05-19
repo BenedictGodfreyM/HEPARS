@@ -34,7 +34,18 @@ class Program extends Model
         'institution_id',
         'name',
         'duration',
+        'competition_scale'
     ];
+    
+    /**
+     * Get the level of competition of the program.
+     * 
+     * @return string
+     */
+    public function getCompetitionLevelAttribute(): string
+    {
+        return ($this->competition_scale);
+    }
 
     public function institution(): BelongsTo
     {
