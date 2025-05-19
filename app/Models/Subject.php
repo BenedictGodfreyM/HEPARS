@@ -32,7 +32,34 @@ class Subject extends Model
     protected $fillable = [
         'name',
         'code',
+        'is_compulsory',
+        'is_additional',
     ];
+
+    protected $casts = [
+        'is_compulsory' => 'boolean',
+        'is_additional' => 'boolean',
+    ];
+    
+    /**
+     * Get the text response if a subject must be taken (by all students) in addition to other subjects.
+     * 
+     * @return string
+     */
+    public function getCompulsoryAttribute(): string
+    {
+        return (($this->is_compulsory) ? "Yes" : "No");
+    }
+    
+    /**
+     * Get the text response if a subject can be taken in addition to other subjects.
+     * 
+     * @return string
+     */
+    public function getAdditionalAttribute(): string
+    {
+        return (($this->is_additional) ? "Yes" : "No");
+    }
 
     public function entryRequirements(): BelongsToMany
     {
