@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label>Affiliated To</label>
-                            <select id="inputInstitutionAffiliation" class="form-control @error('affiliation_id') is-invalid @enderror" wire:model="affiliation_id">
+                            <select id="inputInstitutionAffiliation" class="form-control @error('affiliation_id') is-invalid @enderror" wire:change="retrieveMotherInstitutionDetails($event.target.value)" wire:loading.attr="disabled" wire:model="affiliation_id">
                                 <option selected="" value="">Select an Institution</option>
                                 @forelse ($allMotherInstitutions as $institution)
                                 <option value="{{ $institution['id'] }}">{{ $institution['name'] }} ({{ $institution['acronym'] }})</option>
@@ -47,52 +47,87 @@
                         </div>
                         <div class="form-group">
                             <label for="inputInstitutionAcronym">Acronym</label>
-                            <input type="text" class="form-control @error('acronym') is-invalid @enderror" id="inputInstitutionAcronym" placeholder="Enter institution acronym (Eg. ARU)" wire:model="acronym">
-                            @error('acronym')
-                            <span id="inputInstitutionAcronym-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <input type="text" class="form-control @error('acronym') is-invalid @enderror" id="inputInstitutionAcronym" placeholder="Enter institution acronym (Eg. ARU)" wire:model="acronym">
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('acronym')
+                                <span id="inputInstitutionAcronym-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Type</label>
-                            <select id="inputInstitutionType" class="form-control @error('type') is-invalid @enderror" wire:model="type">
-                                <option selected="">Select Institution Type</option>
-                                <option value="University">University</option>
-                                <option value="University College">University College</option>
-                                <option value="University Campus College">University Campus College</option>
-                                <option value="Non-University">Non-University</option>
-                            </select>
-                            @error('type')
-                            <span id="inputInstitutionType-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <select id="inputInstitutionType" class="form-control @error('type') is-invalid @enderror" wire:model="type">
+                                    <option selected="">Select Institution Type</option>
+                                    <option value="University">University</option>
+                                    <option value="University College">University College</option>
+                                    <option value="University Campus College">University Campus College</option>
+                                    <option value="Non-University">Non-University</option>
+                                </select>
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('type')
+                                <span id="inputInstitutionType-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Ownership</label>
-                            <select id="inputInstitutionOwnership" class="form-control @error('ownership') is-invalid @enderror" wire:model="ownership">
-                                <option selected="">Select Institution Ownership</option>
-                                <option value="Private">Private</option>
-                                <option value="Public">Public</option>
-                            </select>
-                            @error('ownership')
-                            <span id="inputInstitutionOwnership-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <select id="inputInstitutionOwnership" class="form-control @error('ownership') is-invalid @enderror" wire:loading.attr="disabled" wire:model="ownership">
+                                    <option selected="">Select Institution Ownership</option>
+                                    <option value="Private">Private</option>
+                                    <option value="Public">Public</option>
+                                </select>
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('ownership')
+                                <span id="inputInstitutionOwnership-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="inputInstitutionRank">Rank</label>
-                            <input type="number" class="form-control @error('rank') is-invalid @enderror" id="inputInstitutionRank" placeholder="Enter institution's rank (Eg. 2)" wire:model="rank">
-                            @error('rank')
-                            <span id="inputInstitutionRank-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <input type="number" class="form-control @error('rank') is-invalid @enderror" id="inputInstitutionRank" placeholder="Enter institution's rank (Eg. 2)" wire:loading.attr="disabled" wire:model="rank">
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('rank')
+                                <span id="inputInstitutionRank-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="inputInstitutionAccreditationStatus">Accreditation Status</label>
-                            <select class="form-control" wire:change="addAccreditationToSelection($event.target.value)" id="inputInstitutionAccreditationStatus" wire:model="selectedOption">
-                                <option selected disabled value="">Select an Accreditation Status</option>
-                                @forelse ($availableAccreditations as $accreditation)
-                                <option value="{{ $accreditation['id'] }}">{{ $accreditation['status'] }}</option>
-                                @empty
-                                <option value="">No Data Available</option>
-                                @endforelse
-                            </select>
+                            <div class="input-group">
+                                <select class="form-control" wire:change="addAccreditationToSelection($event.target.value)" id="inputInstitutionAccreditationStatus" wire:loading.attr="disabled" wire:model="selectedOption">
+                                    <option selected disabled value="">Select an Accreditation Status</option>
+                                    @forelse ($availableAccreditations as $accreditation)
+                                    <option value="{{ $accreditation['id'] }}">{{ $accreditation['status'] }}</option>
+                                    @empty
+                                    <option value="">No Data Available</option>
+                                    @endforelse
+                                </select>
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         @if(count($selectedAccreditations) > 0)
                         @foreach($selectedAccreditations as $index => $AccreditationData)
@@ -116,24 +151,45 @@
                         </div>
                         <div class="form-group">
                             <label for="inputInstitutionCode">Code</label>
-                            <input type="text" class="form-control @error('code') is-invalid @enderror" id="inputInstitutionCode" placeholder="Enter institution's TCU code (Eg. AR)" wire:model="code">
-                            @error('code')
-                            <span id="inputInstitutionCode-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <input type="text" class="form-control @error('code') is-invalid @enderror" id="inputInstitutionCode" placeholder="Enter institution's TCU code (Eg. AR)" wire:loading.attr="disabled" wire:model="code">
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('code')
+                                <span id="inputInstitutionCode-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="inputInstitutionLocation">Location</label>
-                            <input type="text" class="form-control @error('location') is-invalid @enderror" id="inputInstitutionLocation" placeholder="Enter institution's geographical location (Eg. Dar es Salaam)" wire:model="location">
-                            @error('location')
-                            <span id="inputInstitutionLocation-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <input type="text" class="form-control @error('location') is-invalid @enderror" id="inputInstitutionLocation" placeholder="Enter institution's geographical location (Eg. Dar es Salaam)" wire:loading.attr="disabled" wire:model="location">
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('location')
+                                <span id="inputInstitutionLocation-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="inputInstitutionAdmissionPortalLink">Admission Portal Link</label>
-                            <input type="text" class="form-control @error('admission_portal_link') is-invalid @enderror" id="inputInstitutionAdmissionPortalLink" placeholder="Enter institution's admission portal link (Eg. https://www.domain.ac.tz)" wire:model="admission_portal_link">
-                            @error('admission_portal_link')
-                            <span id="inputInstitutionAdmissionPortalLink-Error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                            <div class="input-group">
+                                <input type="text" class="form-control @error('admission_portal_link') is-invalid @enderror" id="inputInstitutionAdmissionPortalLink" placeholder="Enter institution's admission portal link (Eg. https://www.domain.ac.tz)" wire:loading.attr="disabled" wire:model="admission_portal_link">
+                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
+                                    </span>
+                                </div>
+                                @error('admission_portal_link')
+                                <span id="inputInstitutionAdmissionPortalLink-Error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>  
                     <div class="card-footer">

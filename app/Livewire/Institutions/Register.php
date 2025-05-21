@@ -70,6 +70,22 @@ class Register extends Component
             'rank.integer' => 'The rank of the institution should be in digits. (Eg. 4)',
             'rank.min' => 'The highest rank is represented by number one (1).',
         ];
+    }    
+
+    public function retrieveMotherInstitutionDetails($institutionID)
+    {
+        $MotherInstitutionDetails = (new InstitutionRepository)->findInstitution($institutionID);
+        $this->acronym = $MotherInstitutionDetails->acronym;
+        $this->type = $MotherInstitutionDetails->type;
+        $this->ownership = $MotherInstitutionDetails->ownership;
+        $this->code = $MotherInstitutionDetails->code;
+        $this->location = $MotherInstitutionDetails->location;
+        $this->admission_portal_link = $MotherInstitutionDetails->admission_portal_link;
+        $this->rank = $MotherInstitutionDetails->rank;
+        $this->selectedAccreditations = [];
+        foreach($MotherInstitutionDetails->accreditations as $index => $accreditation){
+            $this->addAccreditationToSelection($accreditation->id);
+        }
     }
 
     private function accreditationExists($accreditations, $targetAccreditationStatus)
@@ -87,10 +103,7 @@ class Register extends Component
         $accreditation = call_user_func_array('array_merge', array_filter($this->availableAccreditations->toArray(), function($accreditation) use ($accreditationID) { 
             return $accreditation['id'] === $accreditationID; 
         }));
-        if ($this->accreditationExists($this->selectedAccreditations, $accreditation['status'])) {
-            $this->dispatch("flash-alert", type: "info", title: "Info", message: "You've already selected the accreditation status!.");
-            return;
-        }
+        if ($this->accreditationExists($this->selectedAccreditations, $accreditation['status'])) return;
         $this->selectedAccreditations[] = $accreditation;
         $this->selectedOption = '';
     }
