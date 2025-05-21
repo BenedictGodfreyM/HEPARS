@@ -99,7 +99,9 @@
                 </div>
                 <div class="modal-body">
                     @if(count($recommendations['BasedOnSelectedCareer']) > 0)
+                    @if(count($recommendations['BasedOnRelatedCareers']) > 0)
                     <h5>Based on your Career Choice</h5>
+                    @endif
                     <div class="card-comments px-2 py-2">
                         @foreach($recommendations['BasedOnSelectedCareer'] as $key => $recomendation)
                         <div class="card-comment">
