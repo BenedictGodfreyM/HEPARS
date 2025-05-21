@@ -150,20 +150,6 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="inputInstitutionCode">Code</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control @error('code') is-invalid @enderror" id="inputInstitutionCode" placeholder="Enter institution's TCU code (Eg. AR)" wire:loading.attr="disabled" wire:model="code">
-                                <div class="input-group-append" wire:loading wire:target="retrieveMotherInstitutionDetails">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-1x fa-spinner fa-spin py-1"></i>
-                                    </span>
-                                </div>
-                                @error('code')
-                                <span id="inputInstitutionCode-Error" class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="inputInstitutionLocation">Location</label>
                             <div class="input-group">
                                 <input type="text" class="form-control @error('location') is-invalid @enderror" id="inputInstitutionLocation" placeholder="Enter institution's geographical location (Eg. Dar es Salaam)" wire:loading.attr="disabled" wire:model="location">

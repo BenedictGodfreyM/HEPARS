@@ -94,13 +94,6 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <label for="inputInstitutionCode">Code</label>
-                    <input type="text" class="form-control @error('code') is-invalid @enderror" id="inputInstitutionCode" placeholder="Enter institution's TCU code (Eg. AR)" wire:model="code">
-                    @error('code')
-                    <span id="inputInstitutionCode-Error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label for="inputInstitutionLocation">Location</label>
                     <input type="text" class="form-control @error('location') is-invalid @enderror" id="inputInstitutionLocation" placeholder="Enter institution's geographical location (Eg. Dar es Salaam)" wire:model="location">
                     @error('location')
