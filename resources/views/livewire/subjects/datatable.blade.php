@@ -72,7 +72,7 @@
                 <tbody>
                     <tr>
                         @forelse ($data as $item)
-                            <tr>
+                            <tr wire:key="{{ $item->id }}">
                                 @foreach ($columns as $column)
                                     <td>{{ $item->$column }}</td>
                                 @endforeach
