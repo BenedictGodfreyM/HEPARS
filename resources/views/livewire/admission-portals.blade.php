@@ -2,15 +2,15 @@
     <div class="card card-solid">
         <div class="card-header">
             <h3 class="card-title">
-                @if($data->count() > 10)
+                @if($data->count() > 9)
                 <div class="input-group input-group-sm my-1" style="width: 110px;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Items:</span>
                     </div>
                     <select class="form-control" wire:model.live="pageSize">
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
+                        <option value="9">9</option>
+                        <option value="18">18</option>
+                        <option value="27">27</option>
                     </select>
                 </div>
                 @endif
@@ -31,7 +31,7 @@
         <div class="card-body">
             <div class="row">
                 @forelse ($data as $item)
-                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column" wire:key="{{ $item->id }}">
                         <div class="card bg-light d-flex flex-fill">
                             <div class="card-body pt-3">
                                 <div class="row">
