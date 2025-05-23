@@ -36,12 +36,12 @@
                         </div>
                         @if(count($selectedSubjects) > 0)
                         @foreach($selectedSubjects as $index => $subjectData)
-                        <div class="form-group" wire:loading.remove wire:target="addCombinationSubjectsToSelection">
+                        <div class="form-group" wire:key="{{ $index }}" wire:loading.remove wire:target="addCombinationSubjectsToSelection">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">{{ $subjectData['subject']['name'] }}:</span>
                                 </div>
-                                <select class="form-control" wire:change="updateSelectedSubject({{ $index }}, $event.target.value)" required>
+                                <select class="form-control" wire:model="selectedSubjects.{{ $index }}.grade" required>
                                     <option value="" disabled selected>--Select Grade--</option>
                                     @foreach($availableGrades as $grade)
                                         <option value="{{ $grade }}">{{ $grade }}</option>

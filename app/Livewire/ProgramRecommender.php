@@ -66,26 +66,13 @@ class ProgramRecommender extends Component
         $combination = (new CombinationRepository())->findCombination($combinationID);
         $this->selectedSubjects = $selectedSubjectIDs = [];
         foreach($combination->subjects as $key => $subject){
-            $selectionToAdd = ['subject' => $subject, 'grade' => null];
+            $selectionToAdd = ['subject' => $subject, 'grade' => ''];
             if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
-                $this->selectedSubjects[] = $selectionToAdd;
-                $selectedSubjectIDs[] = $subject->id;
+                $this->selectedSubjects[$key] = $selectionToAdd;
+                $selectedSubjectIDs[$key] = $subject->id;
             }
         }
         $this->careerFields = (new FieldRepository)->allFieldsAssociatedWith($selectedSubjectIDs);
-    }
-
-    public function removeSubjectFromSelection($index)
-    {
-        unset($this->selectedSubjects[$index]);
-        $this->selectedSubjects = array_values($this->selectedSubjects);
-    }
-
-    public function updateSelectedSubject($index, $selectedGrade)
-    {
-        if (isset($this->selectedSubjects[$index])) {
-            $this->selectedSubjects[$index]['grade'] = $selectedGrade;
-        }
     }
 
     public function getRecommendations()
@@ -103,8 +90,7 @@ class ProgramRecommender extends Component
             $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareer, $relatedCareers, $studentResults);
             
             if(count($this->recommendations['BasedOnSelectedCareer']) <= 0 && count($this->recommendations['BasedOnRelatedCareers']) <= 0) {
-                $this->resetForm();
-                return session()->flash('no_recommenadations', "Our algorithm could not generate any recommendations for you!. Try selecting an alternative career choice, if there is any.");
+                return session()->flash('no_recommenadations', "Your results do not quite meet the requirements for programs under the career you have selected!. Try selecting an alternative career choice, if there is any.");
             }
             
             $this->recommendations['CareerField'] = ucwords(strtolower($selectedCareer_Details->field->name));
