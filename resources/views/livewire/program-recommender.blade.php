@@ -55,9 +55,9 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Career Choice</label>
-                            <select class="form-control @error('selectedCareer') is-invalid @enderror" wire:model="selectedCareer" required>
+                            <select class="form-control @error('selectedCareer') is-invalid @enderror" wire:model="selectedCareer" @if(count($selectedSubjects) <= 0) disabled @endif required>
                                 <option selected disabled value="">Select any Option</option>
-                                @foreach ($fields as $field)
+                                @foreach ($careerFields as $field)
                                 <optgroup label="{{ $field->name }}">
                                     @foreach ($field->careers as $career)
                                     <option value="{{ $career->id }}">{{ $career->name }}</option>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 col-sm-4 mx-auto">
-                        <button type="submit" class="btn btn-success float-right">
+                        <button type="submit" class="btn btn-success float-right shadow-lg">
                             <span wire:loading wire:target="getRecommendations"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Processing...</span>
                             <span wire:loading.remove wire:target="getRecommendations">Request Recommendations</span>
                         </button>

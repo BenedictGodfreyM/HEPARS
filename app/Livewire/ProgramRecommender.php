@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Field;
 use App\Repositories\CareerRepository;
 use App\Repositories\CombinationRepository;
 use App\Repositories\FieldRepository;
@@ -13,6 +14,7 @@ class ProgramRecommender extends Component
 {
     public $availableCombinations;
     public $availableGrades = ['A','B','C','D','E','F'];
+    public $careerFields = [];
 
     public $selectedSubjects = [];
     public $selectedCareer = "";
@@ -26,8 +28,7 @@ class ProgramRecommender extends Component
 
     public function mount()
     {
-        $combinationRepo = new CombinationRepository();
-        $this->availableCombinations = $combinationRepo->allCombinationsWithoutPagination();
+        $this->availableCombinations = (new CombinationRepository())->allCombinationsWithoutPagination();
     }
 
     public function rules()
@@ -41,9 +42,9 @@ class ProgramRecommender extends Component
     public function messages()
     {
         return [
-            'selectedSubjects.required' => 'Please select subjects from your high school combination.',
-            'selectedSubjects.array' => 'Invalid format of the selected subjects.',
-            'selectedSubjects.min' => 'Please select atleast three subjects from your high school combination.',
+            'selectedSubjects.required' => 'Please select your high school combination.',
+            'selectedSubjects.array' => 'Invalid format of the combination subjects.',
+            'selectedSubjects.min' => 'Your high school combination should have atleast three subjects.',
             'selectedCareer.required' => 'Please select a career of your choice.',
             'selectedCareer.string' => 'Invalid format of the selected career choice.',
             'selectedCareer.exists' => 'Invalid career choice.',
@@ -63,14 +64,15 @@ class ProgramRecommender extends Component
     public function addCombinationSubjectsToSelection($combinationID)
     {
         $combination = (new CombinationRepository())->findCombination($combinationID);
-        $this->selectedSubjects = [];
+        $this->selectedSubjects = $selectedSubjectIDs = [];
         foreach($combination->subjects as $key => $subject){
-            $selectionToAdd = ['subject' => $subject, 'grade' => ''];
+            $selectionToAdd = ['subject' => $subject, 'grade' => null];
             if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
                 $this->selectedSubjects[] = $selectionToAdd;
+                $selectedSubjectIDs[] = $subject->id;
             }
         }
-        $this->selectedOption = '';
+        $this->careerFields = (new FieldRepository)->allFieldsAssociatedWith($selectedSubjectIDs);
     }
 
     public function removeSubjectFromSelection($index)
@@ -134,8 +136,6 @@ class ProgramRecommender extends Component
     public function render()
     {
         $this->availableCombinations = (new CombinationRepository())->allCombinationsWithoutPagination();
-        return view('livewire.program-recommender', [
-            'fields' => (new FieldRepository())->allFieldsWithoutPagination(),
-        ]);
+        return view('livewire.program-recommender');
     }
 }
