@@ -22,7 +22,7 @@ class Register extends Component
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'unique:careers,name'],
         ];
     }
 
@@ -31,6 +31,7 @@ class Register extends Component
         return [
             'name.required' => 'Please insert the name of the career.',
             'name.string' => 'The name of the career should be in alphanumeric characters.',
+            'name.unique' => 'The name of the career already exists.',
         ];
     }
  
