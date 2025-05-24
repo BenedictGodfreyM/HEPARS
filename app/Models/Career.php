@@ -31,7 +31,7 @@ class Career extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'institution_id',
+        'field_id',
         'name',
     ];
 
