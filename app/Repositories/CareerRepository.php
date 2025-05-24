@@ -53,6 +53,20 @@ class CareerRepository
                         ->orderBy($sortField, $sortDirection)
                         ->paginate($perPage);
     }
+    
+    /**
+     * Retrieve all careers associated with provided subjects.
+     * 
+     * @param array $subjects Array of IDs of specific Subjects
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function allCareersAssociatedWith($subjects)
+    {
+        return Career::query()->whereHas('programs.entryRequirements.subjects', function ($query) use ($subjects) {
+            $query->whereIn('subjects.id', $subjects);
+        })->with(['programs.entryRequirements.subjects'])->get();
+    }
 
     /**
      * Retrieve a career by its ID from the database
