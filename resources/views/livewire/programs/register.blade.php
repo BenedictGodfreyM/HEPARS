@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group">
                             <label>Minimum Subject Score</label>
-                            <select class="form-control" wire:change="addSubjectToSelection($event.target.value)" wire:model="selectedOption">
+                            <select class="form-control" wire:change="addSubjectToSelection($event.target.value)" wire:model="selectedOption2">
                                 <option selected value="">Select a Subject</option>
                                 @forelse ($availableSubjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
@@ -163,7 +163,7 @@
                         </div>
                     </div>  
                     <div class="card-footer">
-                        <a href="{{ route('institutions.programs', ['institution_id' => $institutionId]) }}" class="btn btn-danger float-left">Back</a>
+                        <a href="{{ route('institutions.programs', ['institution_id' => $institution_id]) }}" class="btn btn-danger float-left">Back</a>
                         <button type="submit" class="btn btn-success float-right">
                             <span wire:loading wire:target="registerProgram"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Submitting...</span>
                             <span wire:loading.remove wire:target="registerProgram">Submit</span>

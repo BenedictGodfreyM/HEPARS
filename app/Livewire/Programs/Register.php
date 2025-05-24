@@ -37,7 +37,6 @@ class Register extends Component
     public function mount($institution_id)
     {
         $this->institution_id = $institution_id;
-        session()->put('institution_id', $institution_id);
         $this->availableCareers = (new CareerRepository())->allCareersWithoutPagination();
         $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
     }
@@ -175,7 +174,7 @@ class Register extends Component
             }
 
             DB::commit();
-            $this->reset();
+            $this->reset('name','competition_scale','duration','selectedOption1','selectedCareers','min_total_points','required_subjects_count','selectedOption2','selectedSubjects');
             $this->selectedCareers = [];
             $this->selectedSubjects = [];
             $this->selectedOption1 = '';
@@ -191,8 +190,6 @@ class Register extends Component
     {
         $this->availableCareers = (new CareerRepository())->allCareersWithoutPagination();
         $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
-        return view('livewire.programs.register', [
-            'institutionId' => session()->get('institution_id', ''),
-        ]);
+        return view('livewire.programs.register');
     }
 }

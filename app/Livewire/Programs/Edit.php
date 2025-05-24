@@ -37,9 +37,7 @@ class Edit extends Component
     public function mount($institution_id, $program_id)
     {
         $this->institution_id = $institution_id;
-        session()->put('institution_id', $institution_id);
         $this->program_id = $program_id;
-        session()->put('program_id', $program_id);
         $programDetails = (new ProgramRepository())->findProgram($program_id);
         $this->name = $programDetails->name;
         $this->competition_scale = $programDetails->competition_scale;
@@ -216,9 +214,6 @@ class Edit extends Component
     {
         $this->availableCareers = (new CareerRepository())->allCareersWithoutPagination();
         $this->availableSubjects = (new SubjectRepository())->allSubjectsWithoutPagination();
-        return view('livewire.programs.edit', [
-            'institutionId' => session()->get('institution_id', ''),
-            'programId' => session()->get('program_id', '')
-        ]);
+        return view('livewire.programs.edit');
     }
 }
