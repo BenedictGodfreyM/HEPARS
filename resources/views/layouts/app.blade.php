@@ -4,10 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>@yield('page_title') | HEPARS</title>
 
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
         <!-- overlayScrollbars -->
@@ -45,14 +44,7 @@
         <!-- Toastr -->
         <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
         <!-- AdminLTE App -->
-        <script src="{{ asset('assets/js/adminlte.js') }}"></script>
-
-        <!-- PAGE PLUGINS -->
-        <!-- jQuery Mapael -->
-        <script src="{{ asset('assets/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
-        <script src="{{ asset('assets/plugins/raphael/raphael.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
+        <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
 
         @livewireScripts
         
