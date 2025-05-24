@@ -78,7 +78,7 @@ class ProgramRecommender extends Component
         $groupedCareers = $associatedCareers->groupBy(function ($associatedCareer) {
             return $associatedCareer->field->id;
         });
-        $associatedCareerFields = $associatedCareers->pluck('field')->unique('id')->values();
+        $associatedCareerFields = $associatedCareers->pluck('field')->unique('id')->sortBy('name')->values();
         $associatedCareerFields->each(function ($associatedCareerField) use ($groupedCareers) {
             $associatedCareerField->setRelation('careers', $groupedCareers->get($associatedCareerField->id, collect()));
         });
