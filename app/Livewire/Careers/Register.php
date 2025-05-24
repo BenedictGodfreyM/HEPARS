@@ -16,7 +16,6 @@ class Register extends Component
     public function mount($field_id)
     {
         $this->field_id = $field_id;
-        session()->put('field_id', $field_id);
     }
 
     public function rules()
@@ -44,7 +43,7 @@ class Register extends Component
                 'name' => $this->name,
             ], $this->field_id);
             DB::commit();
-            $this->reset();
+            $this->reset('name');
             $this->dispatch("flash-alert", type: "success", title: "Success", message: "Career is successfully registered!.");
         }catch(Exception $e){
             DB::rollBack();
@@ -54,8 +53,6 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire.careers.register', [
-            'fieldId' => session()->get('field_id', ''),
-        ]);
+        return view('livewire.careers.register');
     }
 }
