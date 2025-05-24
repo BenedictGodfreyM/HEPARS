@@ -37,20 +37,6 @@ class FieldRepository
     {
         return Field::query()->orderBy('name','asc')->get();
     }
-    
-    /**
-     * Retrieve all fields associated with provided subjects.
-     * 
-     * @param array $subjects Array of IDs of specific Subjects
-     * 
-     * @return Illuminate\Database\Eloquent\Collection
-     */
-    public function allFieldsAssociatedWith($subjects)
-    {
-        return Field::query()->whereHas('careers.programs.entryRequirements.subjects', function ($query) use ($subjects) {
-            $query->whereIn('subjects.id', $subjects);
-        })->with(['careers.programs.entryRequirements.subjects'])->get();
-    }
 
     /**
      * Save details of a field to the database
