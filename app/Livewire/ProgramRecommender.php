@@ -72,7 +72,17 @@ class ProgramRecommender extends Component
                 $selectedSubjectIDs[$key] = $subject->id;
             }
         }
-        $this->careerFields = (new FieldRepository)->allFieldsAssociatedWith($selectedSubjectIDs);
+        // Retrieve Careers related to the selected subjects
+        $associatedCareers = (new CareerRepository)->allCareersAssociatedWith($selectedSubjectIDs);
+        // Group Careers according their fields
+        $groupedCareers = $associatedCareers->groupBy(function ($associatedCareer) {
+            return $associatedCareer->field->id;
+        });
+        $associatedCareerFields = $associatedCareers->pluck('field')->unique('id')->values();
+        $associatedCareerFields->each(function ($associatedCareerField) use ($groupedCareers) {
+            $associatedCareerField->setRelation('careers', $groupedCareers->get($associatedCareerField->id, collect()));
+        });
+        $this->careerFields = $associatedCareerFields;
     }
 
     public function getRecommendations()
