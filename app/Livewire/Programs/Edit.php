@@ -65,7 +65,7 @@ class Edit extends Component
             'competition_scale' => ['required', Rule::in([ProgramCompetitionScale::HIGH_COMPETITION,ProgramCompetitionScale::MODERATE_COMPETITION,ProgramCompetitionScale::LOW_COMPETITION])],
             'duration' => ['required', 'integer', 'min:1', 'max:10'],
             'min_total_points' => ['required', 'integer', 'min:1', 'max:20'],
-            'required_subjects_count' => ['required', 'integer', 'min:1', 'max:10'],
+            'required_subjects_count' => ['required', 'integer', 'min:1', 'max:3'],
         ];
     }
 
@@ -86,7 +86,7 @@ class Edit extends Component
             'required_subjects_count.required' => 'Please insert the number of required subjects.',
             'required_subjects_count.integer' => 'The number of required subjects should be in digits. (Eg. 2)',
             'required_subjects_count.min' => 'The number of required subjects should atleast be 1.',
-            'required_subjects_count.max' => 'The number of required subjects should atmost be 10.',
+            'required_subjects_count.max' => 'The number of required subjects should atmost be 3.',
         ];
     }
 
