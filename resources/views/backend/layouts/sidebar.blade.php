@@ -46,6 +46,13 @@
                         <p>High School Subjects</p>
                     </a>
                 </li>
+                <li class="nav-header">SETTINGS</li>
+                <li class="nav-item">
+                    <a href="{{ route('account.details') }}" class="nav-link {{(request()->is('auth/account') || request()->is('auth/account/*')) ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>My Account</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.Sidebar-menu -->
