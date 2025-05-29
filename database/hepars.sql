@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2025 at 10:11 AM
+-- Generation Time: May 29, 2025 at 04:19 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -389,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `career_programs` (
   PRIMARY KEY (`id`),
   KEY `career_programs_program_id_index` (`program_id`),
   KEY `career_programs_career_id_index` (`career_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `career_programs`
@@ -543,7 +543,54 @@ INSERT INTO `career_programs` (`id`, `program_id`, `career_id`, `created_at`, `u
 (153, '45b11d1f9ee299000e5b968dded03f50', '5825f16bb8a05c380bc76dce418efa90', NULL, NULL),
 (154, '45b11d1f9ee299000e5b968dded03f50', 'f0fe62de61b7eb2bcb611cdd0fd25fd7', NULL, NULL),
 (155, '45b11d1f9ee299000e5b968dded03f50', '8d63ed0403e9782b5248a5bb1a1ea35f', NULL, NULL),
-(156, '1d1a94ea4a5c5d7258ccb1336cf20c95', '8d63ed0403e9782b5248a5bb1a1ea35f', NULL, NULL);
+(156, '1d1a94ea4a5c5d7258ccb1336cf20c95', '8d63ed0403e9782b5248a5bb1a1ea35f', NULL, NULL),
+(157, 'effd0b9f470e36b16af01cdbc1bb047d', 'cfcc8d94f159d3be0002b99dd791160e', NULL, NULL),
+(158, 'effd0b9f470e36b16af01cdbc1bb047d', '7268d82dcec803fd423de7b47a9dd7db', NULL, NULL),
+(159, 'effd0b9f470e36b16af01cdbc1bb047d', '76fef40ec67f7451b8fd9e1eaa0cbe0b', NULL, NULL),
+(160, 'effd0b9f470e36b16af01cdbc1bb047d', 'd41e546d2cadeb5394a925acc1b68022', NULL, NULL),
+(161, '00a39f6f6f6da86013595219d6a5143e', 'c9490b8a50f7a5651e0a5f845c52db2b', NULL, NULL),
+(162, '00a39f6f6f6da86013595219d6a5143e', '80d9eb04703935bab8c30d438dc61f93', NULL, NULL),
+(163, '00a39f6f6f6da86013595219d6a5143e', 'bcb4fc57590d4c906f53060c46e24fee', NULL, NULL),
+(164, '00a39f6f6f6da86013595219d6a5143e', '9b9039287ccd6957e6ab9c1f25664cef', NULL, NULL),
+(165, '92e8349739085ebac1fff311d6133b2f', 'e37936c784eba8412a2c7b362aa14a35', NULL, NULL),
+(166, '92e8349739085ebac1fff311d6133b2f', 'a12115a3cf173b23e2542e5d7aaa4732', NULL, NULL),
+(167, '92e8349739085ebac1fff311d6133b2f', 'b186522af48c6a56fd74757d61012346', NULL, NULL),
+(168, '92e8349739085ebac1fff311d6133b2f', 'ab4a9b0d3771242097b89a5a04ed0c99', NULL, NULL),
+(169, '92e8349739085ebac1fff311d6133b2f', 'e3ff95c19467ec21e3706a98c8cb9ee9', NULL, NULL),
+(170, '77ba5bf779790585dec0419ff571b407', 'f1804426ccd5f96d3f4af74e77cfa889', NULL, NULL),
+(171, '77ba5bf779790585dec0419ff571b407', 'fae07218536fcc3d34b37b6bf59343f9', NULL, NULL),
+(172, '77ba5bf779790585dec0419ff571b407', '87fe2e0810b95f51d066d790cbae6ba3', NULL, NULL),
+(173, '77ba5bf779790585dec0419ff571b407', '338f0ff80227cc0120a45fc813b04dc4', NULL, NULL),
+(174, '77ba5bf779790585dec0419ff571b407', 'c5372bd13303b04b6ab2975f79174ba7', NULL, NULL),
+(175, '77ba5bf779790585dec0419ff571b407', '0570aa3b1bf3e220c8f8e2ff1a614007', NULL, NULL),
+(176, '77ba5bf779790585dec0419ff571b407', '5f20f3d241d74f71d673c3278bdfd87e', NULL, NULL),
+(177, '77ba5bf779790585dec0419ff571b407', 'd4323224c4e31ded4d403643ea85ab25', NULL, NULL),
+(178, '9377d895ce84403364851d8022dc5e6b', 'c2e3d45cd971d5520ad550939f8617ac', NULL, NULL),
+(179, '9377d895ce84403364851d8022dc5e6b', 'c1f890ebd26d17286ca4bac03658015b', NULL, NULL),
+(180, '982703f971e4a6eeda6b74ecf7f57bc1', 'd912bbca27b0ea4532ebd540a226b233', NULL, NULL),
+(181, '982703f971e4a6eeda6b74ecf7f57bc1', '0570aa3b1bf3e220c8f8e2ff1a614007', NULL, NULL),
+(182, 'fa6c6ecb4a89bece75a9b333d39586a8', '0fe0f237059bfc6b10d9d38b8409bf0d', NULL, NULL),
+(183, 'fa6c6ecb4a89bece75a9b333d39586a8', '1b169c83ea80a8a2d67253a116db1dfc', NULL, NULL),
+(184, 'fa6c6ecb4a89bece75a9b333d39586a8', '87fe2e0810b95f51d066d790cbae6ba3', NULL, NULL),
+(185, 'fa6c6ecb4a89bece75a9b333d39586a8', 'fae07218536fcc3d34b37b6bf59343f9', NULL, NULL),
+(186, '9ccdccf8c8f43bbdefed5a53ffb99507', 'cc026e08d2939711301f79caec5fd16a', NULL, NULL),
+(187, '9ccdccf8c8f43bbdefed5a53ffb99507', '8af1b47a2b16424377391ed639b6755b', NULL, NULL),
+(188, '9ccdccf8c8f43bbdefed5a53ffb99507', '30f2683fa48deea71a02c554d612bf1c', NULL, NULL),
+(189, '9ccdccf8c8f43bbdefed5a53ffb99507', 'a159c489c2e87580031e6c7b08e97300', NULL, NULL),
+(190, '9ccdccf8c8f43bbdefed5a53ffb99507', 'c5372bd13303b04b6ab2975f79174ba7', NULL, NULL),
+(191, 'b228a3067fe05d9bb1f010111e0571b5', '0570aa3b1bf3e220c8f8e2ff1a614007', NULL, NULL),
+(192, 'b228a3067fe05d9bb1f010111e0571b5', 'c5372bd13303b04b6ab2975f79174ba7', NULL, NULL),
+(193, 'b228a3067fe05d9bb1f010111e0571b5', '338f0ff80227cc0120a45fc813b04dc4', NULL, NULL),
+(194, 'b228a3067fe05d9bb1f010111e0571b5', '87fe2e0810b95f51d066d790cbae6ba3', NULL, NULL),
+(195, 'b228a3067fe05d9bb1f010111e0571b5', 'fae07218536fcc3d34b37b6bf59343f9', NULL, NULL),
+(196, 'b228a3067fe05d9bb1f010111e0571b5', '5f20f3d241d74f71d673c3278bdfd87e', NULL, NULL),
+(197, 'b228a3067fe05d9bb1f010111e0571b5', 'd4323224c4e31ded4d403643ea85ab25', NULL, NULL),
+(198, 'afde279a3c4b31b10a3dda165edf1209', '4e459826f27f853e3311dab6ace4e8e7', NULL, NULL),
+(199, 'afde279a3c4b31b10a3dda165edf1209', 'cc026e08d2939711301f79caec5fd16a', NULL, NULL),
+(200, 'afde279a3c4b31b10a3dda165edf1209', 'c13aaa4c32013a86e969196152d872e7', NULL, NULL),
+(201, 'afde279a3c4b31b10a3dda165edf1209', '6326e9edc663907ac49e8d1417de17a3', NULL, NULL),
+(202, 'afde279a3c4b31b10a3dda165edf1209', 'a159c489c2e87580031e6c7b08e97300', NULL, NULL),
+(203, 'afde279a3c4b31b10a3dda165edf1209', '30f2683fa48deea71a02c554d612bf1c', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -694,6 +741,7 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('4c851222374e7cc05dbe9b23f63c0336', '5631f8c13e9880d8bfa150c72589b695', 4, 2, '2025-05-11 07:43:54', '2025-05-11 07:43:54'),
 ('4ca714d0e6867fece1ae23e93f1f4501', '03be0c34cf492227b7fcc8162859766c', 4, 2, '2025-05-28 06:33:36', '2025-05-28 06:33:36'),
 ('4d956f1bab3cd385120faf70614c5b5c', '587a540cab0235453b49f13f24770736', 4, 2, '2025-05-12 15:59:22', '2025-05-12 15:59:22'),
+('54636ee90bfca76426fa6c2470af587f', 'b228a3067fe05d9bb1f010111e0571b5', 4, 2, '2025-05-29 13:14:17', '2025-05-29 13:14:17'),
 ('5a08e99ac57f414e960caad388dfe125', '3b002c4fec34240476e454c66e4ad733', 4, 2, '2025-05-28 06:09:18', '2025-05-28 06:09:18'),
 ('5f659ac2f904d30914e117edca81d463', '6c71a7bbb3398a769abfb1fadb5929a1', 6, 3, '2025-05-24 12:30:09', '2025-05-24 12:30:09'),
 ('60d14d0fe32e5c4e3551268b2a2a4285', 'a6d09a6a2942b5ed6c5150b4bb909b74', 4, 2, '2025-05-10 16:50:13', '2025-05-10 16:50:13'),
@@ -718,11 +766,14 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('9331ebae62147c495cbdf0c26d9dda4f', 'df57e1e7f5710b954943617651407528', 4, 2, '2025-05-12 15:53:10', '2025-05-12 15:53:10'),
 ('957d080e00dc8a27786d0ee282239323', '5499b5d315f03a7b33f880eb88545fe6', 6, 3, '2025-05-15 08:57:25', '2025-05-15 08:57:25'),
 ('986c0220b3de868944c05264427fc1eb', '019ce65024551f545ac4fb88298394bc', 6, 3, '2025-05-19 08:45:54', '2025-05-19 08:45:54'),
+('9b9ac8e088bc44ce409a8b1532a330fc', '9377d895ce84403364851d8022dc5e6b', 4, 2, '2025-05-29 12:44:05', '2025-05-29 12:44:05'),
+('9ca04356fdd765f353fe0bc16b5c6f4a', '92e8349739085ebac1fff311d6133b2f', 4, 2, '2025-05-29 12:33:28', '2025-05-29 12:33:28'),
 ('9fe841138231eb169f8ba29deb9e9d7b', '464e4242d398d7a9491b3a6332e304d7', 4, 2, '2025-05-28 06:55:48', '2025-05-28 06:55:48'),
 ('a6c1c068d6ca3edf0444bef011db5c90', 'd4899639b1243eeef21e33c0cfeb4135', 6, 3, '2025-05-21 13:23:20', '2025-05-21 13:23:20'),
 ('a89c7f85d3caed62060aea512ec896ab', '274abe94a2938438bc3d3a0a422da8c3', 8, 3, '2025-05-19 07:49:35', '2025-05-19 07:49:35'),
 ('a9e9f89057eba9322892330136bbad2e', '9dae15c2f9ea41c28100455914e5abdf', 4, 2, '2025-05-28 06:39:13', '2025-05-28 06:39:13'),
 ('ac0183aef13fe44ec7da3f63dca5b8b9', 'b0e9d87e618d6a5d1257af8e36b720e2', 4, 2, '2025-05-12 15:55:54', '2025-05-12 15:55:54'),
+('ad8cfd8992046fccb87504153e7e78dd', '982703f971e4a6eeda6b74ecf7f57bc1', 4, 2, '2025-05-29 12:48:03', '2025-05-29 12:48:03'),
 ('ae19d783f8b9b2975c098a1ffdff9275', '3fe9ea3c37d1ad0b3dbf7bbdc0617027', 6, 3, '2025-05-22 08:09:50', '2025-05-22 08:09:50'),
 ('b01b468a4a282897d34fe3662a5bd3a3', '13ba1a5babdb11135842d045405245ba', 4, 2, '2025-05-24 15:09:51', '2025-05-24 15:09:51'),
 ('b0ac1d5786744074657f552259365095', 'c03243b27df718a9de6751ba21d53177', 4, 2, '2025-05-28 05:41:45', '2025-05-28 05:41:45'),
@@ -730,22 +781,28 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('b11ee817938a955e00cb49ad12b72b00', '9d00aa0e1f3822e02abdcc57e0e3bc18', 6, 3, '2025-05-12 16:48:52', '2025-05-12 16:48:52'),
 ('b6017e72385f60d32908fb7d226b4e38', '3041a5d3546187206b68e2e34f1b498c', 4, 2, '2025-05-12 15:26:21', '2025-05-12 15:26:21'),
 ('bfc9559aee160448046cadc5aa9c53c6', '9911bb5c436790dea3f075f4126a3c59', 4, 2, '2025-05-28 05:53:09', '2025-05-28 05:53:09'),
+('c4e57f293012d2616516eb6cfb53d342', 'fa6c6ecb4a89bece75a9b333d39586a8', 4, 2, '2025-05-29 12:51:34', '2025-05-29 12:51:34'),
 ('ca6c300fe56c7a2358942fcb1eee60d7', '1f1fb2ec629aee1092ba5c6ebf98d5bd', 4, 2, '2025-05-28 05:46:51', '2025-05-28 05:46:51'),
 ('cc156b96c7f260dcac131305aee63264', 'c7d1b2fc3b1195b94195450ae9c0c9b5', 6, 3, '2025-05-15 08:57:54', '2025-05-15 08:57:54'),
 ('cfbc415dcbb07450b763c96fff3cf8c3', '9f8815cbb3c5245a6fdf81c9d2a2191a', 4, 2, '2025-05-13 12:09:38', '2025-05-13 12:09:38'),
 ('d560941b852e477b4c176a7ce98c09f6', 'caca892a97f4296c3efaf481a0c56f2b', 6, 3, '2025-05-21 13:55:14', '2025-05-21 13:55:14'),
 ('d77826b315938dc95ff34a1efde97330', 'b480bff980c03badd4ac50713b62e9c7', 4, 2, '2025-05-24 15:36:21', '2025-05-24 15:36:21'),
+('d7d7e7dd5827a9db8a53fc909cf3725e', '00a39f6f6f6da86013595219d6a5143e', 4, 2, '2025-05-29 12:27:57', '2025-05-29 12:27:57'),
+('d9ae1b23c1c657fc5d2d2a02c2884d3a', '77ba5bf779790585dec0419ff571b407', 4, 2, '2025-05-29 12:40:55', '2025-05-29 12:40:55'),
 ('dcbf1dbb7915d168285ccec2ad88322e', '2e328ceeb55abaf3f967b1461e8cbc34', 4, 2, '2025-05-28 06:12:22', '2025-05-28 06:12:22'),
 ('e77aa3d95c4d3314b783a42c1ee69281', '4c6fdda5e89280fddc60a6c6531bb1e0', 4, 2, '2025-05-28 06:05:11', '2025-05-28 06:05:11'),
 ('eb4f1cb61f442e05b963e34854f1edcd', 'f5845528dcf197cd15473140e6713950', 6, 3, '2025-05-21 13:29:32', '2025-05-21 13:29:32'),
 ('ed3e7d256799f3ba43e0a6b61e5cbf5f', 'd9ad51d469d2b2c91164258efdf68955', 4, 2, '2025-05-28 06:45:28', '2025-05-28 06:45:28'),
 ('efe0a16aa323471d3cae586c2ab7b88a', 'e490db7b5a98a0aa59eebd9ba8986bb3', 4, 2, '2025-05-11 10:27:58', '2025-05-11 10:27:58'),
+('f066daff9336e7e0137aeeb9aebacb4f', 'effd0b9f470e36b16af01cdbc1bb047d', 4, 2, '2025-05-29 12:23:20', '2025-05-29 12:23:20'),
 ('f080de0b4d3ff5b9b25d8dfc0b36d1af', '3ec5e6b0206ab1fa3d4c63ca141f24ef', 4, 2, '2025-05-11 10:20:40', '2025-05-11 10:20:40'),
 ('f14bdc55816ff41a2ab5da82d4764f9f', '77089d6bf7f21138817a91790677aed0', 4, 2, '2025-05-24 11:39:27', '2025-05-24 11:39:27'),
 ('f18edaf906c6481c81569c752ac6c5f9', '32f2acf3761302ddd4f73347a49cd526', 4, 2, '2025-05-10 19:20:25', '2025-05-10 19:20:25'),
 ('f2265980c7f6a9819f0faafb67922666', 'd00189b5bb76a8f2f842e760b609f532', 6, 3, '2025-05-21 13:49:52', '2025-05-21 13:49:52'),
+('f3c2b4a4daf4297495b027bc09958642', '9ccdccf8c8f43bbdefed5a53ffb99507', 4, 2, '2025-05-29 13:10:01', '2025-05-29 13:10:01'),
 ('f553ec36a0fb30e0ab05ea8128ffe7ff', '756478f8bdd193b72d499db2538b66bb', 4, 2, '2025-05-10 16:06:35', '2025-05-10 16:06:35'),
 ('f582d2da55509d63fe5da9bce9c66fdb', 'cd9323c76d11b08ba1b98764b68ba470', 6, 3, '2025-05-12 16:51:15', '2025-05-12 16:51:15'),
+('f8a4d0f1bb02d81576d3aea5f178ee94', 'afde279a3c4b31b10a3dda165edf1209', 4, 2, '2025-05-29 13:17:43', '2025-05-29 13:17:43'),
 ('fb7b3bf5858cf2e48f3a538ae83bd3f1', '874f91396a7c6f62b220f9bc1ba7b8f3', 6, 3, '2025-05-24 15:24:09', '2025-05-24 15:24:09'),
 ('fc77ab1756cffdaf3903fcdf882e6a81', '1d1a94ea4a5c5d7258ccb1336cf20c95', 4, 2, '2025-05-28 07:08:26', '2025-05-28 07:08:26');
 
@@ -767,7 +824,7 @@ CREATE TABLE IF NOT EXISTS `entry_requirement_subjects` (
   PRIMARY KEY (`id`),
   KEY `entry_requirement_subjects_entry_requirement_id_index` (`entry_requirement_id`),
   KEY `entry_requirement_subjects_subject_id_index` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=802 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=923 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `entry_requirement_subjects`
@@ -1407,7 +1464,128 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (798, 'fc77ab1756cffdaf3903fcdf882e6a81', '17ae1bb333f280e72bdfeecf08342617', 'optional', 'E', NULL, NULL),
 (799, 'fc77ab1756cffdaf3903fcdf882e6a81', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
 (800, 'fc77ab1756cffdaf3903fcdf882e6a81', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
-(801, 'fc77ab1756cffdaf3903fcdf882e6a81', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL);
+(801, 'fc77ab1756cffdaf3903fcdf882e6a81', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(802, 'f066daff9336e7e0137aeeb9aebacb4f', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(803, 'f066daff9336e7e0137aeeb9aebacb4f', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(804, 'f066daff9336e7e0137aeeb9aebacb4f', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(805, 'f066daff9336e7e0137aeeb9aebacb4f', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(806, 'f066daff9336e7e0137aeeb9aebacb4f', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(807, 'f066daff9336e7e0137aeeb9aebacb4f', '1a50115832dd08b87a189d155c62eb31', 'optional', 'E', NULL, NULL),
+(808, 'f066daff9336e7e0137aeeb9aebacb4f', '1502838edf28cac9b0390cd616bd0240', 'optional', 'E', NULL, NULL),
+(809, 'f066daff9336e7e0137aeeb9aebacb4f', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(810, 'f066daff9336e7e0137aeeb9aebacb4f', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(811, 'f066daff9336e7e0137aeeb9aebacb4f', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(812, 'f066daff9336e7e0137aeeb9aebacb4f', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(813, 'f066daff9336e7e0137aeeb9aebacb4f', '921f5461645235088da06b1132a13754', 'optional', 'E', NULL, NULL),
+(814, 'f066daff9336e7e0137aeeb9aebacb4f', '17ae1bb333f280e72bdfeecf08342617', 'optional', 'E', NULL, NULL),
+(815, 'f066daff9336e7e0137aeeb9aebacb4f', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
+(816, 'f066daff9336e7e0137aeeb9aebacb4f', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
+(817, 'f066daff9336e7e0137aeeb9aebacb4f', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(818, 'd7d7e7dd5827a9db8a53fc909cf3725e', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(819, 'd7d7e7dd5827a9db8a53fc909cf3725e', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(820, 'd7d7e7dd5827a9db8a53fc909cf3725e', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(821, 'd7d7e7dd5827a9db8a53fc909cf3725e', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(822, 'd7d7e7dd5827a9db8a53fc909cf3725e', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(823, 'd7d7e7dd5827a9db8a53fc909cf3725e', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
+(824, 'd7d7e7dd5827a9db8a53fc909cf3725e', '0f356d614e6881dd5ae8ffc9989732e9', 'optional', 'E', NULL, NULL),
+(825, 'd7d7e7dd5827a9db8a53fc909cf3725e', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(826, 'd7d7e7dd5827a9db8a53fc909cf3725e', '1a50115832dd08b87a189d155c62eb31', 'optional', 'E', NULL, NULL),
+(827, 'd7d7e7dd5827a9db8a53fc909cf3725e', '1502838edf28cac9b0390cd616bd0240', 'optional', 'E', NULL, NULL),
+(828, 'd7d7e7dd5827a9db8a53fc909cf3725e', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(829, 'd7d7e7dd5827a9db8a53fc909cf3725e', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(830, 'd7d7e7dd5827a9db8a53fc909cf3725e', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(831, 'd7d7e7dd5827a9db8a53fc909cf3725e', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(832, 'd7d7e7dd5827a9db8a53fc909cf3725e', '17ae1bb333f280e72bdfeecf08342617', 'optional', 'E', NULL, NULL),
+(833, 'd7d7e7dd5827a9db8a53fc909cf3725e', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
+(834, 'd7d7e7dd5827a9db8a53fc909cf3725e', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
+(835, 'd7d7e7dd5827a9db8a53fc909cf3725e', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(836, '9ca04356fdd765f353fe0bc16b5c6f4a', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(837, '9ca04356fdd765f353fe0bc16b5c6f4a', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(838, '9ca04356fdd765f353fe0bc16b5c6f4a', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(839, '9ca04356fdd765f353fe0bc16b5c6f4a', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(840, '9ca04356fdd765f353fe0bc16b5c6f4a', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(841, '9ca04356fdd765f353fe0bc16b5c6f4a', '1a50115832dd08b87a189d155c62eb31', 'optional', 'E', NULL, NULL),
+(842, '9ca04356fdd765f353fe0bc16b5c6f4a', '1502838edf28cac9b0390cd616bd0240', 'optional', 'E', NULL, NULL),
+(843, '9ca04356fdd765f353fe0bc16b5c6f4a', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(844, '9ca04356fdd765f353fe0bc16b5c6f4a', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(845, '9ca04356fdd765f353fe0bc16b5c6f4a', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(846, '9ca04356fdd765f353fe0bc16b5c6f4a', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(847, '9ca04356fdd765f353fe0bc16b5c6f4a', '921f5461645235088da06b1132a13754', 'optional', 'E', NULL, NULL),
+(848, '9ca04356fdd765f353fe0bc16b5c6f4a', '17ae1bb333f280e72bdfeecf08342617', 'optional', 'E', NULL, NULL),
+(849, '9ca04356fdd765f353fe0bc16b5c6f4a', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
+(850, '9ca04356fdd765f353fe0bc16b5c6f4a', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
+(851, '9ca04356fdd765f353fe0bc16b5c6f4a', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(852, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(853, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(854, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(855, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(856, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(857, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(858, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(859, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(860, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(861, 'd9ae1b23c1c657fc5d2d2a02c2884d3a', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(862, '9b9ac8e088bc44ce409a8b1532a330fc', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(863, '9b9ac8e088bc44ce409a8b1532a330fc', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(864, '9b9ac8e088bc44ce409a8b1532a330fc', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(865, '9b9ac8e088bc44ce409a8b1532a330fc', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(866, '9b9ac8e088bc44ce409a8b1532a330fc', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(867, '9b9ac8e088bc44ce409a8b1532a330fc', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
+(868, '9b9ac8e088bc44ce409a8b1532a330fc', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(869, '9b9ac8e088bc44ce409a8b1532a330fc', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(870, '9b9ac8e088bc44ce409a8b1532a330fc', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(871, '9b9ac8e088bc44ce409a8b1532a330fc', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(872, '9b9ac8e088bc44ce409a8b1532a330fc', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(873, 'ad8cfd8992046fccb87504153e7e78dd', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(874, 'ad8cfd8992046fccb87504153e7e78dd', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(875, 'ad8cfd8992046fccb87504153e7e78dd', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(876, 'ad8cfd8992046fccb87504153e7e78dd', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(877, 'ad8cfd8992046fccb87504153e7e78dd', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(878, 'ad8cfd8992046fccb87504153e7e78dd', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
+(879, 'ad8cfd8992046fccb87504153e7e78dd', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(880, 'c4e57f293012d2616516eb6cfb53d342', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(881, 'c4e57f293012d2616516eb6cfb53d342', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(882, 'c4e57f293012d2616516eb6cfb53d342', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(883, 'c4e57f293012d2616516eb6cfb53d342', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(884, 'c4e57f293012d2616516eb6cfb53d342', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(885, 'c4e57f293012d2616516eb6cfb53d342', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
+(886, 'c4e57f293012d2616516eb6cfb53d342', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(887, 'c4e57f293012d2616516eb6cfb53d342', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(888, 'c4e57f293012d2616516eb6cfb53d342', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(889, 'c4e57f293012d2616516eb6cfb53d342', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(890, 'c4e57f293012d2616516eb6cfb53d342', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(891, 'f3c2b4a4daf4297495b027bc09958642', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(892, 'f3c2b4a4daf4297495b027bc09958642', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(893, 'f3c2b4a4daf4297495b027bc09958642', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(894, 'f3c2b4a4daf4297495b027bc09958642', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(895, 'f3c2b4a4daf4297495b027bc09958642', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(896, 'f3c2b4a4daf4297495b027bc09958642', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
+(897, 'f3c2b4a4daf4297495b027bc09958642', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(898, 'f3c2b4a4daf4297495b027bc09958642', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(899, 'f3c2b4a4daf4297495b027bc09958642', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(900, 'f3c2b4a4daf4297495b027bc09958642', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(901, 'f3c2b4a4daf4297495b027bc09958642', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(902, '54636ee90bfca76426fa6c2470af587f', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(903, '54636ee90bfca76426fa6c2470af587f', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(904, '54636ee90bfca76426fa6c2470af587f', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(905, '54636ee90bfca76426fa6c2470af587f', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(906, '54636ee90bfca76426fa6c2470af587f', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(907, '54636ee90bfca76426fa6c2470af587f', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(908, '54636ee90bfca76426fa6c2470af587f', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(909, '54636ee90bfca76426fa6c2470af587f', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(910, '54636ee90bfca76426fa6c2470af587f', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(911, '54636ee90bfca76426fa6c2470af587f', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(912, 'f8a4d0f1bb02d81576d3aea5f178ee94', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(913, 'f8a4d0f1bb02d81576d3aea5f178ee94', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
+(914, 'f8a4d0f1bb02d81576d3aea5f178ee94', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
+(915, 'f8a4d0f1bb02d81576d3aea5f178ee94', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(916, 'f8a4d0f1bb02d81576d3aea5f178ee94', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
+(917, 'f8a4d0f1bb02d81576d3aea5f178ee94', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
+(918, 'f8a4d0f1bb02d81576d3aea5f178ee94', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
+(919, 'f8a4d0f1bb02d81576d3aea5f178ee94', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(920, 'f8a4d0f1bb02d81576d3aea5f178ee94', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(921, 'f8a4d0f1bb02d81576d3aea5f178ee94', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(922, 'f8a4d0f1bb02d81576d3aea5f178ee94', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1606,6 +1784,13 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('gmashinji@gmail.com', '$2y$12$ESSFkhAZpAPkS9J3q/MZBulaUCPF4yR0JWe341FhKufnmMs857fLy', '2025-05-28 12:17:02');
+
 -- --------------------------------------------------------
 
 --
@@ -1688,6 +1873,7 @@ CREATE TABLE IF NOT EXISTS `programs` (
 --
 
 INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`, `updated_at`, `competition_scale`) VALUES
+('00a39f6f6f6da86013595219d6a5143e', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Commerce in Marketing', 3, '2025-05-29 12:27:57', '2025-05-29 12:27:57', 'Low Competition'),
 ('019ce65024551f545ac4fb88298394bc', 'e7d789969965d30b5d782ed901f42c75', 'Bachelor of Science in Nursing', 4, '2025-05-19 08:45:54', '2025-05-19 08:45:54', 'Moderate Competition'),
 ('03be0c34cf492227b7fcc8162859766c', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Commerce in Finance', 3, '2025-05-28 06:33:36', '2025-05-28 06:33:36', 'Low Competition'),
 ('0a2ef0d874889eced29779fe6b314501', 'a2b59dfcf839e4079ea325986087fc53', 'Doctor of Medicine', 5, '2025-05-22 08:07:20', '2025-05-22 08:07:20', 'Moderate Competition'),
@@ -1732,19 +1918,26 @@ INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`
 ('719fc401b6ea6fa2cf3ff0ed314e8d98', 'b7fb61dae18f53addadd288f2520c403', 'Bachelor of Science in Health Laboratory Sciences ', 4, '2025-05-21 13:33:58', '2025-05-21 13:33:58', 'Moderate Competition'),
 ('756478f8bdd193b72d499db2538b66bb', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Computer Systems and Networks', 3, '2025-05-10 16:06:35', '2025-05-10 16:06:35', 'Low Competition'),
 ('77089d6bf7f21138817a91790677aed0', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in Economics', 3, '2025-05-24 11:39:26', '2025-05-24 11:39:26', 'Low Competition'),
+('77ba5bf779790585dec0419ff571b407', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Administration and Management', 3, '2025-05-29 12:40:55', '2025-05-29 12:40:55', 'Low Competition'),
 ('7a60250a7cd96e92cdb9d85ecbf500e7', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Geographical Information Systems and Remote Sensing', 3, '2025-05-12 16:21:53', '2025-05-12 16:21:53', 'Low Competition'),
 ('7bcc3a2490d7ee562c8dc8cac9a25bd2', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Biomedical Engineering', 4, '2025-05-12 12:48:21', '2025-05-12 12:48:21', 'High Competition'),
 ('874f91396a7c6f62b220f9bc1ba7b8f3', 'e7d789969965d30b5d782ed901f42c75', 'Doctor of Medicine', 5, '2025-05-19 08:09:31', '2025-05-19 08:09:31', 'Moderate Competition'),
 ('8d1ead6ad34295eed0ca5d34ab14a18b', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in Translation and Interpretation', 3, '2025-05-28 06:17:29', '2025-05-28 06:17:29', 'Low Competition'),
+('92e8349739085ebac1fff311d6133b2f', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Commerce in Procurement and Logistic Management', 3, '2025-05-29 12:33:28', '2025-05-29 12:33:28', 'Low Competition'),
+('9377d895ce84403364851d8022dc5e6b', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Adult Education and Community Development', 3, '2025-05-29 12:44:05', '2025-05-29 12:44:05', 'Low Competition'),
 ('97a881da632535a77ac6df45650e8bf0', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in Archaeology and Anthropology', 3, '2025-05-24 10:45:37', '2025-05-24 10:45:37', 'Moderate Competition'),
+('982703f971e4a6eeda6b74ecf7f57bc1', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Arts', 3, '2025-05-29 12:48:03', '2025-05-29 12:48:03', 'Low Competition'),
 ('9911bb5c436790dea3f075f4126a3c59', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in Philosophy and Political Science', 3, '2025-05-28 05:53:09', '2025-05-28 05:53:09', 'Low Competition'),
+('9ccdccf8c8f43bbdefed5a53ffb99507', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Guidance and Counseling', 3, '2025-05-29 13:10:01', '2025-05-29 13:10:01', 'Low Competition'),
 ('9d00aa0e1f3822e02abdcc57e0e3bc18', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Diagnostic and Therapeutic Radiography', 4, '2025-05-12 16:48:52', '2025-05-12 16:48:52', 'High Competition'),
 ('9d66b4763429a099292fef7f64a21ab6', '55277a83aa77f8e34730dd47fe47a2e0', 'Doctor of Medicine', 5, '2025-05-22 08:31:58', '2025-05-22 08:31:58', 'Moderate Competition'),
 ('9dae15c2f9ea41c28100455914e5abdf', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Commerce in Human Resource Management', 3, '2025-05-28 06:39:13', '2025-05-28 06:39:13', 'Low Competition'),
 ('9f8815cbb3c5245a6fdf81c9d2a2191a', 'a71a936a22c94f3044a88a1a0acf05fb', 'Bachelor of Science in Beekeeping Science and Technology', 3, '2025-05-13 12:09:38', '2025-05-13 12:09:38', 'Low Competition'),
 ('a6d09a6a2942b5ed6c5150b4bb909b74', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Arts in Community Development', 3, '2025-05-10 16:50:13', '2025-05-10 16:50:13', 'Low Competition'),
 ('acde11ba72feede28e96137d431ca186', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Civil Engineering', 4, '2025-05-12 16:01:01', '2025-05-12 16:01:01', 'Low Competition'),
+('afde279a3c4b31b10a3dda165edf1209', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Psychology', 3, '2025-05-29 13:17:43', '2025-05-29 13:17:43', 'Low Competition'),
 ('b0e9d87e618d6a5d1257af8e36b720e2', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Urban and Regional Planning', 4, '2025-05-12 15:55:54', '2025-05-12 15:55:54', 'Low Competition'),
+('b228a3067fe05d9bb1f010111e0571b5', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Policy, Planning and Management', 3, '2025-05-29 13:14:17', '2025-05-29 13:14:17', 'Low Competition'),
 ('b395b831c235d690bb4045488bd984c8', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in Economics and Statistics', 3, '2025-05-24 12:24:09', '2025-05-24 12:24:09', 'Moderate Competition'),
 ('b480bff980c03badd4ac50713b62e9c7', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in History', 3, '2025-05-24 15:36:21', '2025-05-24 15:36:21', 'Low Competition'),
 ('ba47e9cf0055abce55d33e7ad7200626', '84ec1ffdd439490c07875ae45c1dc7fb', 'Bachelor of Science in Occupational Therapy', 4, '2025-05-12 16:53:25', '2025-05-12 16:53:25', 'High Competition'),
@@ -1763,7 +1956,9 @@ INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`
 ('e490db7b5a98a0aa59eebd9ba8986bb3', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of  Science in  Environmental  Engineering ', 4, '2025-03-08 08:32:02', '2025-03-08 11:53:15', 'Low Competition'),
 ('ebc4a771901acd053c8f21ca146d0eb6', '24c41e67b7e00c6fd19b14a5efae3a98', 'Bachelor of Science in Property and Facility Management', 4, '2025-05-12 15:41:06', '2025-05-12 15:41:06', 'Low Competition'),
 ('ee52820f620c1cdc868b0ef51a0d7df1', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Arts in Oriental Languages', 3, '2025-05-28 05:50:03', '2025-05-28 05:50:03', 'Low Competition'),
-('f5845528dcf197cd15473140e6713950', 'b7fb61dae18f53addadd288f2520c403', 'Bachelor of Science in Nursing ', 4, '2025-05-21 13:29:32', '2025-05-21 13:29:32', 'Moderate Competition');
+('effd0b9f470e36b16af01cdbc1bb047d', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Commerce in Information Management', 3, '2025-05-29 12:23:20', '2025-05-29 12:23:20', 'Low Competition'),
+('f5845528dcf197cd15473140e6713950', 'b7fb61dae18f53addadd288f2520c403', 'Bachelor of Science in Nursing ', 4, '2025-05-21 13:29:32', '2025-05-21 13:29:32', 'Moderate Competition'),
+('fa6c6ecb4a89bece75a9b333d39586a8', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Early Childhood Education ', 3, '2025-05-29 12:51:34', '2025-05-29 12:51:34', 'Low Competition');
 
 -- --------------------------------------------------------
 
@@ -1828,7 +2023,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Fk4BDRHUtIIJe34eqBt6u6BEemGG01p5qElwhH5B', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiR2ZNbWRGUWRxZ1dXcG5GUjYzNmFVRjhaWGVRcmt2Mk5PU3JEaWNyeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdXRoIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1748426987);
+('kaZ3ww8qLkOgRwTXeIWI2C0S9Ld6cvGWDZ6mxyS7', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQXJBaldiMnhXVUx3YlVMZzhqTVZYeGV2OUE3eGJLSTNWUEZUbGR1ZSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2F1dGgiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1748446744);
 
 -- --------------------------------------------------------
 
@@ -1894,6 +2089,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `surname`, `email`, `email_verified_at`, `profile_photo`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+('6f6e1b55cb1032bb2d3effe401567271', 'godfrey', 'benedicto', 'gmashinji@gmail.com', NULL, NULL, '$2y$12$YfyhdozZr.ZB1OoZcn5f1uD/3.I8tPhJHM2TXSMWQG0TXBgypp5se', NULL, '2025-05-28 11:01:26', '2025-05-28 11:01:26');
 
 --
 -- Constraints for dumped tables
