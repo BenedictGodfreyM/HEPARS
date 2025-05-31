@@ -21,6 +21,7 @@ class Datatable extends Component
     public $columns = ['name'];
     
     // For Toggling Modals
+    public $showCreatorModel = false;
     public $showEditorModel = false;
     public $selectedRecord_FieldID;
 
@@ -38,6 +39,16 @@ class Datatable extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function openCreatorModal()
+    {
+        $this->showCreatorModel = true;
+    }
+
+    public function closeCreatorModel()
+    {
+        $this->showCreatorModel = false;
     }
 
     public function openEditorModal($FieldID)

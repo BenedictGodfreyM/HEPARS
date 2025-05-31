@@ -11,9 +11,4 @@ class FieldController extends Controller
     {
         return view('backend.fields.index');
     }
-    
-    public function register()
-    {
-        return view('backend.fields.register');
-    }
 }
