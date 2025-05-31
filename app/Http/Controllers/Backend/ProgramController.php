@@ -14,10 +14,4 @@ class ProgramController extends Controller
         $institutionRepo = new InstitutionRepository();
         return view('backend.programs.index', ['institution' => $institutionRepo->findInstitution($institution_id)]);
     }
-    
-    public function register(Request $request, $institution_id)
-    {
-        $institutionRepo = new InstitutionRepository();
-        return view('backend.programs.register', ['institution' => $institutionRepo->findInstitution($institution_id)]);
-    }
 }

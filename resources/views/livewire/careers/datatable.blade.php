@@ -25,9 +25,9 @@
                     <h3 class="card-title">Careers</h3>
                     <div class="card-tools">
                         <div class="btn-group show">
-                            <a class="btn btn-sm btn-info" wire:click="openCreatorModal('{{ $field->id }}')">
+                            <button class="btn btn-sm btn-info" wire:click="openCreatorModal('{{ $field->id }}')">
                                 <i class="fas fa-plus"></i> Register
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -11,9 +11,4 @@ class InstitutionController extends Controller
     {
         return view('backend.institutions.index');
     }
-
-    public function register()
-    {
-        return view('backend.institutions.register');
-    }
 }

@@ -25,9 +25,9 @@
                     <h3 class="card-title">Registered High School Combinations</h3>
                     <div class="card-tools">
                         <div class="btn-group show">
-                            <a class="btn btn-sm btn-info" wire:click="openCreatorModal()">
+                            <button class="btn btn-sm btn-info" wire:click="openCreatorModal()">
                                 <i class="fas fa-plus"></i> Register
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

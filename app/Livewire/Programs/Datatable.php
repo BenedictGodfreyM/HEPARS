@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Programs;
 
+use App\Repositories\InstitutionRepository;
 use App\Repositories\ProgramRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -21,9 +22,11 @@ class Datatable extends Component
     public $columns = ['name','competition level','duration'];
 
     public $institutionId;
+    public $institution;
 
     // For Toggling Modals
     public $showDetailsModel = false;
+    public $showCreatorModel = false;
     public $showEditorModel = false;
     public $selectedRecord_ProgramID;
     public $selectedRecord_InstitutionID;
@@ -31,6 +34,7 @@ class Datatable extends Component
     public function mount($institution_id)
     {
         $this->institutionId = $institution_id;
+        $this->institution = (new InstitutionRepository)->findInstitution($institution_id);
     }
 
     public function updatingSearch()
@@ -59,6 +63,17 @@ class Datatable extends Component
     public function closeDetailsModel()
     {
         $this->showDetailsModel = false;
+    }
+
+    public function openCreatorModal($record_InstitutionID)
+    {
+        $this->selectedRecord_InstitutionID = $record_InstitutionID;
+        $this->showCreatorModel = true;
+    }
+
+    public function closeCreatorModel()
+    {
+        $this->showCreatorModel = false;
     }
 
     public function openEditorModal($record_InstitutionID, $record_ProgramID)
