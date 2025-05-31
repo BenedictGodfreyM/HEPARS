@@ -3,6 +3,7 @@
 namespace App\Livewire\Careers;
 
 use App\Repositories\CareerRepository;
+use App\Repositories\FieldRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -21,15 +22,18 @@ class Datatable extends Component
     public $columns = ['name'];
     
     // For Toggling Modals
+    public $showCreatorModel = false;
     public $showEditorModel = false;
     public $selectedRecord_FieldID;
     public $selectedRecord_CareerID;
 
     public $field_id;
+    public $field;
 
     public function mount($field_id)
     {
         $this->field_id = $field_id;
+        $this->field = (new FieldRepository)->findField($field_id);
     }
 
     public function updatingSearch()
@@ -46,6 +50,17 @@ class Datatable extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function openCreatorModal($FieldID)
+    {
+        $this->selectedRecord_FieldID = $FieldID;
+        $this->showCreatorModel = true;
+    }
+
+    public function closeCreatorModel()
+    {
+        $this->showCreatorModel = false;
     }
 
     public function openEditorModal($FieldID, $CareerID)

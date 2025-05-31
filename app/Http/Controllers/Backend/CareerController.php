@@ -13,10 +13,4 @@ class CareerController extends Controller
         $fieldRepo = new FieldRepository();
         return view('backend.careers.index', ['field' => $fieldRepo->findField($field_id)]);
     }
-    
-    public function register(Request $request, $field_id)
-    {
-        $fieldRepo = new FieldRepository();
-        return view('backend.careers.register', ['field' => $fieldRepo->findField($field_id)]);
-    }
 }
