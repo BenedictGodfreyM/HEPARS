@@ -11,9 +11,4 @@ class SubjectController extends Controller
     {
         return view('backend.subjects.index');
     }
-    
-    public function register()
-    {
-        return view('backend.subjects.register');
-    }
 }
