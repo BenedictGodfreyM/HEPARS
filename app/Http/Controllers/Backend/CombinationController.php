@@ -11,9 +11,4 @@ class CombinationController extends Controller
     {
         return view('backend.combinations.index');
     }
-
-    public function register()
-    {
-        return view('backend.combinations.register');
-    }
 }
