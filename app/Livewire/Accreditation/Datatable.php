@@ -22,6 +22,7 @@ class Datatable extends Component
     
     // For Toggling Modals
     public $showDetailsModel = false;
+    public $showCreatorModel = false;
     public $showEditorModel = false;
     public $selectedRecord_AccreditationID;
 
@@ -50,6 +51,16 @@ class Datatable extends Component
     public function closeDetailsModel()
     {
         $this->showDetailsModel = false;
+    }
+
+    public function openCreatorModal()
+    {
+        $this->showCreatorModel = true;
+    }
+
+    public function closeCreatorModel()
+    {
+        $this->showCreatorModel = false;
     }
 
     public function openEditorModal($AccreditationID)

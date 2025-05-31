@@ -11,9 +11,4 @@ class AccreditationController extends Controller
     {
         return view('backend.accreditation.index');
     }
-
-    public function register()
-    {
-        return view('backend.accreditation.register');
-    }
 }
