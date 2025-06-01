@@ -1,3 +1,19 @@
+@push("styles")
+<style>
+    .custom-spinner {
+        width: 40px;
+        height: 40px;
+        border: 5px solid rgba(0,0,0,.1);
+        border-radius: 50%;
+        border-top-color: #3498db;
+        animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>
+@endpush
+
 <div>
     <div class="callout callout-info">
         <h5>Hello!</h5> 
@@ -29,10 +45,8 @@
                             <span id="inputSelectedSubjects-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="pl-4" style="width: 100%;text-align: center;" wire:loading wire:target="addCombinationSubjectsToSelection">
-                                <i class="fas fa-2x fa-spinner fa-spin"></i>
-                            </label>
+                        <div class="row col-12" wire:loading wire:target="addCombinationSubjectsToSelection">
+                            <div class="mx-auto my-auto custom-spinner"></div>
                         </div>
                         @if(count($selectedSubjects) > 0)
                         @foreach($selectedSubjects as $index => $subjectData)
