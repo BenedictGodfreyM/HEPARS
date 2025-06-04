@@ -19,9 +19,9 @@ class RolesTableSeeder extends Seeder
          */
         $RoleItems = [
             [
-                'name'        => 'Admin',
+                'name'        => 'Administrator',
                 'slug'        => 'admin',
-                'description' => 'Admin Role',
+                'description' => 'Administrator Role',
                 'level'       => 5,
             ],
             [
