@@ -97,4 +97,24 @@ class User extends Authenticatable
     {
         return ($this->firstname . " " . $this->surname);
     }
+
+    /**
+     * Get the user's roles.
+     * 
+     * @return array
+     */
+    public function getRolesAttribute()
+    {
+        return $this->getRoles();
+    }
+
+    /**
+     * Get the user's permissions.
+     * 
+     * @return array
+     */
+    public function getPermissionsAttribute()
+    {
+        return $this->getPermissions();
+    }
 }
