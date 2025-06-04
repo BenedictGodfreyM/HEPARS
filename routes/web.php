@@ -4,32 +4,38 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('auth')->group(function () {
 
-    Route::get('/account', [App\Http\Controllers\Backend\UserAccountController::class, 'index'])->name('account.details');
+    Route::get('/account', [App\Http\Controllers\Backend\UserAccountController::class, 'index'])->name('account.details')->middleware('permission:view.profile');
 
     
-    Route::get('/accreditation', [App\Http\Controllers\Backend\AccreditationController::class, 'index'])->name('accreditation');
+    Route::get('/accreditation', [App\Http\Controllers\Backend\AccreditationController::class, 'index'])->name('accreditation')->middleware('permission:view.accreditations');
 
 
-    Route::get('/combinations', [App\Http\Controllers\Backend\CombinationController::class, 'index'])->name('combinations');
+    Route::get('/combinations', [App\Http\Controllers\Backend\CombinationController::class, 'index'])->name('combinations')->middleware('permission:view.combinations');
 
 
     Route::prefix('fields')->group(function () {
 
-        Route::get('/{field_id}/careers', [App\Http\Controllers\Backend\CareerController::class, 'index'])->name('fields.careers');
+        Route::get('/{field_id}/careers', [App\Http\Controllers\Backend\CareerController::class, 'index'])->name('fields.careers')->middleware('permission:view.careers');
 
-        Route::get('/', [App\Http\Controllers\Backend\FieldController::class, 'index'])->name('fields');
+        Route::get('/', [App\Http\Controllers\Backend\FieldController::class, 'index'])->name('fields')->middleware('permission:view.fields');
 
     });
 
     Route::prefix('institutions')->group(function () {
 
-        Route::get('/{institution_id}/programs', [App\Http\Controllers\Backend\ProgramController::class, 'index'])->name('institutions.programs');  
+        Route::get('/{institution_id}/programs', [App\Http\Controllers\Backend\ProgramController::class, 'index'])->name('institutions.programs')->middleware('permission:view.programs');  
 
-        Route::get('/', [App\Http\Controllers\Backend\InstitutionController::class, 'index'])->name('institutions');
+        Route::get('/', [App\Http\Controllers\Backend\InstitutionController::class, 'index'])->name('institutions')->middleware('permission:view.institutions');
 
     });
     
-    Route::get('/subjects', [App\Http\Controllers\Backend\SubjectController::class, 'index'])->name('subjects');
+    Route::get('/permissions', [App\Http\Controllers\Backend\AccessControlController::class, 'permissions'])->name('permissions')->middleware('permission:view.permissions');
+    
+    Route::get('/roles', [App\Http\Controllers\Backend\AccessControlController::class, 'roles'])->name('roles')->middleware('permission:view.roles');
+    
+    Route::get('/subjects', [App\Http\Controllers\Backend\SubjectController::class, 'index'])->name('subjects')->middleware('permission:view.subjects');
+    
+    Route::get('/users', [App\Http\Controllers\Backend\AccessControlController::class, 'users'])->name('users')->middleware('permission:view.users');
 
 
     Route::prefix('verify-email')->group(function () {
