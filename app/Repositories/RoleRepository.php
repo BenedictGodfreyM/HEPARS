@@ -11,9 +11,25 @@ class RoleRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allRoles()
+    public function allRoles($search, $sortField = "status", $sortDirection = "desc", $perPage = 10)
     {
-        return config('roles.models.role')::with(['users', 'permissions'])->latest()->paginate(10);
+        return config('roles.models.role')::with(['users', 'permissions'])
+                        ->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('slug', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%')
+                        ->orWhere('level', 'like', '%' . $search . '%')
+                        ->orderBy($sortField, $sortDirection)
+                        ->paginate($perPage);
+    }
+
+    /**
+     * Retrieve all roles from the database (Without Pagination)
+     * 
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function allRolesWithoutPagination()
+    {
+        return config('roles.models.role')::with(['users', 'permissions'])->get();
     }
 
     /**
@@ -52,7 +68,7 @@ class RoleRepository
      * 
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function findUser($id)
+    public function findRole($id)
     {
         return config('roles.models.role')::with(['users', 'permissions'])->where('id', '=', $id)->firstOrFail();
     }

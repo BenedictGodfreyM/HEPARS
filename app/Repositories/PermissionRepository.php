@@ -11,9 +11,25 @@ class PermissionRepository
      * 
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function allPermissions()
+    public function allPermissions($search, $sortField = "status", $sortDirection = "desc", $perPage = 10)
     {
-        return config('roles.models.permission')::with('users', 'roles')->latest()->paginate(10);
+        return config('roles.models.permission')::with('users', 'roles')
+                        ->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('slug', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%')
+                        ->orWhere('model', 'like', '%' . $search . '%')
+                        ->orderBy($sortField, $sortDirection)
+                        ->paginate($perPage);
+    }
+
+    /**
+     * Retrieve all permissions from the database (Without Pagination)
+     * 
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function allPermissionsWithoutPagination()
+    {
+        return config('roles.models.permission')::with(['users', 'roles'])->get();
     }
 
     /**
