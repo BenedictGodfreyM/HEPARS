@@ -91,7 +91,7 @@ class Edit extends Component
             $combinationRepo = new CombinationRepository();
             $isUpdated = $combinationRepo->updateCombination([
                 'name' => strtoupper($this->name),
-                'category' => strtoupper($this->category),
+                'category' => $this->category,
             ], $this->combination_id);
 
             if($isUpdated){

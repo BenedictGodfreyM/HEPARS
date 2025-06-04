@@ -80,7 +80,7 @@ class Register extends Component
             $combinationRepo = new CombinationRepository();
             $newCombination = $combinationRepo->storeCombination([
                 'name' => strtoupper($this->name),
-                'category' => strtoupper($this->category),
+                'category' => $this->category,
             ]);
             $combinationRepo->linkToSubjects($newCombination->id, array_pluck($this->selectedSubjects, "id"));
             DB::commit();
