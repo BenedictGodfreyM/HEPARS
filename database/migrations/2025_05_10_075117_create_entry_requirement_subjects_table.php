@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('entry_requirement_subjects', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigIncrements('id');
+            (DB::getDriverName() === 'sqlite') ? $table->increments('id') : $table->bigIncrements('id');
             $table->string('entry_requirement_id')->index();
             $table->foreign('entry_requirement_id')->references('id')->on('entry_requirements')->onDelete('cascade');
             $table->string('subject_id')->index();

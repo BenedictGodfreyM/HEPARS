@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('combination_subjects', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigIncrements('id');
+            (DB::getDriverName() === 'sqlite') ? $table->increments('id') : $table->bigIncrements('id');
             $table->string('combination_id')->index();
             $table->foreign('combination_id')->references('id')->on('combinations')->onDelete('cascade');
             $table->string('subject_id')->index();
