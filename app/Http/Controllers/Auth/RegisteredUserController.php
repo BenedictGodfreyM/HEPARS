@@ -59,10 +59,24 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $redirectToRoute = "home";
+        $users = User::whereHas('roles', function ($query) { 
+            $query->where('roles.slug', 'admin');
+        })->with(['roles'])->get();
+        if($users->count() <= 0){
+            $adminRole = config('roles.models.role')::where('slug', '=', 'admin')->first();
+            if($adminRole !== null) $user->attachRole($adminRole);
+            $redirectToRoute = "dashboard";
+        }else{
+            $userRole = config('roles.models.role')::where('slug', '=', 'user')->first();
+            if($userRole !== null) $user->attachRole($userRole);
+            $redirectToRoute = "home";
+        }
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('home', absolute: false));
+        return redirect(route($redirectToRoute, absolute: false));
     }
 }
