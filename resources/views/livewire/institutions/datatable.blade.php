@@ -25,13 +25,16 @@
                     <h3 class="card-title">Registered Institutions</h3>
                     <div class="card-tools">
                         <div class="btn-group show">
+                            @permission('create.institutions')
                             <button class="btn btn-sm btn-info" wire:click="openCreatorModal()">
                                 <i class="fas fa-plus"></i> Register
                             </button>
+                            @endpermission
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
+                    @permission('view.institutions')
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -89,20 +92,26 @@
                                                     <td>{{ $item->$column }}</td>
                                                 @endforeach
                                                 <td>
+                                                    @permission('view.programs')
                                                     <a class="btn btn-secondary btn-sm" href="{{ route('institutions.programs', ['institution_id' => $item->id]) }}">Programs</a>
+                                                    @endpermission
                                                     <button class="btn btn-info btn-sm" wire:click="openDetailsModal('{{ $item->id }}')">
                                                         <span wire:loading wire:target="openDetailsModal('{{ $item->id }}')">
                                                             <i class="fas fa-1x fa-spinner fa-spin"></i>
                                                         </span>
                                                         <span wire:loading.remove wire:target="openDetailsModal('{{ $item->id }}')">View</span>
                                                     </button>
+                                                    @permission('edit.institutions')
                                                     <button class="btn btn-primary btn-sm" wire:click="openEditorModal('{{ $item->id }}')">
                                                         <span wire:loading wire:target="openEditorModal('{{ $item->id }}')">
                                                             <i class="fas fa-1x fa-spinner fa-spin"></i>
                                                         </span>
                                                         <span wire:loading.remove wire:target="openEditorModal('{{ $item->id }}')">Edit</span>
                                                     </button>
+                                                    @endpermission
+                                                    @permission('delete.institutions')
                                                     <button class="btn btn-danger btn-sm" wire:click="delete('{{ $item->id }}')">Delete</button>
+                                                    @endpermission
                                                 </td>
                                             </tr>
                                         @empty
@@ -173,6 +182,7 @@
                         </div>
                     </div>
                     @endif
+                    @endpermission
                 </div>
             </div>
         </div>
