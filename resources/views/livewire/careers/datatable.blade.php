@@ -25,13 +25,16 @@
                     <h3 class="card-title">Careers</h3>
                     <div class="card-tools">
                         <div class="btn-group show">
+                            @permission('create.careers')
                             <button class="btn btn-sm btn-info" wire:click="openCreatorModal('{{ $field->id }}')">
                                 <i class="fas fa-plus"></i> Register
                             </button>
+                            @endpermission
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
+                    @permission('view.careers')
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -89,13 +92,17 @@
                                                     <td>{{ $item->$column }}</td>
                                                 @endforeach
                                                 <td>
+                                                    @permission('edit.careers')
                                                     <button class="btn btn-primary btn-sm" wire:click="openEditorModal('{{ $field_id }}', '{{ $item->id }}')">
                                                         <span wire:loading wire:target="openEditorModal('{{ $field_id }}', '{{ $item->id }}')">
                                                             <i class="fas fa-1x fa-spinner fa-spin"></i>
                                                         </span>
                                                         <span wire:loading.remove wire:target="openEditorModal('{{ $field_id }}', '{{ $item->id }}')">Edit</span>
                                                     </button>
+                                                    @endpermission
+                                                    @permission('delete.careers')
                                                     <button class="btn btn-danger btn-sm" wire:click="delete('{{ $item->id }}')">Delete</button>
+                                                    @endpermission
                                                 </td>
                                             </tr>
                                         @empty
@@ -149,6 +156,7 @@
                         </div>
                     </div>
                     @endif
+                    @endpermission
                 </div>
             </div>
         </div>
