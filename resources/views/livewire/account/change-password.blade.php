@@ -18,6 +18,7 @@
 @endpush
 
 <div>
+    @permission('change.password')
     <form wire:submit="setNewPassword" action="" autocomplete="off">
         <div class="form-group">
             <label for="inputCurrentPassword">Current Password</label>
@@ -47,4 +48,5 @@
             </button>
         </div>
     </form>
+    @endpermission
 </div>
