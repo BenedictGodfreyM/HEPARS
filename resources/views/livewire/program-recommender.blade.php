@@ -69,18 +69,14 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Career Choice</label>
-                            <select class="form-control @error('selectedCareer') is-invalid @enderror" wire:model="selectedCareer" @if(count($selectedSubjects) <= 0) disabled @endif required>
+                            <select class="form-control @error('selectedCareerField') is-invalid @enderror" wire:model="selectedCareerField" @if(count($selectedSubjects) <= 0) disabled @endif required>
                                 <option selected disabled value="">Select any Option</option>
                                 @foreach ($careerFields as $field)
-                                <optgroup label="{{ $field->name }}">
-                                    @foreach ($field->careers as $career)
-                                    <option value="{{ $career->id }}">{{ $career->name }}</option>
-                                    @endforeach
-                                </optgroup>
+                                <option value="{{ $field->id }}">{{ $field->name }}</option>
                                 @endforeach
                             </select>
-                            @error('selectedCareer')
-                            <span id="inputSelectedCareer-Error" class="error invalid-feedback">{{ $message }}</span>
+                            @error('selectedCareerField')
+                            <span id="inputSelectedCareerField-Error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -112,12 +108,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    @if(count($recommendations['BasedOnSelectedCareer']) > 0)
-                    @if(count($recommendations['BasedOnRelatedCareers']) > 0)
+                    @if(count($recommendations['BasedOnselectedCareerField']) > 0)
+                    @if(count($recommendations['BasedOnOtherCareerFields']) > 0)
                     <h5>Based on your Career Choice</h5>
                     @endif
                     <div class="card-comments px-2 py-2">
-                        @foreach($recommendations['BasedOnSelectedCareer'] as $key => $recomendation)
+                        @foreach($recommendations['BasedOnselectedCareerField'] as $key => $recomendation)
                         <div class="card-comment">
                             <div class="comment-text">
                                 <span class="username">
@@ -155,9 +151,9 @@
                     <div class="row">
                         <div class="col-12 mt-3 text-center">
                             <p class="lead text-warning">
-                                Sorry!. Based on your career choice, we couldn't find programs you qualify in.<br>
-                                @if(count($recommendations['BasedOnRelatedCareers']) > 0)
-                                    However, you qualify for other programs within the field of {{ $recommendations['CareerField'] }}.<br> 
+                                Sorry!. We couldn't find programs you qualify in, based on your career choice.<br>
+                                @if(count($recommendations['BasedOnOtherCareerFields']) > 0)
+                                    However, you qualify for programs from other fields.<br> 
                                     Check out the list below:
                                 @else
                                     Try selecting a different career.
@@ -166,12 +162,12 @@
                         </div>
                     </div>
                     @endif
-                    @if(count($recommendations['BasedOnRelatedCareers']) > 0)
-                    @if(count($recommendations['BasedOnSelectedCareer']) > 0)
-                    <h5 class="mt-2">More from {{ $recommendations['CareerField'] }} Field</h5>
+                    @if(count($recommendations['BasedOnOtherCareerFields']) > 0)
+                    @if(count($recommendations['BasedOnselectedCareerField']) > 0)
+                    <h5 class="mt-2">Programs from other career fields</h5>
                     @endif
                     <div class="card-comments px-2 py-2">
-                        @foreach($recommendations['BasedOnRelatedCareers'] as $key => $recomendation)
+                        @foreach($recommendations['BasedOnOtherCareerFields'] as $key => $recomendation)
                         <div class="card-comment">
                             <div class="comment-text">
                                 <span class="username">

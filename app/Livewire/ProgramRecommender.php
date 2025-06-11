@@ -17,7 +17,7 @@ class ProgramRecommender extends Component
     public $careerFields = [];
 
     public $selectedSubjects = [];
-    public $selectedCareer = "";
+    public $selectedCareerField = "";
 
     public $recommendations = [];
 
@@ -35,7 +35,7 @@ class ProgramRecommender extends Component
     {
         return [
             'selectedSubjects' => 'required|array|min:3',
-            'selectedCareer' => 'required|string|exists:careers,id',
+            'selectedCareerField' => 'required|string|exists:fields,id',
         ];
     }
 
@@ -45,9 +45,9 @@ class ProgramRecommender extends Component
             'selectedSubjects.required' => 'Please select your high school combination.',
             'selectedSubjects.array' => 'Invalid format of the combination subjects.',
             'selectedSubjects.min' => 'Your high school combination should have atleast three subjects.',
-            'selectedCareer.required' => 'Please select a career of your choice.',
-            'selectedCareer.string' => 'Invalid format of the selected career choice.',
-            'selectedCareer.exists' => 'Invalid career choice.',
+            'selectedCareerField.required' => 'Please select a career of your choice.',
+            'selectedCareerField.string' => 'Invalid format of the selected career choice.',
+            'selectedCareerField.exists' => 'Invalid career choice.',
         ];
     }
 
@@ -65,6 +65,7 @@ class ProgramRecommender extends Component
     {
         $combination = (new CombinationRepository())->findCombination($combinationID);
         $this->selectedSubjects = $selectedSubjectIDs = [];
+        $this->reset('selectedCareerField');
         foreach($combination->subjects as $key => $subject){
             $selectionToAdd = ['subject' => $subject, 'grade' => ''];
             if (!$this->subjectExists($this->selectedSubjects, $selectionToAdd['subject']['name'])) {
@@ -72,17 +73,8 @@ class ProgramRecommender extends Component
                 $selectedSubjectIDs[$key] = $subject->id;
             }
         }
-        // Retrieve Careers related to the selected subjects
-        $associatedCareers = (new CareerRepository)->allCareersAssociatedWith($selectedSubjectIDs);
-        // Group Careers according their fields
-        $groupedCareers = $associatedCareers->groupBy(function ($associatedCareer) {
-            return $associatedCareer->field->id;
-        });
-        $associatedCareerFields = $associatedCareers->pluck('field')->unique('id')->sortBy('name')->values();
-        $associatedCareerFields->each(function ($associatedCareerField) use ($groupedCareers) {
-            $associatedCareerField->setRelation('careers', $groupedCareers->get($associatedCareerField->id, collect()));
-        });
-        $this->careerFields = $associatedCareerFields;
+        // Retrieve Fields related to the selected subjects
+        $this->careerFields = (new FieldRepository)->allFieldsAssociatedWith($selectedSubjectIDs);
     }
 
     public function getRecommendations()
@@ -94,16 +86,14 @@ class ProgramRecommender extends Component
                 $studentResults[$selectedSubject['subject']['id']] = $selectedSubject['grade'];
             }
 
-            $selectedCareer_Details = (new CareerRepository)->findCareer($this->selectedCareer);
-            $relatedCareers = $selectedCareer_Details->field->careers->map(function ($career) { return $career->id; })->toArray();
-
-            $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareer, $relatedCareers, $studentResults);
+            $this->recommendations = (new RecommendationService)->getRecommendations($this->selectedCareerField, $studentResults);
             
-            if(count($this->recommendations['BasedOnSelectedCareer']) <= 0 && count($this->recommendations['BasedOnRelatedCareers']) <= 0) {
+            if(count($this->recommendations['BasedOnselectedCareerField']) <= 0 && count($this->recommendations['BasedOnOtherCareerFields']) <= 0) {
                 return session()->flash('no_recommenadations', "Your results do not quite meet the requirements for programs under the career you have selected!. Try selecting an alternative career choice, if there is any.");
-            }
-            
-            $this->recommendations['CareerField'] = ucwords(strtolower($selectedCareer_Details->field->name));
+            }            
+
+            $selectedCareerField_Details = (new FieldRepository)->findField($this->selectedCareerField);
+            $this->recommendations['CareerField'] = ucwords(strtolower($selectedCareerField_Details->name));
             return $this->showRecommendations = true;
         }catch(Exception $e){
             session()->flash('error',$e->getMessage());
