@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Enums\RequirementType;
+use App\Models\Career;
 use App\Models\EntryRequirement;
 use App\Models\Program;
-use Illuminate\Database\Eloquent\Collection;
 
 class RecommendationService
 {
@@ -14,17 +14,14 @@ class RecommendationService
     /**
      * Request a list of programs and institutions they are offered based on the career choice and high school results
      *
-     * @param string $career_id ID of selected career
-     * @param array $careers Array of career IDs (Careers in the same Field as the selected Career)
+     * @param string $field_id ID of selected career field
      * @param array $studentResults (array($subjectId => $studentGrade) Eg. array(de52cabd871248ebd540e4c1616d8477 => 'A'))
      * 
      * @return array<string, Illuminate\Database\Eloquent\Collection<int, App\Models\Program>>
      */
-    public function getRecommendations(string $career_id, array $careers, array $studentResults): array
+    public function getRecommendations(string $field_id, array $studentResults): array
     {
-        $programs = Program::query()->whereHas('careers', function ($query) use ($careers) {
-            $query->whereIn('careers.id', $careers);
-        })->with(['careers','institution','entryRequirements'])->get();
+        $programs = Program::query()->with('careers','institution','entryRequirements')->whereHas('careers')->get();
 
         $recommendedPrograms = $programs->filter(function ($program) use ($studentResults) {
             return $program->entryRequirements->contains(function ($requirement) use ($studentResults) {
@@ -33,15 +30,17 @@ class RecommendationService
             });
         });
 
-        $recommendations['BasedOnSelectedCareer'] = $recommendedPrograms->filter(function ($program) use ($career_id) {
-            return $program->careers->contains(function ($career) use ($career_id) { 
-                return $career->id === $career_id;
+        $careerIDsUnderSelectedField = Career::where('field_id', $field_id)->pluck('id')->toArray();
+
+        $recommendations['BasedOnselectedCareerField'] = $recommendedPrograms->filter(function ($program) use ($careerIDsUnderSelectedField) {
+            return $program->careers->contains(function ($career) use ($careerIDsUnderSelectedField) {
+                return in_array($career->id, $careerIDsUnderSelectedField);
             });
         })->sort(function ($a, $b) { return $a->institution->rank <=> $b->institution->rank; });
 
-        $recommendations['BasedOnRelatedCareers'] = $recommendedPrograms->reject(function ($program) use ($career_id) {
-            return $program->careers->contains(function ($career) use ($career_id) { 
-                return $career->id === $career_id;
+        $recommendations['BasedOnOtherCareerFields'] = $recommendedPrograms->reject(function ($program) use ($careerIDsUnderSelectedField) {
+            return $program->careers->contains(function ($career) use ($careerIDsUnderSelectedField) {
+                return in_array($career->id, $careerIDsUnderSelectedField);
             });
         })->sort(function ($a, $b) { return $a->institution->rank <=> $b->institution->rank; });
 
