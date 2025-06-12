@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 29, 2025 at 06:31 PM
+-- Generation Time: Jun 12, 2025 at 07:21 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -209,6 +209,7 @@ INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VAL
 ('49526c9045a1507125a079a8950ad205', '61c85fef3fe628448507cf9fee884834', 'Economist', '2025-05-23 12:45:42', '2025-05-23 12:45:42'),
 ('4ac1e1dc3a1eba40cbc01a2378d06fca', '50454887affd0f1dcf0354a77aae629d', 'Optometrist', '2025-05-21 14:06:24', '2025-05-21 14:06:24'),
 ('4bc6e7954c6519a2a46442bdf1d15fd1', '4e62dc14ecad41cc0039b97b838511d4', 'Full-Stack Developer', '2025-05-24 07:05:26', '2025-05-24 07:05:26'),
+('4c9bd38a058bbeb6959d67b96a3de794', '48f7c12599cac4824ec5f0f9a85b64db', 'Landscape Architect', '2025-06-05 07:20:37', '2025-06-05 07:20:37'),
 ('4c9ec7656259cf2d0db6fe739c4bd311', 'd0db6a91e441fad01bddc7fe1434d0cd', 'Travel Agency Manager', '2025-05-24 09:34:44', '2025-05-24 09:34:44'),
 ('4cfe10f2546cceac7b9fe2d4d1eb8021', 'c3c17b192dd8307608a340d0e1cb0364', 'Remote Sensing Specialist', '2025-05-24 06:47:37', '2025-05-24 06:47:37'),
 ('4d2d0e669618f9de050289557127785b', '7d65456e1a4117d8cb5bcdb15195ab6a', 'Theatre Production Manager', '2025-05-24 09:48:59', '2025-05-24 09:48:59'),
@@ -277,6 +278,7 @@ INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VAL
 ('8d63ed0403e9782b5248a5bb1a1ea35f', '61c85fef3fe628448507cf9fee884834', 'Tax Consultant', '2025-05-24 09:30:25', '2025-05-24 09:30:25'),
 ('94b935c9374fad9f016b1b1f96c01e8b', '658e64e2162b8024259369a02271586f', 'Physics Teacher', '2025-05-24 06:03:13', '2025-05-24 06:03:13'),
 ('9787a81eb04e4eb77e6d90d69d9c1bbc', '658e64e2162b8024259369a02271586f', 'Historian', '2025-05-24 09:59:42', '2025-05-24 09:59:42'),
+('99800f09b489c0f9b6371d935b00d8b8', '48f7c12599cac4824ec5f0f9a85b64db', 'Architect', '2025-06-05 07:20:27', '2025-06-05 07:20:27'),
 ('99a906c47fded7a412301f520838bf89', '7144d7eb27e93ecd59dca9f9d1d8cb8f', 'Human Resource Manager', '2025-05-24 09:38:29', '2025-05-24 09:38:29'),
 ('9a2d2e681f71f487c53330ec971f686f', 'bf35ffd27e69fca6144f2c9c4143f8d5', 'Legal Advisor', '2025-05-24 07:43:08', '2025-05-24 07:43:08'),
 ('9a65833dd16bc911d50b716bf092a842', '08e5be3d6ec275be8b4c8c819c10309a', 'Green Economy Advisor', '2025-05-23 13:12:49', '2025-05-23 13:12:49'),
@@ -284,6 +286,7 @@ INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VAL
 ('9b66f77560076c48604ce8cad6cbc1a1', 'c3c17b192dd8307608a340d0e1cb0364', 'Mining Consultant', '2025-05-24 06:34:22', '2025-05-24 06:34:22'),
 ('9b9039287ccd6957e6ab9c1f25664cef', 'c9dd5ef734bf29254ba768e5a3e120ff', 'Sales Manager', '2025-05-24 09:09:20', '2025-05-24 09:09:20'),
 ('9c9add8e5f7fb4da88459b61649e3c6c', '7d65456e1a4117d8cb5bcdb15195ab6a', 'Film Director', '2025-05-24 09:48:28', '2025-05-24 09:48:28'),
+('9e3a51452eebc7545822a5463ca44851', '48f7c12599cac4824ec5f0f9a85b64db', 'Interior Designer', '2025-06-05 07:20:45', '2025-06-05 07:20:45'),
 ('a01176e0e6893a17211db7118ee83d5d', '658e64e2162b8024259369a02271586f', 'English Teacher', '2025-05-23 13:10:13', '2025-05-23 13:10:13'),
 ('a12115a3cf173b23e2542e5d7aaa4732', 'b2c4de026257d3a8ad9079c986d96475', 'Logistics Manager', '2025-05-24 09:07:08', '2025-05-24 09:07:08'),
 ('a14f3145aee3d222de720317f0eef992', '3c13f7cb18a84b71495e2074305f44a2', 'Communication Specialist', '2025-05-23 13:10:56', '2025-05-23 13:10:56'),
@@ -304,6 +307,7 @@ INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VAL
 ('b0d0a1efdd7cb0cec91731f2a86d6aba', '61c85fef3fe628448507cf9fee884834', 'Accountant', '2025-05-24 09:29:40', '2025-05-24 09:29:40'),
 ('b0edccc32cb0560c52a4eaddab1f14a4', '4e62dc14ecad41cc0039b97b838511d4', 'Visual Effects Artist', '2025-05-24 06:04:28', '2025-05-24 06:04:28'),
 ('b0ff8d7d57b4a72eff1ecd50b33523b9', 'c9dd5ef734bf29254ba768e5a3e120ff', 'Business Manager', '2025-05-23 12:36:56', '2025-05-23 12:36:56'),
+('b113471d2d7931918ecf604c693807f7', '50454887affd0f1dcf0354a77aae629d', 'Speech Therapist', '2025-06-05 06:59:26', '2025-06-05 06:59:26'),
 ('b186522af48c6a56fd74757d61012346', 'b2c4de026257d3a8ad9079c986d96475', 'Supply Chain Analyst', '2025-05-24 09:07:13', '2025-05-24 09:07:13'),
 ('b26340fab0e284415a48e805e22f70dd', '2ce9bfa769ff08067d65108a501b8d94', 'Art Gallery Curator', '2025-05-24 14:40:38', '2025-05-24 14:40:38'),
 ('b3cb8d90ff474ca62012e60838cfd805', '4e62dc14ecad41cc0039b97b838511d4', 'Software Developer', '2025-05-24 07:03:44', '2025-05-24 07:03:44'),
@@ -319,6 +323,7 @@ INSERT INTO `careers` (`id`, `field_id`, `name`, `created_at`, `updated_at`) VAL
 ('c2e3d45cd971d5520ad550939f8617ac', '658e64e2162b8024259369a02271586f', 'Adult Educator', '2025-05-24 08:53:29', '2025-05-24 08:53:29'),
 ('c420a624b567e1eadafcefdbd7f333ea', '7d65456e1a4117d8cb5bcdb15195ab6a', 'Media Analyst ', '2025-05-24 09:58:00', '2025-05-24 09:58:00'),
 ('c5372bd13303b04b6ab2975f79174ba7', '658e64e2162b8024259369a02271586f', 'Academic Advisor', '2025-05-24 08:43:29', '2025-05-24 08:43:29'),
+('c722be5d0da2f949ae5e0eab160d7012', '50454887affd0f1dcf0354a77aae629d', 'Audiologist', '2025-06-05 06:57:10', '2025-06-05 06:57:10'),
 ('c9490b8a50f7a5651e0a5f845c52db2b', 'c9dd5ef734bf29254ba768e5a3e120ff', 'Marketing Manager', '2025-05-24 09:08:31', '2025-05-24 09:08:31'),
 ('ca4242c399770153b0c5aad95a121096', '08e5be3d6ec275be8b4c8c819c10309a', 'Climate Change Analyst', '2025-05-23 12:38:36', '2025-05-23 12:38:36'),
 ('ca578a14cda8288e6ad10c6ee2951f1a', '4e62dc14ecad41cc0039b97b838511d4', 'Network Engineer', '2025-05-24 05:43:14', '2025-05-24 05:43:14'),
@@ -389,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `career_programs` (
   PRIMARY KEY (`id`),
   KEY `career_programs_program_id_index` (`program_id`),
   KEY `career_programs_career_id_index` (`career_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=283 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=319 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `career_programs`
@@ -669,7 +674,41 @@ INSERT INTO `career_programs` (`id`, `program_id`, `career_id`, `created_at`, `u
 (279, '59870349fcef83e195a295fc62e17b8b', '6166811f9414456f88cabfa302eb5d42', NULL, NULL),
 (280, '59870349fcef83e195a295fc62e17b8b', '66b3bcff99666ef03f1f7cbd2104a43b', NULL, NULL),
 (281, '59870349fcef83e195a295fc62e17b8b', '5ffd5fba366a3ae75767791773161ec8', NULL, NULL),
-(282, '59870349fcef83e195a295fc62e17b8b', '3fc045b849bd160376bd795c2db4e2c5', NULL, NULL);
+(282, '59870349fcef83e195a295fc62e17b8b', '3fc045b849bd160376bd795c2db4e2c5', NULL, NULL),
+(283, '6c71a7bbb3398a769abfb1fadb5929a1', '64d0f39750b325acf6624d6951210b37', NULL, NULL),
+(284, 'c7d1b2fc3b1195b94195450ae9c0c9b5', 'bd6e3beb44084759f5c705e60074bc90', NULL, NULL),
+(285, '42e1316d01cedc078337729829653b5b', '29d7071db215bca519d1488fe3f7be7f', NULL, NULL),
+(286, '5499b5d315f03a7b33f880eb88545fe6', 'd408e5d1e3dedbc0b80183ee916c312d', NULL, NULL),
+(287, '63d4bd5e98166ae14a5599b9f85ab96f', 'f74594019a7d0bb4c0d24be4b185a8fe', NULL, NULL),
+(288, '63d4bd5e98166ae14a5599b9f85ab96f', '265a321e5e1ae5d7a13d9c655c6e5a71', NULL, NULL),
+(289, '63d4bd5e98166ae14a5599b9f85ab96f', 'eca30a10769a4ad70cb626764f013e8f', NULL, NULL),
+(290, '7bcc3a2490d7ee562c8dc8cac9a25bd2', 'de2b3d9d013489cad0a5d2ebdf52af7f', NULL, NULL),
+(291, '7bcc3a2490d7ee562c8dc8cac9a25bd2', 'f74594019a7d0bb4c0d24be4b185a8fe', NULL, NULL),
+(292, '7bcc3a2490d7ee562c8dc8cac9a25bd2', 'd49a8cd3940665bea8266b2834358758', NULL, NULL),
+(293, '7bcc3a2490d7ee562c8dc8cac9a25bd2', '0933d077302f66c3722bf40fc99d10e0', NULL, NULL),
+(294, 'ba47e9cf0055abce55d33e7ad7200626', '7828423d6bddd73825a746a660f6ddb8', NULL, NULL),
+(295, 'c1368857a497441654705eba40d31c59', '64d0f39750b325acf6624d6951210b37', NULL, NULL),
+(298, 'c1368857a497441654705eba40d31c59', 'ab7ab2cd6287e06a37a4e5c38844dfd2', NULL, NULL),
+(299, 'c1368857a497441654705eba40d31c59', '7267624fa2966cfab6f4ca0ca41e6a89', NULL, NULL),
+(300, 'cd9323c76d11b08ba1b98764b68ba470', 'c722be5d0da2f949ae5e0eab160d7012', NULL, NULL),
+(301, 'cd9323c76d11b08ba1b98764b68ba470', 'b113471d2d7931918ecf604c693807f7', NULL, NULL),
+(302, 'cd9323c76d11b08ba1b98764b68ba470', 'ff2bc131c5e0c35bd45f55dc26c899d1', NULL, NULL),
+(303, '874f91396a7c6f62b220f9bc1ba7b8f3', 'd408e5d1e3dedbc0b80183ee916c312d', NULL, NULL),
+(304, '874f91396a7c6f62b220f9bc1ba7b8f3', '64d0f39750b325acf6624d6951210b37', NULL, NULL),
+(305, '874f91396a7c6f62b220f9bc1ba7b8f3', '408ed38aa0c716c22b62813f8d003af8', NULL, NULL),
+(306, 'd4899639b1243eeef21e33c0cfeb4135', 'd408e5d1e3dedbc0b80183ee916c312d', NULL, NULL),
+(307, 'd4899639b1243eeef21e33c0cfeb4135', '408ed38aa0c716c22b62813f8d003af8', NULL, NULL),
+(308, 'd4899639b1243eeef21e33c0cfeb4135', '64d0f39750b325acf6624d6951210b37', NULL, NULL),
+(309, '719fc401b6ea6fa2cf3ff0ed314e8d98', 'ab7ab2cd6287e06a37a4e5c38844dfd2', NULL, NULL),
+(310, '719fc401b6ea6fa2cf3ff0ed314e8d98', '7267624fa2966cfab6f4ca0ca41e6a89', NULL, NULL),
+(311, '719fc401b6ea6fa2cf3ff0ed314e8d98', '265a321e5e1ae5d7a13d9c655c6e5a71', NULL, NULL),
+(312, '0a2ef0d874889eced29779fe6b314501', '408ed38aa0c716c22b62813f8d003af8', NULL, NULL),
+(313, '0a2ef0d874889eced29779fe6b314501', '64d0f39750b325acf6624d6951210b37', NULL, NULL),
+(314, '0a2ef0d874889eced29779fe6b314501', 'd408e5d1e3dedbc0b80183ee916c312d', NULL, NULL),
+(315, '3fe9ea3c37d1ad0b3dbf7bbdc0617027', 'd408e5d1e3dedbc0b80183ee916c312d', NULL, NULL),
+(316, '32f2acf3761302ddd4f73347a49cd526', '99800f09b489c0f9b6371d935b00d8b8', NULL, NULL),
+(317, '32f2acf3761302ddd4f73347a49cd526', '85076d31bf5c2b85e3bc075cf97ea697', NULL, NULL),
+(318, '32f2acf3761302ddd4f73347a49cd526', '4ead18e091a7b639930f3fd544d75676', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -798,12 +837,12 @@ CREATE TABLE IF NOT EXISTS `entry_requirements` (
 --
 
 INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `required_subjects_count`, `created_at`, `updated_at`) VALUES
-('017a2b6654b3311be8ef846fedf099a4', '42e1316d01cedc078337729829653b5b', 9, 3, '2025-05-12 12:50:39', '2025-05-12 12:50:39'),
+('070151267b148f6cc7a6f2ea7a7443f5', '63d4bd5e98166ae14a5599b9f85ab96f', 6, 3, '2025-06-05 06:47:09', '2025-06-05 06:47:09'),
 ('0cbdcb915d6658c8415aad65e2f08001', '2ff84a374cb505b01fdb2eb9a5cce919', 4, 2, '2025-05-28 05:56:06', '2025-05-28 05:56:06'),
-('114dfda1cab341736e704fc14afd1717', '7bcc3a2490d7ee562c8dc8cac9a25bd2', 8, 3, '2025-05-12 12:48:21', '2025-05-12 12:48:21'),
+('1430feb29db5ea0b0b3c216cab3013ad', 'ba47e9cf0055abce55d33e7ad7200626', 6, 3, '2025-06-05 07:06:38', '2025-06-05 07:06:38'),
 ('158b0a4c58b7d47097eab72e4f6f2438', '5f614befa559981f694b049ba973dd3f', 4, 2, '2025-05-12 16:10:54', '2025-05-12 16:10:54'),
-('163774c4d4ed9ae4d27c6f2449df1205', 'c1368857a497441654705eba40d31c59', 6, 3, '2025-05-12 16:43:56', '2025-05-12 16:43:56'),
 ('1716ccb983b5b585d353b38a6a2d9841', 'ebc4a771901acd053c8f21ca146d0eb6', 4, 2, '2025-05-12 15:41:06', '2025-05-12 15:41:06'),
+('1998b0700dcd43f044bde550f78a6933', '6c71a7bbb3398a769abfb1fadb5929a1', 6, 3, '2025-06-05 06:40:10', '2025-06-05 06:40:10'),
 ('1cedb54fefe86bda285c586f6bac09e7', '2b4aaac2ff1eda81a876f0921645c078', 4, 2, '2025-05-29 14:31:59', '2025-05-29 14:31:59'),
 ('1f088c7a317fcce8e2b0d0a8c1e6b297', '15276fccd27baa4118652dc7a3a32fba', 4, 2, '2025-05-24 14:31:47', '2025-05-24 14:31:47'),
 ('20dd698387c0f4d33d1db0c52bc9263d', '5ebded17fb1b01e6a8b833ca4c42c5eb', 4, 2, '2025-05-24 11:29:03', '2025-05-24 11:29:03'),
@@ -812,14 +851,13 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('2e8ab7c250bda54db1e02c374d6b7c2d', 'c67d1a2b2e50d41ccaef5c7cc7b857db', 4, 2, '2025-05-12 13:54:48', '2025-05-12 13:54:48'),
 ('2f4ee60382e42a8a10e5df917518a91a', 'acde11ba72feede28e96137d431ca186', 4, 2, '2025-05-15 08:56:43', '2025-05-15 08:56:43'),
 ('30973a49f205744c181fdde2ae9532b6', '2898adbdcc25d3d7b23651ee5e80abb1', 4, 2, '2025-05-10 17:26:19', '2025-05-10 17:26:19'),
-('316c47edb43dd04c0193b69945453d3c', 'ba47e9cf0055abce55d33e7ad7200626', 6, 3, '2025-05-12 16:53:25', '2025-05-12 16:53:25'),
+('319fcc6a6eaf915478d0245cc5145800', 'c7d1b2fc3b1195b94195450ae9c0c9b5', 6, 3, '2025-06-05 06:41:00', '2025-06-05 06:41:00'),
 ('31daa19effc33280b2e4ae94ae8cfb39', '3171e6fe14344155312f865300c44fbf', 4, 2, '2025-05-24 12:19:18', '2025-05-24 12:19:18'),
+('374560e2d5c3ef0beb62bbf6f8148239', '874f91396a7c6f62b220f9bc1ba7b8f3', 6, 3, '2025-06-05 07:02:14', '2025-06-05 07:02:14'),
 ('3b658863035a59453314e1b08acee910', '241261aa6602609378f139af42642134', 4, 2, '2025-05-29 15:13:22', '2025-05-29 15:13:22'),
-('3d19eae4cb94b499cd230aa7e360ca6e', '0a2ef0d874889eced29779fe6b314501', 6, 3, '2025-05-22 08:07:20', '2025-05-22 08:07:20'),
 ('3d85356b54a06e7d399122ff1672a78d', '1dca1fe90b6afd34e477b9405c1a1f1c', 4, 2, '2025-05-12 16:18:55', '2025-05-12 16:18:55'),
 ('3dd9366539e3122ece4f365d6519677f', '568eca9d345317b2ed131020df49fe78', 4, 2, '2025-05-29 14:29:52', '2025-05-29 14:29:52'),
 ('43823de7d312cf42a23c6c3e77f42f1c', '98cef349f15036d5be0909118ffc9faa', 6, 3, '2025-05-29 14:16:58', '2025-05-29 14:16:58'),
-('443d3238db50436ab0ccf98ed5e35154', '719fc401b6ea6fa2cf3ff0ed314e8d98', 6, 3, '2025-05-21 13:33:58', '2025-05-21 13:33:58'),
 ('45b1f306a1652cb75a6472e55c62abed', '23240d5fa46f8ea7e2e8e403cbad0ffa', 4, 2, '2025-05-12 15:45:08', '2025-05-12 15:45:08'),
 ('499820339f6cc108219ce9dbab111400', '6691fda2a564f1ab4d6d09e8fa7e4472', 4, 2, '2025-05-29 13:34:49', '2025-05-29 13:34:49'),
 ('4c4e5c72dd772c84aed925bb3720a0cd', '9d66b4763429a099292fef7f64a21ab6', 6, 3, '2025-05-24 10:18:37', '2025-05-24 10:18:37'),
@@ -827,16 +865,16 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('4ca714d0e6867fece1ae23e93f1f4501', '03be0c34cf492227b7fcc8162859766c', 4, 2, '2025-05-28 06:33:36', '2025-05-28 06:33:36'),
 ('4d956f1bab3cd385120faf70614c5b5c', '587a540cab0235453b49f13f24770736', 4, 2, '2025-05-12 15:59:22', '2025-05-12 15:59:22'),
 ('54636ee90bfca76426fa6c2470af587f', 'b228a3067fe05d9bb1f010111e0571b5', 4, 2, '2025-05-29 13:14:17', '2025-05-29 13:14:17'),
+('573d9a0c596ff2a137a4c737407e7043', '719fc401b6ea6fa2cf3ff0ed314e8d98', 6, 3, '2025-06-05 07:05:32', '2025-06-05 07:05:32'),
 ('5a08e99ac57f414e960caad388dfe125', '3b002c4fec34240476e454c66e4ad733', 4, 2, '2025-05-28 06:09:18', '2025-05-28 06:09:18'),
 ('5a15077f4587039f001ab5afa2f68d1c', '64228521cb1fdb32527887ba01379994', 4, 2, '2025-05-29 14:10:51', '2025-05-29 14:10:51'),
 ('5ea17147b45d23db68d63d8c885f430f', '3635f54134059ba7f89563714dff60fa', 4, 2, '2025-05-29 15:22:41', '2025-05-29 15:22:41'),
-('5f659ac2f904d30914e117edca81d463', '6c71a7bbb3398a769abfb1fadb5929a1', 6, 3, '2025-05-24 12:30:09', '2025-05-24 12:30:09'),
 ('60d14d0fe32e5c4e3551268b2a2a4285', 'a6d09a6a2942b5ed6c5150b4bb909b74', 4, 2, '2025-05-10 16:50:13', '2025-05-10 16:50:13'),
-('63be52a9dcd364e98839296691211ba2', '63d4bd5e98166ae14a5599b9f85ab96f', 6, 3, '2025-05-15 14:59:58', '2025-05-15 14:59:58'),
 ('64466dd5be592b64ae608a2504770f5e', '5e8f08deaddfce947d1e5cb618b28696', 4, 2, '2025-05-24 14:37:41', '2025-05-24 14:37:41'),
 ('652a3cfadda71c5e891a8b3734d0a986', '6bb7ca9a16a379ae8a5be8d15fae93e4', 4, 2, '2025-05-24 10:28:28', '2025-05-24 10:28:28'),
 ('659cfa654b9546487d5fb4991967f951', '2df21b54695076255c90a8e3bc1949a0', 4, 2, '2025-05-24 06:17:49', '2025-05-24 06:17:49'),
 ('6739ceb62b0edeb899dadd9d313b793f', '508abd074cee03faa487e0d9052a1d03', 4, 2, '2025-05-12 15:31:26', '2025-05-12 15:31:26'),
+('69305979f80890c56519bf8efd1bc911', '0a2ef0d874889eced29779fe6b314501', 6, 3, '2025-06-05 07:07:29', '2025-06-05 07:07:29'),
 ('695ed21d5d9d0f6855f930b52a837997', 'd45f1df0e8acdcfaaa0f76a18a0d962b', 4, 2, '2025-05-28 06:22:23', '2025-05-28 06:22:23'),
 ('6aa2584fd5f15eaa44e5737ecfb990a1', '3123c6c61eee9f12231325a27577b08e', 4, 2, '2025-05-24 15:06:55', '2025-05-24 15:06:55'),
 ('6c7116b72fd72f0cc6d80199ca9ce724', 'c731182b3060cbed02f070022cf3de30', 6, 3, '2025-05-21 14:06:49', '2025-05-21 14:06:49'),
@@ -853,9 +891,10 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('7ec4e41e411e5f315f6142c88c491c01', 'b395b831c235d690bb4045488bd984c8', 4, 2, '2025-05-24 12:24:09', '2025-05-24 12:24:09'),
 ('80524131e1731a0ba2dcbdc4f9a6d5e4', '4e46c9efe8b6050f3a98f23f878979f4', 4, 2, '2025-05-28 06:00:05', '2025-05-28 06:00:05'),
 ('8241e853fd506fbd8ecbc0c760f71810', '97a881da632535a77ac6df45650e8bf0', 4, 2, '2025-05-24 10:47:27', '2025-05-24 10:47:27'),
+('832206a06d49f39705ecfdd95e8813ae', '42e1316d01cedc078337729829653b5b', 9, 3, '2025-06-05 06:43:47', '2025-06-05 06:43:47'),
 ('85cc3b3733d37e69bfec4f6c839e5c25', '60c756154826e5082a60be855af54517', 4, 2, '2025-05-29 14:21:46', '2025-05-29 14:21:46'),
+('8c671bfbd5b96dcd75da48ad56cb6e03', '5499b5d315f03a7b33f880eb88545fe6', 6, 3, '2025-06-05 06:45:05', '2025-06-05 06:45:05'),
 ('9331ebae62147c495cbdf0c26d9dda4f', 'df57e1e7f5710b954943617651407528', 4, 2, '2025-05-12 15:53:10', '2025-05-12 15:53:10'),
-('957d080e00dc8a27786d0ee282239323', '5499b5d315f03a7b33f880eb88545fe6', 6, 3, '2025-05-15 08:57:25', '2025-05-15 08:57:25'),
 ('9683a71ee0495ee2239606fbecc1edd9', '256bdc1b37b05c140dcc200c7810f2d1', 4, 2, '2025-05-29 14:55:27', '2025-05-29 14:55:27'),
 ('986c0220b3de868944c05264427fc1eb', '019ce65024551f545ac4fb88298394bc', 6, 3, '2025-05-19 08:45:54', '2025-05-19 08:45:54'),
 ('9b029fbcc11c796b1fc0ad545ee4127f', '9b0dd1848bb4a2cbd88aaf7fb3d2ba42', 4, 2, '2025-05-29 14:27:34', '2025-05-29 14:27:34'),
@@ -863,12 +902,10 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('9ca04356fdd765f353fe0bc16b5c6f4a', '92e8349739085ebac1fff311d6133b2f', 4, 2, '2025-05-29 12:33:28', '2025-05-29 12:33:28'),
 ('9fe841138231eb169f8ba29deb9e9d7b', '464e4242d398d7a9491b3a6332e304d7', 4, 2, '2025-05-28 06:55:48', '2025-05-28 06:55:48'),
 ('a219977042b3190bff85655c55269023', 'ea9f12c4bac60f45907af8241d18180b', 4, 2, '2025-05-29 14:25:13', '2025-05-29 14:25:13'),
-('a6c1c068d6ca3edf0444bef011db5c90', 'd4899639b1243eeef21e33c0cfeb4135', 6, 3, '2025-05-21 13:23:20', '2025-05-21 13:23:20'),
 ('a89c7f85d3caed62060aea512ec896ab', '274abe94a2938438bc3d3a0a422da8c3', 8, 3, '2025-05-19 07:49:35', '2025-05-19 07:49:35'),
 ('a9e9f89057eba9322892330136bbad2e', '9dae15c2f9ea41c28100455914e5abdf', 4, 2, '2025-05-28 06:39:13', '2025-05-28 06:39:13'),
 ('ac0183aef13fe44ec7da3f63dca5b8b9', 'b0e9d87e618d6a5d1257af8e36b720e2', 4, 2, '2025-05-12 15:55:54', '2025-05-12 15:55:54'),
 ('ad8cfd8992046fccb87504153e7e78dd', '982703f971e4a6eeda6b74ecf7f57bc1', 4, 2, '2025-05-29 12:48:03', '2025-05-29 12:48:03'),
-('ae19d783f8b9b2975c098a1ffdff9275', '3fe9ea3c37d1ad0b3dbf7bbdc0617027', 6, 3, '2025-05-22 08:09:50', '2025-05-22 08:09:50'),
 ('b01b468a4a282897d34fe3662a5bd3a3', '13ba1a5babdb11135842d045405245ba', 4, 2, '2025-05-24 15:09:51', '2025-05-24 15:09:51'),
 ('b0ac1d5786744074657f552259365095', 'c03243b27df718a9de6751ba21d53177', 4, 2, '2025-05-28 05:41:45', '2025-05-28 05:41:45'),
 ('b11ccb2ff1230028c7465bdbb5eed16d', '2effed800cfa9be994214226d4688d17', 4, 2, '2025-05-24 10:51:05', '2025-05-24 10:51:05'),
@@ -877,15 +914,18 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('b6017e72385f60d32908fb7d226b4e38', '3041a5d3546187206b68e2e34f1b498c', 4, 2, '2025-05-12 15:26:21', '2025-05-12 15:26:21'),
 ('b7c389c0f21216c2ea1ac51b6639f2ce', '556510b7cdf8f5e4f5829d15df631565', 6, 3, '2025-05-29 15:06:25', '2025-05-29 15:06:25'),
 ('bfc9559aee160448046cadc5aa9c53c6', '9911bb5c436790dea3f075f4126a3c59', 4, 2, '2025-05-28 05:53:09', '2025-05-28 05:53:09'),
+('c09f47d41a3d86ca24d0c5f08b0d5822', 'c1368857a497441654705eba40d31c59', 6, 3, '2025-06-05 06:54:29', '2025-06-05 06:54:29'),
 ('c3647074cbe0556cf586eb9de6f5d2b4', '9d98027d0b98e096eb3669d04fa441ae', 4, 2, '2025-05-29 15:24:47', '2025-05-29 15:24:47'),
 ('c4e57f293012d2616516eb6cfb53d342', 'fa6c6ecb4a89bece75a9b333d39586a8', 4, 2, '2025-05-29 12:51:34', '2025-05-29 12:51:34'),
 ('ca6c300fe56c7a2358942fcb1eee60d7', '1f1fb2ec629aee1092ba5c6ebf98d5bd', 4, 2, '2025-05-28 05:46:51', '2025-05-28 05:46:51'),
-('cc156b96c7f260dcac131305aee63264', 'c7d1b2fc3b1195b94195450ae9c0c9b5', 6, 3, '2025-05-15 08:57:54', '2025-05-15 08:57:54'),
+('cdb8da80de19e7fdc483e92d6121e235', 'd4899639b1243eeef21e33c0cfeb4135', 6, 3, '2025-06-05 07:03:35', '2025-06-05 07:03:35'),
 ('cfbc415dcbb07450b763c96fff3cf8c3', '9f8815cbb3c5245a6fdf81c9d2a2191a', 4, 2, '2025-05-13 12:09:38', '2025-05-13 12:09:38'),
 ('d560941b852e477b4c176a7ce98c09f6', 'caca892a97f4296c3efaf481a0c56f2b', 6, 3, '2025-05-21 13:55:14', '2025-05-21 13:55:14'),
 ('d77826b315938dc95ff34a1efde97330', 'b480bff980c03badd4ac50713b62e9c7', 4, 2, '2025-05-24 15:36:21', '2025-05-24 15:36:21'),
 ('d7d7e7dd5827a9db8a53fc909cf3725e', '00a39f6f6f6da86013595219d6a5143e', 4, 2, '2025-05-29 12:27:57', '2025-05-29 12:27:57'),
+('d92a6ea306e74716d78595e40a0e9cee', '3fe9ea3c37d1ad0b3dbf7bbdc0617027', 6, 3, '2025-06-05 07:07:53', '2025-06-05 07:07:53'),
 ('d9ae1b23c1c657fc5d2d2a02c2884d3a', '77ba5bf779790585dec0419ff571b407', 4, 2, '2025-05-29 12:40:55', '2025-05-29 12:40:55'),
+('da54d3273f976ddf8d9488268b634aaf', '32f2acf3761302ddd4f73347a49cd526', 4, 2, '2025-06-05 07:23:21', '2025-06-05 07:23:21'),
 ('dcbf1dbb7915d168285ccec2ad88322e', '2e328ceeb55abaf3f967b1461e8cbc34', 4, 2, '2025-05-28 06:12:22', '2025-05-28 06:12:22'),
 ('e77aa3d95c4d3314b783a42c1ee69281', '4c6fdda5e89280fddc60a6c6531bb1e0', 4, 2, '2025-05-28 06:05:11', '2025-05-28 06:05:11'),
 ('eb4f1cb61f442e05b963e34854f1edcd', 'f5845528dcf197cd15473140e6713950', 6, 3, '2025-05-21 13:29:32', '2025-05-21 13:29:32'),
@@ -894,14 +934,13 @@ INSERT INTO `entry_requirements` (`id`, `program_id`, `min_total_points`, `requi
 ('f066daff9336e7e0137aeeb9aebacb4f', 'effd0b9f470e36b16af01cdbc1bb047d', 4, 2, '2025-05-29 12:23:20', '2025-05-29 12:23:20'),
 ('f080de0b4d3ff5b9b25d8dfc0b36d1af', '3ec5e6b0206ab1fa3d4c63ca141f24ef', 4, 2, '2025-05-11 10:20:40', '2025-05-11 10:20:40'),
 ('f14bdc55816ff41a2ab5da82d4764f9f', '77089d6bf7f21138817a91790677aed0', 4, 2, '2025-05-24 11:39:27', '2025-05-24 11:39:27'),
-('f18edaf906c6481c81569c752ac6c5f9', '32f2acf3761302ddd4f73347a49cd526', 4, 2, '2025-05-10 19:20:25', '2025-05-10 19:20:25'),
 ('f2265980c7f6a9819f0faafb67922666', 'd00189b5bb76a8f2f842e760b609f532', 6, 3, '2025-05-21 13:49:52', '2025-05-21 13:49:52'),
+('f38b06dfc81c1779c24c0314b2f73b00', 'cd9323c76d11b08ba1b98764b68ba470', 6, 3, '2025-06-05 07:00:57', '2025-06-05 07:00:57'),
 ('f3c2b4a4daf4297495b027bc09958642', '9ccdccf8c8f43bbdefed5a53ffb99507', 4, 2, '2025-05-29 13:10:01', '2025-05-29 13:10:01'),
 ('f553ec36a0fb30e0ab05ea8128ffe7ff', '756478f8bdd193b72d499db2538b66bb', 4, 2, '2025-05-10 16:06:35', '2025-05-10 16:06:35'),
-('f582d2da55509d63fe5da9bce9c66fdb', 'cd9323c76d11b08ba1b98764b68ba470', 6, 3, '2025-05-12 16:51:15', '2025-05-12 16:51:15'),
+('f5dc57a7f5154899667eb8ad94a8b920', '7bcc3a2490d7ee562c8dc8cac9a25bd2', 8, 3, '2025-06-05 06:48:21', '2025-06-05 06:48:21'),
 ('f8a4d0f1bb02d81576d3aea5f178ee94', 'afde279a3c4b31b10a3dda165edf1209', 4, 2, '2025-05-29 13:17:43', '2025-05-29 13:17:43'),
 ('f9029308e3969ac9d9e910c7bba36bb5', '3cd02441a41f9e8d7d429585beaf0c26', 4, 2, '2025-05-29 15:01:11', '2025-05-29 15:01:11'),
-('fb7b3bf5858cf2e48f3a538ae83bd3f1', '874f91396a7c6f62b220f9bc1ba7b8f3', 6, 3, '2025-05-24 15:24:09', '2025-05-24 15:24:09'),
 ('fc77ab1756cffdaf3903fcdf882e6a81', '1d1a94ea4a5c5d7258ccb1336cf20c95', 4, 2, '2025-05-28 07:08:26', '2025-05-28 07:08:26'),
 ('fcc3614f09d3b4eb54af68768612fe0f', 'c9119e3f0f14b9d208e411448e3a847d', 4, 2, '2025-05-29 14:58:33', '2025-05-29 14:58:33');
 
@@ -923,7 +962,7 @@ CREATE TABLE IF NOT EXISTS `entry_requirement_subjects` (
   PRIMARY KEY (`id`),
   KEY `entry_requirement_subjects_entry_requirement_id_index` (`entry_requirement_id`),
   KEY `entry_requirement_subjects_subject_id_index` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1056 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `entry_requirement_subjects`
@@ -958,14 +997,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (26, '30973a49f205744c181fdde2ae9532b6', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
 (27, '30973a49f205744c181fdde2ae9532b6', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
 (28, '30973a49f205744c181fdde2ae9532b6', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
-(29, 'f18edaf906c6481c81569c752ac6c5f9', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
-(30, 'f18edaf906c6481c81569c752ac6c5f9', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
-(31, 'f18edaf906c6481c81569c752ac6c5f9', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
-(32, 'f18edaf906c6481c81569c752ac6c5f9', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
-(33, 'f18edaf906c6481c81569c752ac6c5f9', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
-(34, 'f18edaf906c6481c81569c752ac6c5f9', '0f356d614e6881dd5ae8ffc9989732e9', 'optional', 'E', NULL, NULL),
-(35, 'f18edaf906c6481c81569c752ac6c5f9', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
-(36, 'f18edaf906c6481c81569c752ac6c5f9', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
 (37, '4c851222374e7cc05dbe9b23f63c0336', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'E', NULL, NULL),
 (38, '4c851222374e7cc05dbe9b23f63c0336', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
 (39, '4c851222374e7cc05dbe9b23f63c0336', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
@@ -994,12 +1025,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (62, 'efe0a16aa323471d3cae586c2ab7b88a', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
 (63, 'efe0a16aa323471d3cae586c2ab7b88a', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
 (64, 'efe0a16aa323471d3cae586c2ab7b88a', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
-(74, '114dfda1cab341736e704fc14afd1717', '111239143c8489ef8e53421791b2c3e9', 'required', 'C', NULL, NULL),
-(75, '114dfda1cab341736e704fc14afd1717', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(76, '114dfda1cab341736e704fc14afd1717', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'C', NULL, NULL),
-(77, '017a2b6654b3311be8ef846fedf099a4', '111239143c8489ef8e53421791b2c3e9', 'required', 'C', NULL, NULL),
-(78, '017a2b6654b3311be8ef846fedf099a4', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
-(79, '017a2b6654b3311be8ef846fedf099a4', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
 (88, '2e8ab7c250bda54db1e02c374d6b7c2d', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
 (89, '2e8ab7c250bda54db1e02c374d6b7c2d', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
 (90, '2e8ab7c250bda54db1e02c374d6b7c2d', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
@@ -1118,18 +1143,9 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (209, '704f703100f09f05db5ef045c6e42dcc', '921f5461645235088da06b1132a13754', 'optional', 'E', NULL, NULL),
 (210, '704f703100f09f05db5ef045c6e42dcc', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
 (211, '704f703100f09f05db5ef045c6e42dcc', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
-(220, '163774c4d4ed9ae4d27c6f2449df1205', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
-(221, '163774c4d4ed9ae4d27c6f2449df1205', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
-(222, '163774c4d4ed9ae4d27c6f2449df1205', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (223, 'b11ee817938a955e00cb49ad12b72b00', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
 (224, 'b11ee817938a955e00cb49ad12b72b00', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
 (225, 'b11ee817938a955e00cb49ad12b72b00', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(226, 'f582d2da55509d63fe5da9bce9c66fdb', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(227, 'f582d2da55509d63fe5da9bce9c66fdb', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(228, 'f582d2da55509d63fe5da9bce9c66fdb', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(229, '316c47edb43dd04c0193b69945453d3c', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(230, '316c47edb43dd04c0193b69945453d3c', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(231, '316c47edb43dd04c0193b69945453d3c', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (258, 'cfbc415dcbb07450b763c96fff3cf8c3', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (259, 'cfbc415dcbb07450b763c96fff3cf8c3', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'D', NULL, NULL),
 (260, 'cfbc415dcbb07450b763c96fff3cf8c3', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'D', NULL, NULL),
@@ -1139,19 +1155,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (274, '2f4ee60382e42a8a10e5df917518a91a', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'E', NULL, NULL),
 (275, '2f4ee60382e42a8a10e5df917518a91a', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
 (276, '2f4ee60382e42a8a10e5df917518a91a', '79a78e4e6a080e03d3ddf5aaca20b642', 'necessary', 'S', NULL, NULL),
-(280, '957d080e00dc8a27786d0ee282239323', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(281, '957d080e00dc8a27786d0ee282239323', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(282, '957d080e00dc8a27786d0ee282239323', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(286, 'cc156b96c7f260dcac131305aee63264', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(287, 'cc156b96c7f260dcac131305aee63264', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(288, 'cc156b96c7f260dcac131305aee63264', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(289, '63be52a9dcd364e98839296691211ba2', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
-(290, '63be52a9dcd364e98839296691211ba2', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(291, '63be52a9dcd364e98839296691211ba2', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
-(292, '63be52a9dcd364e98839296691211ba2', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
-(293, '63be52a9dcd364e98839296691211ba2', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
-(294, '63be52a9dcd364e98839296691211ba2', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
-(295, '63be52a9dcd364e98839296691211ba2', '921f5461645235088da06b1132a13754', 'optional', 'E', NULL, NULL),
 (331, 'a89c7f85d3caed62060aea512ec896ab', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
 (332, 'a89c7f85d3caed62060aea512ec896ab', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
 (333, 'a89c7f85d3caed62060aea512ec896ab', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
@@ -1160,17 +1163,11 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (340, '986c0220b3de868944c05264427fc1eb', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
 (341, '986c0220b3de868944c05264427fc1eb', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
 (342, '986c0220b3de868944c05264427fc1eb', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
-(343, 'a6c1c068d6ca3edf0444bef011db5c90', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(344, 'a6c1c068d6ca3edf0444bef011db5c90', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(345, 'a6c1c068d6ca3edf0444bef011db5c90', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (346, 'eb4f1cb61f442e05b963e34854f1edcd', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
 (347, 'eb4f1cb61f442e05b963e34854f1edcd', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (348, 'eb4f1cb61f442e05b963e34854f1edcd', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
 (349, 'eb4f1cb61f442e05b963e34854f1edcd', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
 (350, 'eb4f1cb61f442e05b963e34854f1edcd', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
-(351, '443d3238db50436ab0ccf98ed5e35154', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
-(352, '443d3238db50436ab0ccf98ed5e35154', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
-(353, '443d3238db50436ab0ccf98ed5e35154', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (354, 'f2265980c7f6a9819f0faafb67922666', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
 (355, 'f2265980c7f6a9819f0faafb67922666', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
 (356, 'f2265980c7f6a9819f0faafb67922666', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
@@ -1185,12 +1182,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (369, '7929b551653cade389fae91c3bd747d5', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
 (370, '7929b551653cade389fae91c3bd747d5', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
 (371, '7929b551653cade389fae91c3bd747d5', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(372, '3d19eae4cb94b499cd230aa7e360ca6e', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(373, '3d19eae4cb94b499cd230aa7e360ca6e', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
-(374, '3d19eae4cb94b499cd230aa7e360ca6e', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(375, 'ae19d783f8b9b2975c098a1ffdff9275', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(376, 'ae19d783f8b9b2975c098a1ffdff9275', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(377, 'ae19d783f8b9b2975c098a1ffdff9275', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (391, '659cfa654b9546487d5fb4991967f951', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
 (392, '659cfa654b9546487d5fb4991967f951', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
 (393, '659cfa654b9546487d5fb4991967f951', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
@@ -1280,9 +1271,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (494, '7ec4e41e411e5f315f6142c88c491c01', '17ae1bb333f280e72bdfeecf08342617', 'optional', 'E', NULL, NULL),
 (495, '7ec4e41e411e5f315f6142c88c491c01', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
 (496, '7ec4e41e411e5f315f6142c88c491c01', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
-(497, '5f659ac2f904d30914e117edca81d463', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(498, '5f659ac2f904d30914e117edca81d463', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(499, '5f659ac2f904d30914e117edca81d463', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (500, '1f088c7a317fcce8e2b0d0a8c1e6b297', '499fb4fc5cb36c9413f708e2290ee465', 'required', 'E', NULL, NULL),
 (501, '1f088c7a317fcce8e2b0d0a8c1e6b297', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
 (502, '1f088c7a317fcce8e2b0d0a8c1e6b297', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
@@ -1321,9 +1309,6 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (535, 'b01b468a4a282897d34fe3662a5bd3a3', 'f38d3cf78b785d2b10281ebe33c15d8c', 'required', 'E', NULL, NULL),
 (536, 'b01b468a4a282897d34fe3662a5bd3a3', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
 (537, 'b01b468a4a282897d34fe3662a5bd3a3', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
-(541, 'fb7b3bf5858cf2e48f3a538ae83bd3f1', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
-(542, 'fb7b3bf5858cf2e48f3a538ae83bd3f1', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
-(543, 'fb7b3bf5858cf2e48f3a538ae83bd3f1', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
 (544, 'd77826b315938dc95ff34a1efde97330', '535e955119b624e341febdce9a5ab025', 'required', 'E', NULL, NULL),
 (545, 'd77826b315938dc95ff34a1efde97330', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
 (546, 'd77826b315938dc95ff34a1efde97330', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
@@ -1399,8 +1384,7 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (616, 'e77aa3d95c4d3314b783a42c1ee69281', '1a50115832dd08b87a189d155c62eb31', 'optional', 'E', NULL, NULL),
 (617, 'e77aa3d95c4d3314b783a42c1ee69281', '1502838edf28cac9b0390cd616bd0240', 'optional', 'E', NULL, NULL),
 (618, 'e77aa3d95c4d3314b783a42c1ee69281', 'b7b5fc68fb85dd88dc124a38ec488f2c', 'optional', 'E', NULL, NULL),
-(619, '5a08e99ac57f414e960caad388dfe125', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL);
-INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject_id`, `type`, `min_grade`, `created_at`, `updated_at`) VALUES
+(619, '5a08e99ac57f414e960caad388dfe125', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
 (620, '5a08e99ac57f414e960caad388dfe125', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
 (621, '5a08e99ac57f414e960caad388dfe125', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
 (622, '5a08e99ac57f414e960caad388dfe125', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
@@ -1454,7 +1438,8 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (670, '74059b5fd53b8e83f3dd6aadfd49e060', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
 (671, '4ca714d0e6867fece1ae23e93f1f4501', '535e955119b624e341febdce9a5ab025', 'optional', 'E', NULL, NULL),
 (672, '4ca714d0e6867fece1ae23e93f1f4501', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
-(673, '4ca714d0e6867fece1ae23e93f1f4501', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL),
+(673, '4ca714d0e6867fece1ae23e93f1f4501', '2e45ec206a607ba85a8cb0160e99ade4', 'optional', 'E', NULL, NULL);
+INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject_id`, `type`, `min_grade`, `created_at`, `updated_at`) VALUES
 (674, '4ca714d0e6867fece1ae23e93f1f4501', '499fb4fc5cb36c9413f708e2290ee465', 'optional', 'E', NULL, NULL),
 (675, '4ca714d0e6867fece1ae23e93f1f4501', 'f38d3cf78b785d2b10281ebe33c15d8c', 'optional', 'E', NULL, NULL),
 (676, '4ca714d0e6867fece1ae23e93f1f4501', '35abc86c96a6c0938e31322dbc787e77', 'optional', 'E', NULL, NULL),
@@ -1817,7 +1802,61 @@ INSERT INTO `entry_requirement_subjects` (`id`, `entry_requirement_id`, `subject
 (1052, '7bca877b8dbd17fa687387c89e8bd7d0', '17ae1bb333f280e72bdfeecf08342617', 'optional', 'D', NULL, NULL),
 (1053, '7bca877b8dbd17fa687387c89e8bd7d0', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'D', NULL, NULL),
 (1054, '7bca877b8dbd17fa687387c89e8bd7d0', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
-(1055, '7bca877b8dbd17fa687387c89e8bd7d0', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL);
+(1055, '7bca877b8dbd17fa687387c89e8bd7d0', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL),
+(1056, '1998b0700dcd43f044bde550f78a6933', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1057, '1998b0700dcd43f044bde550f78a6933', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1058, '1998b0700dcd43f044bde550f78a6933', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1059, '319fcc6a6eaf915478d0245cc5145800', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1060, '319fcc6a6eaf915478d0245cc5145800', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1061, '319fcc6a6eaf915478d0245cc5145800', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1062, '832206a06d49f39705ecfdd95e8813ae', '111239143c8489ef8e53421791b2c3e9', 'required', 'C', NULL, NULL),
+(1063, '832206a06d49f39705ecfdd95e8813ae', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(1064, '832206a06d49f39705ecfdd95e8813ae', 'de52cabd871248ebd540e4c1616d8477', 'required', 'C', NULL, NULL),
+(1065, '8c671bfbd5b96dcd75da48ad56cb6e03', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1066, '8c671bfbd5b96dcd75da48ad56cb6e03', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1067, '8c671bfbd5b96dcd75da48ad56cb6e03', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1068, '070151267b148f6cc7a6f2ea7a7443f5', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(1069, '070151267b148f6cc7a6f2ea7a7443f5', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1070, '070151267b148f6cc7a6f2ea7a7443f5', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(1071, '070151267b148f6cc7a6f2ea7a7443f5', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(1072, '070151267b148f6cc7a6f2ea7a7443f5', '17afca89d6c133ae83d57d65acc89dd2', 'optional', 'E', NULL, NULL),
+(1073, '070151267b148f6cc7a6f2ea7a7443f5', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(1074, '070151267b148f6cc7a6f2ea7a7443f5', '921f5461645235088da06b1132a13754', 'optional', 'E', NULL, NULL),
+(1075, 'f5dc57a7f5154899667eb8ad94a8b920', '111239143c8489ef8e53421791b2c3e9', 'required', 'C', NULL, NULL),
+(1076, 'f5dc57a7f5154899667eb8ad94a8b920', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1077, 'f5dc57a7f5154899667eb8ad94a8b920', '78a92fb99cfdc7f1e537f9caef0e0684', 'required', 'C', NULL, NULL),
+(1087, 'c09f47d41a3d86ca24d0c5f08b0d5822', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
+(1088, 'c09f47d41a3d86ca24d0c5f08b0d5822', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(1089, 'c09f47d41a3d86ca24d0c5f08b0d5822', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1090, 'f38b06dfc81c1779c24c0314b2f73b00', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1091, 'f38b06dfc81c1779c24c0314b2f73b00', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1092, 'f38b06dfc81c1779c24c0314b2f73b00', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1093, '374560e2d5c3ef0beb62bbf6f8148239', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1094, '374560e2d5c3ef0beb62bbf6f8148239', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1095, '374560e2d5c3ef0beb62bbf6f8148239', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1096, 'cdb8da80de19e7fdc483e92d6121e235', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1097, 'cdb8da80de19e7fdc483e92d6121e235', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1098, 'cdb8da80de19e7fdc483e92d6121e235', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1099, '573d9a0c596ff2a137a4c737407e7043', '111239143c8489ef8e53421791b2c3e9', 'required', 'E', NULL, NULL),
+(1100, '573d9a0c596ff2a137a4c737407e7043', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'C', NULL, NULL),
+(1101, '573d9a0c596ff2a137a4c737407e7043', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1102, '1430feb29db5ea0b0b3c216cab3013ad', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1103, '1430feb29db5ea0b0b3c216cab3013ad', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1104, '1430feb29db5ea0b0b3c216cab3013ad', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1105, '69305979f80890c56519bf8efd1bc911', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1106, '69305979f80890c56519bf8efd1bc911', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1107, '69305979f80890c56519bf8efd1bc911', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1108, 'd92a6ea306e74716d78595e40a0e9cee', '111239143c8489ef8e53421791b2c3e9', 'required', 'D', NULL, NULL),
+(1109, 'd92a6ea306e74716d78595e40a0e9cee', '79a78e4e6a080e03d3ddf5aaca20b642', 'required', 'D', NULL, NULL),
+(1110, 'd92a6ea306e74716d78595e40a0e9cee', 'de52cabd871248ebd540e4c1616d8477', 'required', 'D', NULL, NULL),
+(1111, 'da54d3273f976ddf8d9488268b634aaf', '78a92fb99cfdc7f1e537f9caef0e0684', 'optional', 'E', NULL, NULL),
+(1112, 'da54d3273f976ddf8d9488268b634aaf', '111239143c8489ef8e53421791b2c3e9', 'optional', 'E', NULL, NULL),
+(1113, 'da54d3273f976ddf8d9488268b634aaf', '79a78e4e6a080e03d3ddf5aaca20b642', 'optional', 'E', NULL, NULL),
+(1114, 'da54d3273f976ddf8d9488268b634aaf', 'de52cabd871248ebd540e4c1616d8477', 'optional', 'E', NULL, NULL),
+(1115, 'da54d3273f976ddf8d9488268b634aaf', 'bbd67ff82f9f3749b72687aa7caa5bba', 'optional', 'E', NULL, NULL),
+(1116, 'da54d3273f976ddf8d9488268b634aaf', '0f356d614e6881dd5ae8ffc9989732e9', 'optional', 'E', NULL, NULL),
+(1117, 'da54d3273f976ddf8d9488268b634aaf', '78a92fb99cfdc7f1e537f9caef0e0684', 'necessary', 'S', NULL, NULL),
+(1118, 'da54d3273f976ddf8d9488268b634aaf', 'ba1c45bc4d5a9ba46387ba1837f90910', 'necessary', 'S', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1863,7 +1902,7 @@ INSERT INTO `fields` (`id`, `name`, `created_at`, `updated_at`) VALUES
 ('2ce9bfa769ff08067d65108a501b8d94', 'CULTURAL HERITAGE', '2025-05-23 11:30:41', '2025-05-23 11:30:41'),
 ('3c13f7cb18a84b71495e2074305f44a2', 'PUBLIC RELATIONS', '2025-05-23 11:33:57', '2025-05-23 11:33:57'),
 ('3cbc09a00ae4f273f835f9ca12213399', 'SOCIAL SCIENCE', '2025-05-23 12:42:37', '2025-05-23 12:42:37'),
-('48f7c12599cac4824ec5f0f9a85b64db', 'ENGINEERING', '2025-05-15 08:52:52', '2025-05-15 08:52:52'),
+('48f7c12599cac4824ec5f0f9a85b64db', 'ARCHITECTURE & ENGINEERING', '2025-05-15 08:52:52', '2025-06-05 07:23:46'),
 ('4e62dc14ecad41cc0039b97b838511d4', 'INFORMATION TECHNOLOGY', '2025-05-23 11:48:28', '2025-05-23 11:48:28'),
 ('50454887affd0f1dcf0354a77aae629d', 'MEDICINE', '2025-05-15 08:52:58', '2025-05-15 08:52:58'),
 ('5ab4622bf85c2260ef7659b96afa4d08', 'URBAN PLANNING', '2025-05-23 11:29:46', '2025-05-23 11:29:46'),
@@ -2041,7 +2080,51 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_slug_unique` (`slug`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `slug`, `description`, `model`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Can View Accreditations', 'view.accreditations', 'Can view accreditations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(2, 'Can Create Accreditations', 'create.accreditations', 'Can create new accreditations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(3, 'Can Edit Accreditations', 'edit.accreditations', 'Can edit accreditations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(4, 'Can Delete Accreditations', 'delete.accreditations', 'Can delete accreditations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(5, 'Can View Careers', 'view.careers', 'Can view careers', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(6, 'Can Create Careers', 'create.careers', 'Can create new careers', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(7, 'Can Edit Careers', 'edit.careers', 'Can edit careers', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(8, 'Can Delete Careers', 'delete.careers', 'Can delete careers', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(9, 'Can View Combinations', 'view.combinations', 'Can view combinations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(10, 'Can Create Combinations', 'create.combinations', 'Can create new combinations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(11, 'Can Edit Combinations', 'edit.combinations', 'Can edit combinations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(12, 'Can Delete Combinations', 'delete.combinations', 'Can delete combinations', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(13, 'Can View Fields', 'view.fields', 'Can view fields', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(14, 'Can Create Fields', 'create.fields', 'Can create new fields', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(15, 'Can Edit Fields', 'edit.fields', 'Can edit fields', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(16, 'Can Delete Fields', 'delete.fields', 'Can delete fields', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(17, 'Can View Institutions', 'view.institutions', 'Can view institutions', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(18, 'Can Create Institutions', 'create.institutions', 'Can create new institutions', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(19, 'Can Edit Institutions', 'edit.institutions', 'Can edit institutions', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(20, 'Can Delete Institutions', 'delete.institutions', 'Can delete institutions', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(21, 'Can View Programs', 'view.programs', 'Can view programs', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(22, 'Can Create Programs', 'create.programs', 'Can create new programs', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(23, 'Can Edit Programs', 'edit.programs', 'Can edit programs', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(24, 'Can Delete Programs', 'delete.programs', 'Can delete programs', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(25, 'Can View Subjects', 'view.subjects', 'Can view subjects', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(26, 'Can Create Subjects', 'create.subjects', 'Can create new subjects', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(27, 'Can Edit Subjects', 'edit.subjects', 'Can edit subjects', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(28, 'Can Delete Subjects', 'delete.subjects', 'Can delete subjects', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(29, 'Can View Profile', 'view.profile', 'Can view profile', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(30, 'Can Change Password', 'change.password', 'Can change password', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(31, 'Can View Roles', 'view.roles', 'Can view roles', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(32, 'Can Create Roles', 'create.roles', 'Can create new roles', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(33, 'Can Edit Roles', 'edit.roles', 'Can edit roles', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(34, 'Can Delete Roles', 'delete.roles', 'Can delete roles', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(35, 'Can View Permissions', 'view.permissions', 'Can view permissions', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(36, 'Can View Users', 'view.users', 'Can view users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(37, 'Can Assign Roles to Users', 'assign.roles.to.users', 'Can assign roles to users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(38, 'Can Delete Users', 'delete.users', 'Can delete users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -2060,7 +2143,53 @@ CREATE TABLE IF NOT EXISTS `permission_role` (
   PRIMARY KEY (`id`),
   KEY `permission_role_permission_id_index` (`permission_id`),
   KEY `permission_role_role_id_index` (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permission_role`
+--
+
+INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(2, 2, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(3, 3, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(4, 4, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(5, 5, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(6, 6, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(7, 7, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(8, 8, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(9, 9, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(10, 10, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(11, 11, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(12, 12, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(13, 13, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(14, 14, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(15, 15, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(16, 16, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(17, 17, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(18, 18, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(19, 19, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(20, 20, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(21, 21, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(22, 22, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(23, 23, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(24, 24, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(25, 25, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(26, 26, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(27, 27, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(28, 28, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(29, 29, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(30, 30, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(31, 31, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(32, 32, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(33, 33, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(34, 34, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(35, 35, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(36, 36, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(37, 37, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(38, 38, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(39, 30, 2, '2025-06-12 04:18:14', '2025-06-12 04:18:14', NULL),
+(40, 29, 2, '2025-06-12 04:18:14', '2025-06-12 04:18:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -2230,7 +2359,16 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_slug_unique` (`slug`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `level`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Administrator', 'admin', 'Administrator Role', 5, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(2, 'User', 'user', 'User Role', 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(3, 'Unverified', 'unverified', 'Unverified Role', 0, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -2249,7 +2387,14 @@ CREATE TABLE IF NOT EXISTS `role_user` (
   PRIMARY KEY (`id`),
   KEY `role_user_role_id_index` (`role_id`),
   KEY `role_user_user_id_index` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, '047ffa665bd4cd83e63e3a73aca178e3', '2025-06-05 06:37:52', '2025-06-05 06:37:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -2347,7 +2492,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `surname`, `email`, `email_verified_at`, `profile_photo`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-('6f6e1b55cb1032bb2d3effe401567271', 'godfrey', 'benedicto', 'gmashinji@gmail.com', NULL, NULL, '$2y$12$YfyhdozZr.ZB1OoZcn5f1uD/3.I8tPhJHM2TXSMWQG0TXBgypp5se', NULL, '2025-05-28 11:01:26', '2025-05-28 11:01:26');
+('047ffa665bd4cd83e63e3a73aca178e3', 'godfrey', 'benedicto', 'gmashinji@gmail.com', NULL, NULL, '$2y$12$Sb5blhuxAbqhoraA0.qtte.b2IC44pI95l38r79IZwdOo.cpGDrb6', NULL, '2025-06-05 06:37:52', '2025-06-05 06:37:52');
 
 --
 -- Constraints for dumped tables
