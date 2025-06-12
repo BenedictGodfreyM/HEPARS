@@ -23,6 +23,7 @@
             Just provide your high school results together with your career choice and we'll recommend programs that suit you.
         </p>
     </div>
+    @auth
     <div class="card card-primary card-outline">
         @if(session()->has('no_recommenadations'))
         <livewire:shared.alert title="Sorry!!!" message="{{ session()->get('no_recommenadations') }}" css_class="alert-warning" icon="fa-circle" />
@@ -210,6 +211,13 @@
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+    @endif
+    @else
+    <div class="row">
+        <div class="col-12 mt-3 text-center">
+            <a href="{{ route('login') }}" class="lead text-primary">Log in to continue...</a>
         </div>
     </div>
     @endif
