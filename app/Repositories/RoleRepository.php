@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class RoleRepository
@@ -117,7 +118,7 @@ class RoleRepository
         $role = config('roles.models.role')::find($role_id);
         try{
             DB::beginTransaction();
-            foreach ($data["permissions"] as $permission_id) {
+            foreach ($data as $permission_id) {
                 $permission = config('roles.models.permission')::where('id', '=', $permission_id)->first();
                 $role->attachPermission($permission);
             }
@@ -141,7 +142,7 @@ class RoleRepository
         $role = config('roles.models.role')::find($role_id);
         try{
             DB::beginTransaction();
-            foreach ($data["permissions"] as $permission_id) {
+            foreach ($data as $permission_id) {
                 $permission = config('roles.models.permission')::where('id', '=', $permission_id)->first();
                 $role->detachPermission($permission);
             }
