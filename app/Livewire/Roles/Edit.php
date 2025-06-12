@@ -104,9 +104,9 @@ class Edit extends Component
             ], $this->role_id);
                 
             $allPermissionsRemoved = $roleRepo->remove_all_permissions($this->role_id);
-
-            if($isUpdated && $allPermissionsRemoved){
-                $roleRepo->add_permissions(array_pluck($this->selectedPermissions, "id"), $this->role_id);
+            $newPermissionsAdded = $roleRepo->add_permissions(array_pluck($this->selectedPermissions, "id"), $this->role_id);
+            
+            if($isUpdated && $allPermissionsRemoved && $newPermissionsAdded){
                 DB::commit();
                 $this->dispatch("flash-alert", type: "success", title: "Success", message: "Role is successfully updated!.");
             }else{
