@@ -89,7 +89,7 @@
                                                         </span>
                                                         <span wire:loading.remove wire:target="openDetailsModal('{{ $item->id }}')">View</span>
                                                     </button>
-                                                    @if($item->slug != "admin" && $item->slug != "user" && $item->slug != "unverified")
+                                                    @if($item->roles && !in_array("admin", $item->roles->pluck("slug")->toArray()))
                                                     @permission('assign.roles.to.users')
                                                     <button class="btn btn-primary btn-sm" wire:click="openEditorModal('{{ $item->id }}')">
                                                         <span wire:loading wire:target="openEditorModal('{{ $item->id }}')">
@@ -143,7 +143,7 @@
                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Update User Details</h4>
+                                    <h4 class="modal-title">Assign Roles to User</h4>
                                     <button type="button" wire:click="closeEditorModel" class="close" data-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </button>

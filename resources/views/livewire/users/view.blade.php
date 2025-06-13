@@ -5,11 +5,14 @@
         </div>
         <div class="card-body">
             <dl>
-                {{-- <dt>Level of Autonomy:</dt>
-                <dd>{{ $data->autonomy }}</dd>
-                
-                <dt class="mt-3">Description:</dt>
-                <dd>{{ $data->description }}</dd> --}}
+                <dt>Assigned Roles:</dt>
+                <dd>{{ $this->arrayToSentence($data->roles->pluck('name')->toArray()) }}</dd>
+
+                <dt class="mt-3">Created At:</dt>
+                <dd>{{ $data->created_at }}</dd>
+
+                <dt>Updated At:</dt>
+                <dd>{{ $data->updated_at }}</dd> 
                 
             </dl>
         </div> 

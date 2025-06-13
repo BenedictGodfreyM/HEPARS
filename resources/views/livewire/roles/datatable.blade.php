@@ -98,7 +98,7 @@
                                                         </span>
                                                         <span wire:loading.remove wire:target="openDetailsModal('{{ $item->id }}')">View</span>
                                                     </button>
-                                                    @if($item->slug != "admin" && $item->slug != "user" && $item->slug != "unverified")
+                                                    @if(!in_array($item->slug, ["admin", "user", "unverified"]))
                                                     @permission('edit.roles')
                                                     <button class="btn btn-primary btn-sm" wire:click="openEditorModal('{{ $item->id }}')">
                                                         <span wire:loading wire:target="openEditorModal('{{ $item->id }}')">
