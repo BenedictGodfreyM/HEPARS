@@ -205,9 +205,9 @@
                     @endif
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" wire:click="printRecommendations" class="btn btn-default" data-dismiss="modal" disabled>
-                        <span wire:loading wire:target="printRecommendations"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Processing...</span>
-                        <span wire:loading.remove wire:target="printRecommendations"><i class="fas fa-print"></i> Print</span>
+                    <button type="button" wire:click="generatePDF" class="btn btn-default" data-dismiss="modal">
+                        <span wire:loading wire:target="generatePDF"><i class="fas fa-1x fa-sync-alt fa-spin"></i> Processing...</span>
+                        <span wire:loading.remove wire:target="generatePDF"><i class="fas fa-file-pdf"></i> Export as PDF</span>
                     </button>
                 </div>
             </div>

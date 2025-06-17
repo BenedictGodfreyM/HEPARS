@@ -2,11 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\Field;
-use App\Repositories\CareerRepository;
 use App\Repositories\CombinationRepository;
 use App\Repositories\FieldRepository;
 use App\Services\RecommendationService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Livewire\Component;
 
@@ -114,9 +113,14 @@ class ProgramRecommender extends Component
         $this->selectedOption = '';
     }
 
-    public function printRecommendations()
+    public function generatePDF()
     {
-        // 
+        $data = ['recommendations' => $this->recommendations];
+        $pdf = Pdf::loadView('layouts.recommendations-pdf', $data);
+        $filename = 'Recommendations-'. now()->format('Y-m-d') . '-'. now()->format('H') .''. now()->format('i') .''. now()->format('s') .'.pdf';
+        return response()->streamDownload(function() use ($pdf) {
+            echo $pdf->stream();
+        }, $filename);
     }
 
     public function render()
