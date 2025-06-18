@@ -111,7 +111,7 @@
                 <div class="modal-body">
                     @if(count($recommendations['BasedOnselectedCareerField']) > 0)
                     @if(count($recommendations['BasedOnOtherCareerFields']) > 0)
-                    <h5>Based on your Career Choice</h5>
+                    <h5>Based on your Career Choice ({{ $recommendations['CareerField'] }})</h5>
                     @endif
                     <div class="card-comments px-2 py-2">
                         @foreach($recommendations['BasedOnselectedCareerField'] as $key => $recomendation)
@@ -152,7 +152,7 @@
                     <div class="row">
                         <div class="col-12 mt-3 text-center">
                             <p class="lead text-warning">
-                                Sorry!. We couldn't find programs you qualify in, based on your career choice.<br>
+                                Sorry!. We couldn't find programs you qualify in, based on your career choice <span style="font-style: italic;">({{ $recommendations['CareerField'] }})</span>.<br>
                                 @if(count($recommendations['BasedOnOtherCareerFields']) > 0)
                                     However, you qualify for programs from other fields.<br> 
                                     Check out the list below:

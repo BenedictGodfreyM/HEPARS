@@ -115,7 +115,10 @@ class ProgramRecommender extends Component
 
     public function generatePDF()
     {
-        $data = ['recommendations' => $this->recommendations];
+        $data = [
+            'student_results' => $this->selectedSubjects,
+            'recommendations' => $this->recommendations
+        ];
         $pdf = Pdf::loadView('layouts.recommendations-pdf', $data);
         $filename = 'Recommendations-'. now()->format('Y-m-d') . '-'. now()->format('H') .''. now()->format('i') .''. now()->format('s') .'.pdf';
         return response()->streamDownload(function() use ($pdf) {
