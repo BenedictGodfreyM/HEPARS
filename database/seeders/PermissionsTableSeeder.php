@@ -187,6 +187,42 @@ class PermissionsTableSeeder extends Seeder
                 'model'       => 'Permission',
             ],
             [
+                'name'        => 'Can View Recommendation History Chart',
+                'slug'        => 'view.recommendation.history.chart',
+                'description' => 'Can view recommendation history chart',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can View Recommendation History',
+                'slug'        => 'view.recommendation.history',
+                'description' => 'Can view recommendation history',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Delete Recommendation History',
+                'slug'        => 'delete.recommendation.history',
+                'description' => 'Can delete recommendation history',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can View Recommendation History Chart of All Users',
+                'slug'        => 'view.recommendation.history.chart.of.all.users',
+                'description' => 'Can view recommendation history chart of all users',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can View Recommendation History of All Users',
+                'slug'        => 'view.recommendation.history.of.all.users',
+                'description' => 'Can view recommendation history of all users',
+                'model'       => 'Permission',
+            ],
+            [
+                'name'        => 'Can Delete Recommendation History of All Users',
+                'slug'        => 'delete.recommendation.history.of.all.users',
+                'description' => 'Can delete recommendation history of all users',
+                'model'       => 'Permission',
+            ],
+            [
                 'name'        => 'Can View Profile',
                 'slug'        => 'view.profile',
                 'description' => 'Can view profile',
