@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'inheritance' => env('ROLES_INHERITANCE', true),
+    'inheritance' => env('ROLES_INHERITANCE', false),
 
     /*
     |--------------------------------------------------------------------------
