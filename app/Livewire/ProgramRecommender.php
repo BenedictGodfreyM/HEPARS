@@ -4,9 +4,11 @@ namespace App\Livewire;
 
 use App\Repositories\CombinationRepository;
 use App\Repositories\FieldRepository;
+use App\Repositories\UserRepository;
 use App\Services\RecommendationService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProgramRecommender extends Component
@@ -93,6 +95,18 @@ class ProgramRecommender extends Component
 
             $selectedCareerField_Details = (new FieldRepository)->findField($this->selectedCareerField);
             $this->recommendations['CareerField'] = ucwords(strtolower($selectedCareerField_Details->name));
+
+            (new UserRepository)->saveRecommendation([
+                'acsee_results' => array_map(function($item){
+                    return ['subject' => $item['subject']['name'], 'grade' => $item['grade']];
+                }, $this->selectedSubjects),
+                'career_choice' => $this->recommendations['CareerField'],
+                'programs' => [
+                    'BasedOnselectedCareerField' => $this->recommendations['BasedOnselectedCareerField'],
+                    'BasedOnOtherCareerFields' => $this->recommendations['BasedOnOtherCareerFields'],
+                ],
+            ], Auth::user()->id);
+
             return $this->showRecommendations = true;
         }catch(Exception $e){
             session()->flash('error',$e->getMessage());
@@ -116,7 +130,9 @@ class ProgramRecommender extends Component
     public function generatePDF()
     {
         $data = [
-            'student_results' => $this->selectedSubjects,
+            'student_results' => array_map(function($item){
+                return ['subject' => $item['subject']['name'], 'grade' => $item['grade']];
+            }, $this->selectedSubjects),
             'recommendations' => $this->recommendations
         ];
         $pdf = Pdf::loadView('layouts.recommendations-pdf', $data);
