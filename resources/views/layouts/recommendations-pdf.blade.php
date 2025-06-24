@@ -145,7 +145,7 @@
         <tbody>
             @foreach($student_results as $key => $entry)
             <tr>
-                <td>{{ $entry['subject']['name'] }}</td>
+                <td>{{ $entry['subject'] }}</td>
                 <td>{{ $entry['grade'] }}</td>
             </tr>
             @endforeach
