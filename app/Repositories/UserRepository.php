@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Recommendation;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -107,6 +108,24 @@ class UserRepository
     {
         $user = User::findOrFail($id);
         return $user->delete();
+    }
+
+    /**
+     * Save User's Recommendations
+     * 
+     * @param array $data Details of a particular recommendation
+     * @param string $user_id User ID
+     * 
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function saveRecommendation(array $data, string $user_id)
+    {
+        $user = User::findOrFail($user_id);
+        return $user->recommendations()->create([
+            'acsee_results' => $data['acsee_results'],
+            'career_choice' => $data['career_choice'],
+            'programs' => $data['programs'],
+        ]);
     }
 
     /**
