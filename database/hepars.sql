@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 12, 2025 at 09:19 PM
+-- Generation Time: Jun 24, 2025 at 11:17 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -2071,7 +2071,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -2104,7 +2104,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (33, '2025_05_18_052535_add_category_to_combinations_table', 10),
 (34, '2025_05_18_052536_add_is_compulsory_to_subjects_table', 11),
 (35, '2025_05_18_052537_add_is_additional_to_subjects_table', 11),
-(37, '2025_05_19_052537_add_competition_scale_to_programs_table', 12);
+(37, '2025_05_19_052537_add_competition_scale_to_programs_table', 12),
+(38, '2025_06_19_075038_create_recommendations_table', 13);
 
 -- --------------------------------------------------------
 
@@ -2145,7 +2146,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_slug_unique` (`slug`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `permissions`
@@ -2189,7 +2190,13 @@ INSERT INTO `permissions` (`id`, `name`, `slug`, `description`, `model`, `create
 (35, 'Can View Permissions', 'view.permissions', 'Can view permissions', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
 (36, 'Can View Users', 'view.users', 'Can view users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
 (37, 'Can Assign Roles to Users', 'assign.roles.to.users', 'Can assign roles to users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
-(38, 'Can Delete Users', 'delete.users', 'Can delete users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL);
+(38, 'Can Delete Users', 'delete.users', 'Can delete users', 'Permission', '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
+(39, 'Can View Recommendation History Chart', 'view.recommendation.history.chart', 'Can view recommendation history chart', 'Permission', '2025-06-24 05:16:08', '2025-06-24 05:16:08', NULL),
+(40, 'Can View Recommendation History', 'view.recommendation.history', 'Can view recommendation history', 'Permission', '2025-06-24 05:16:08', '2025-06-24 05:16:08', NULL),
+(41, 'Can Delete Recommendation History', 'delete.recommendation.history', 'Can delete recommendation history', 'Permission', '2025-06-24 05:16:08', '2025-06-24 05:16:08', NULL),
+(42, 'Can View Recommendation History Chart of All Users', 'view.recommendation.history.chart.of.all.users', 'Can view recommendation history chart of all users', 'Permission', '2025-06-24 05:16:08', '2025-06-24 05:16:08', NULL),
+(43, 'Can View Recommendation History of All Users', 'view.recommendation.history.of.all.users', 'Can view recommendation history of all users', 'Permission', '2025-06-24 05:16:08', '2025-06-24 05:16:08', NULL),
+(44, 'Can Delete Recommendation History of All Users', 'delete.recommendation.history.of.all.users', 'Can delete recommendation history of all users', 'Permission', '2025-06-24 05:16:08', '2025-06-24 05:16:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -2208,7 +2215,7 @@ CREATE TABLE IF NOT EXISTS `permission_role` (
   PRIMARY KEY (`id`),
   KEY `permission_role_permission_id_index` (`permission_id`),
   KEY `permission_role_role_id_index` (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `permission_role`
@@ -2254,7 +2261,16 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 (37, 37, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
 (38, 38, 1, '2025-06-05 06:36:41', '2025-06-05 06:36:41', NULL),
 (39, 30, 2, '2025-06-12 04:18:14', '2025-06-12 04:18:14', NULL),
-(40, 29, 2, '2025-06-12 04:18:14', '2025-06-12 04:18:14', NULL);
+(40, 29, 2, '2025-06-12 04:18:14', '2025-06-12 04:18:14', NULL),
+(41, 39, 1, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(42, 39, 2, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(43, 40, 1, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(44, 40, 2, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(45, 41, 1, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(46, 41, 2, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(47, 42, 1, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(48, 43, 1, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL),
+(49, 44, 1, '2025-06-24 05:16:10', '2025-06-24 05:16:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -2405,6 +2421,25 @@ INSERT INTO `programs` (`id`, `institution_id`, `name`, `duration`, `created_at`
 ('f5845528dcf197cd15473140e6713950', 'b7fb61dae18f53addadd288f2520c403', 'Bachelor of Science in Nursing ', 4, '2025-05-21 13:29:32', '2025-05-21 13:29:32', 'Moderate Competition'),
 ('fa6c6ecb4a89bece75a9b333d39586a8', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Education in Early Childhood Education ', 3, '2025-05-29 12:51:34', '2025-05-29 12:51:34', 'Low Competition'),
 ('fe8461b41405ce0c20fc365c4d9e45e8', '55277a83aa77f8e34730dd47fe47a2e0', 'Bachelor of Science in Computer Networks and Information Security Engineering', 4, '2025-05-29 15:16:19', '2025-05-29 15:16:19', 'Low Competition');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recommendations`
+--
+
+DROP TABLE IF EXISTS `recommendations`;
+CREATE TABLE IF NOT EXISTS `recommendations` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `acsee_results` json NOT NULL,
+  `career_choice` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `programs` json NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `recommendations_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2614,6 +2649,12 @@ ALTER TABLE `institutions`
 --
 ALTER TABLE `programs`
   ADD CONSTRAINT `programs_institution_id_foreign` FOREIGN KEY (`institution_id`) REFERENCES `institutions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `recommendations`
+--
+ALTER TABLE `recommendations`
+  ADD CONSTRAINT `recommendations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
