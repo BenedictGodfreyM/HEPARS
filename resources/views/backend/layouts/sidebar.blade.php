@@ -9,7 +9,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                @permission('view.institutions|view.programs|view.careers|view.users')
+                @permission('view.institutions|view.programs|view.careers|view.users|view.recommendation.history.chart|view.recommendation.history.chart.of.all.users')
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{request()->routeIs('dashboard') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -56,6 +56,25 @@
                         <p>High School Subjects</p>
                     </a>
                 </li>
+                @endpermission
+                @permission('view.recommendation.history|view.recommendation.history.of.all.users')
+                <li class="nav-header">RECOMMENDATION HISTORY</li>
+                @permission('view.recommendation.history')
+                <li class="nav-item">
+                    <a href="{{ route('my_recommendations') }}" class="nav-link {{request()->is('auth/recommendations') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-ellipsis-h"></i>
+                        <p>My Recommendations</p>
+                    </a>
+                </li>
+                @endpermission
+                @permission('view.recommendation.history.of.all.users')
+                <li class="nav-item">
+                    <a href="{{ route('all_recommendations') }}" class="nav-link {{request()->is('auth/recommendations/all') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-ellipsis-h"></i>
+                        <p>All Recommendations</p>
+                    </a>
+                </li>
+                @endpermission
                 @endpermission
                 @permission('view.profile|view.roles|view.permissions|view.users')
                 <li class="nav-header">SETTINGS</li>
