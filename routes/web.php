@@ -31,6 +31,14 @@ Route::middleware('auth')->prefix('auth')->group(function () {
     
     Route::get('/permissions', [App\Http\Controllers\Backend\AccessControlController::class, 'permissions'])->name('permissions')->middleware('permission:view.permissions');
     
+    Route::prefix('recommendations')->group(function () {
+
+        Route::get('/all', [App\Http\Controllers\Backend\RecommendationController::class, 'all'])->name('all_recommendations')->middleware('permission:view.recommendation.history.of.all.users');
+    
+        Route::get('/', [App\Http\Controllers\Backend\RecommendationController::class, 'index'])->name('my_recommendations')->middleware('permission:view.recommendation.history');
+    
+    });
+
     Route::get('/roles', [App\Http\Controllers\Backend\AccessControlController::class, 'roles'])->name('roles')->middleware('permission:view.roles');
     
     Route::get('/subjects', [App\Http\Controllers\Backend\SubjectController::class, 'index'])->name('subjects')->middleware('permission:view.subjects');
