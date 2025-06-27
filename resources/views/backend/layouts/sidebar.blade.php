@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link text-center">
-        <span class="brand-text font-weight-light">HEPARS</span>
+        <span class="brand-text font-extrabold">HEPARS</span>
     </a>
 
     <!-- Sidebar -->
@@ -61,17 +61,17 @@
                 <li class="nav-header">RECOMMENDATION HISTORY</li>
                 @permission('view.recommendation.history')
                 <li class="nav-item">
-                    <a href="{{ route('my_recommendations') }}" class="nav-link {{request()->is('auth/recommendations') ? 'active' : ''}}">
+                    <a href="{{ route('my_recommendations') }}" class="nav-link {{request()->is('auth/recommendation-requests') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-ellipsis-h"></i>
-                        <p>My Recommendations</p>
+                        <p>My Requests</p>
                     </a>
                 </li>
                 @endpermission
                 @permission('view.recommendation.history.of.all.users')
                 <li class="nav-item">
-                    <a href="{{ route('all_recommendations') }}" class="nav-link {{request()->is('auth/recommendations/all') ? 'active' : ''}}">
+                    <a href="{{ route('all_recommendations') }}" class="nav-link {{request()->is('auth/recommendation-requests/all') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-ellipsis-h"></i>
-                        <p>All Recommendations</p>
+                        <p>All Requests</p>
                     </a>
                 </li>
                 @endpermission
