@@ -31,7 +31,7 @@ Route::middleware('auth')->prefix('auth')->group(function () {
     
     Route::get('/permissions', [App\Http\Controllers\Backend\AccessControlController::class, 'permissions'])->name('permissions')->middleware('permission:view.permissions');
     
-    Route::prefix('recommendations')->group(function () {
+    Route::prefix('recommendation-requests')->group(function () {
 
         Route::get('/all', [App\Http\Controllers\Backend\RecommendationController::class, 'all'])->name('all_recommendations')->middleware('permission:view.recommendation.history.of.all.users');
     
@@ -93,6 +93,6 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::get('/admission_portals', [App\Http\Controllers\Frontend\HomeController::class, 'admission_portals'])->name('admission_portals');
+Route::get('/admission-portals', [App\Http\Controllers\Frontend\HomeController::class, 'admission_portals'])->name('admission_portals');
 
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
