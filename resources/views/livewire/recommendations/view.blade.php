@@ -48,7 +48,7 @@
                 @endif
                 <br>
                 <cite title="Link to Admission Portal">
-                    <a href="{{ $recomendation->institution->admission_portal_link }}" class="link-black text-sm" target="_blank">
+                    <a href="{{ $recomendation['institution']['admission_portal_link'] }}" class="link-black text-sm" target="_blank">
                         <i class="fas fa-link mr-1"></i> Link to Admission Portal
                     </a>
                 </cite>
