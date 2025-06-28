@@ -6,6 +6,9 @@ use App\Enums\RequirementType;
 use App\Models\Career;
 use App\Models\EntryRequirement;
 use App\Models\Program;
+use App\Models\Recommendation;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RecommendationService
 {
@@ -255,5 +258,74 @@ class RecommendationService
         return $requirement->subjects->filter(function($subject) use ($type){
             return ($subject->pivot->min_grade === 'S' && $subject->pivot->type === $type);
         });
+    }
+
+    /**
+     * Request a history of recommendations from the database (Compartible with Chart JS)
+     * 
+     * @return array ['data' => [], 'labels' => []]
+     */
+    public function getChartData(string $user_id = ""): array
+    {
+        $chartData = ['data' => [], 'labels' => []];
+
+        DB::statement("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY',''));");
+
+        $recommendationModel = Recommendation::query();
+        if($user_id !== "") $recommendationModel->where('user_id', $user_id);
+        
+        $oldest = (clone $recommendationModel)->oldest('created_at')->first();
+        $newest = (clone $recommendationModel)->latest('created_at')->first();
+
+        if(!$oldest || !$newest){
+            DB::statement("SET SESSION sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
+            return $chartData;
+        }
+
+        $startDate = Carbon::parse($oldest->created_at);
+        $endDate = Carbon::parse($newest->created_at);
+        $diffInDays = $startDate->diffInDays($endDate);
+
+        if($diffInDays <= 7){
+            $groupBy = 'day';
+            $format = 'Y-m-d';
+            $labelFormat = 'D, M j';
+        }else if($diffInDays <= 60){
+            $groupBy = 'day';
+            $format = 'Y-m-d';
+            $labelFormat = 'M j';
+        }else if($diffInDays <= 365){
+            $groupBy = 'month';
+            $format = 'Y-m';
+            $labelFormat = 'M Y';
+        }else{
+            $groupBy = 'year';
+            $format = 'Y';
+            $labelFormat = 'Y';
+        }
+
+        $countQuery = (clone $recommendationModel)->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as date, COUNT(*) as count")
+                                            ->groupBy('date')
+                                            ->orderBy('created_at','asc')
+                                            ->orderBy('date','asc')
+                                            ->get()
+                                            ->groupBy(function ($item) use($groupBy){
+                                                return Carbon::parse($item->date)->startOf($groupBy)->format('Y-m-d');
+                                            })->map(function($group){
+                                                return $group->sum('count');
+                                            });
+
+        $current = $startDate->copy()->startOf($groupBy);
+        $end = $endDate->copy()->startOf($groupBy);
+
+        while($current <= $end){
+            $key = $current->format('Y-m-d');
+            $chartData['labels'][] = $current->format($labelFormat);
+            $chartData['data'][] = $countQuery->get($key, 0);
+            $current->add(1, $groupBy);
+        }
+        DB::statement("SET SESSION sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
+
+        return $chartData;
     }
 }
