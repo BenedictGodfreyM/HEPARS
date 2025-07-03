@@ -269,7 +269,7 @@ class RecommendationService
     {
         $chartData = ['data' => [], 'labels' => []];
 
-        DB::statement("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY',''));");
+        if(DB::getDriverName() !== 'sqlite') DB::statement("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY',''));");
 
         $recommendationModel = Recommendation::query();
         if($user_id !== "") $recommendationModel->where('user_id', $user_id);
@@ -278,7 +278,7 @@ class RecommendationService
         $newest = (clone $recommendationModel)->latest('created_at')->first();
 
         if(!$oldest || !$newest){
-            DB::statement("SET SESSION sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
+            if(DB::getDriverName() !== 'sqlite') DB::statement("SET SESSION sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
             return $chartData;
         }
 
@@ -324,7 +324,7 @@ class RecommendationService
             $chartData['data'][] = $countQuery->get($key, 0);
             $current->add(1, $groupBy);
         }
-        DB::statement("SET SESSION sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
+        if(DB::getDriverName() !== 'sqlite') DB::statement("SET SESSION sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
 
         return $chartData;
     }
